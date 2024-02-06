@@ -1,32 +1,16 @@
-# Prerequisites
-*.d
+# Ignore all
+*.*
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Exceptions
 
-# Precompiled Headers
-*.gch
-*.pch
+#!CMakeLists.txt
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+!*.h
 
-# Fortran module files
-*.mod
-*.smod
+!*.cpp
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+!*.c
 
-# Executables
-*.exe
-*.out
-*.app
+!README.md
+
+!LICENSE

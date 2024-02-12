@@ -5,11 +5,11 @@
 
 #!CMakeLists.txt
 
-!*.h
+!*/
 
 !*.cpp
 
-!*.c
+!*.h
 
 !README.md
 

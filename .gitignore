@@ -2,15 +2,15 @@
 *.*
 
 # Exceptions
-
-#!CMakeLists.txt
-
 !*/
 
 !*.cpp
 
 !*.h
 
+!*.txt
+
 !README.md
 
-!LICENSE
+!CMakeLists.txt
+

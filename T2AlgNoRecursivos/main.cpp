@@ -50,6 +50,7 @@ int main() {
             c = * copia;
             cout << "Duplicando" << endl;
             break;
+        /*
         case '+':
             c = a + b;
             cout << "C=A+B" << endl;
@@ -93,6 +94,7 @@ int main() {
         case 'F':
             cout << "FIN" << endl;
             break;
+        */
         }
 
     } while (operacion != 'F');

@@ -152,20 +152,20 @@ Matriz & Matriz::operator * (const double & escalar) {
 //Producto de matriz por matriz
 Matriz& Matriz::operator * (const Matriz & m2) {
     
-    //Compruebo que el numero de filas y columnas son compatibles
-    assertdomjudge(n_filas==m2.n_columnas);
+    //Compruebo que las columnas de la primera son iguales que las filas de la segunda
     assertdomjudge(n_columnas==m2.n_filas);
 
     //Creo una nueva matriz con las dimensiones necesarias
-    Matriz* resultado = new Matriz(n_columnas, m2.n_filas);
-    
+    Matriz* resultado = new Matriz(n_filas, m2.n_columnas);
+
+    double temp;
     //Fila de la primera matriz
-    for(int i=0;i<n_filas;i++){
+    for(int i=0;i<n_filas;i++) {
         //Columnas de la segunda matriz
         for(int j=0;j<m2.n_columnas;j++) {
-            double temp=0;
+            temp=0;
             //Mutiplicar y sumar todos los elementos
-            for(int k=0;k<n_filas;k++){
+            for(int k=0;k<n_columnas;k++){
                 temp += matriz[i][k]*m2.matriz[k][j];
             }
             //Guardarlo los resultados

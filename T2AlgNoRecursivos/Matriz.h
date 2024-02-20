@@ -12,6 +12,7 @@ class Matriz {
 	double ** matriz;
 
     public:
+	
     /* Constructor por defecto.
     	   Parámetro: Ninguno.
     	   Retorno: Objeto de Matriz con dimension 0x0 y un puntero a NULL.

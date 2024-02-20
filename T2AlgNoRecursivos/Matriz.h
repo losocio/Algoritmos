@@ -5,13 +5,13 @@ using namespace std;
 
 class Matriz {
     private: 
-	double ** matriz;
-
-    int n_filas;
+    
+	int n_filas;
     int n_columnas;
 
-    public:
+	double ** matriz;
 
+    public:
     /* Constructor por defecto.
     	   Parámetro: Ninguno.
     	   Retorno: Objeto de Matriz con dimension 0x0 y un puntero a NULL.
@@ -19,7 +19,6 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(n_filas*n_columnas)
     */
-
     Matriz();
 
 
@@ -31,7 +30,6 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(n_filas*n_columnas)
     */
-
     Matriz(int n_filas, int n_colmunas);
 
 
@@ -43,7 +41,6 @@ class Matriz {
     	    Complejidad Temporal: O(n_filas*n_columnas)
     	    Complejidad Espacial: O(n_filas*n_columnas)
     */
-
     Matriz(Matriz & m);
 
 
@@ -55,7 +52,6 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(n_filas*n_columnas)
     */
-
     ~Matriz();
 
 
@@ -67,7 +63,6 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(n_filas*n_columnas)
     */
-
     Matriz & operator = (const Matriz & m);
 
 
@@ -78,7 +73,6 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(n_filas*n_columnas)
     */
-
     Matriz & operator + (const Matriz & m2);
 
 
@@ -90,10 +84,10 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(n_filas*n_columnas)
     */
-
     Matriz & operator - (const Matriz & m2);
 
 	
+
 
     /* Producto una matriz por un escalar 
     	   Parámetro: Una matriz y double escalar
@@ -102,8 +96,7 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-
-    Matriz & operator * (const Matriz & m1, const double & escalar); //TODO puede que el escalar no necesite &
+    Matriz & operator * (const double & escalar); //TODO puede que el escalar no necesite &
 
  
 
@@ -116,46 +109,52 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-
     Matriz & operator * (const Matriz &m2);
  
 
 
 
 	/* Calcular la matriz traspuesta
-    	   Parámetro: Matriz
+    	   Parámetro: Ninguno
     	   Retorno: Matriz traspuesta
     	   Precondicion: La matriz debe exsistir
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-
-	Matriz calcularTraspuesta(const Matriz &m1);
-
+	Matriz& calcularTraspuesta();
 
 
 
 	/*  Obtener el valor maximo de una matriz
-    	   Parámetro: Matriz
+    	   Parámetro: Ninguno
     	   Retorno: double maximo
     	   Precondicion: La matriz debe existir
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-
-	double obtenerMaximo(const Matriz & m);
+	double obtenerMaximo();
 
 
 
 	/* Obtener el valor maximo de una matriz
-    	   Parámetro: Matriz
+    	   Parámetro: Ninguno
     	   Retorno: double minimo
     	   Precondicion:La matriz debe existir
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-	
-	double obtenerMinimo(const Matriz & m);
+	double obtenerMinimo();
+
+
+
+	/* Comprueba si la matriz es simetrica 
+    	   Parámetro: Ninguno
+    	   Retorno: booleano segun simetria
+    	   Precondicion: La matriz no debe estar vacía
+    	   Complejidad Temporal: O(n_filas*n_columnas)
+    	   Complejidad Espacial: O(1)
+    */
+    bool esSimetrica();
 
 
 
@@ -166,7 +165,6 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-
     void rellenarManual();
 
 
@@ -178,7 +176,6 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-
     void rellenarAleatorio(long seed);
 
 
@@ -190,8 +187,18 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-
     void mostrarMatriz();
+
+
+
+	/* Imprime por pantalla todos los elementos de la matriz del objeto actual con sus indices  
+    	   Parámetro: Ninguno
+    	   Retorno: Ninguno
+    	   Precondicion: Ninguna
+    	   Complejidad Temporal: O(n_filas*n_columnas)
+    	   Complejidad Espacial: O(1)
+    */
+    void mostrarMatrizIndices();
 
 };
 

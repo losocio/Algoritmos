@@ -10,6 +10,7 @@ int main() {
     double scalar;
     long semilla;
 
+    
     char operacion;
     do {
         cout << "Elige operacion:" << endl;
@@ -32,6 +33,8 @@ int main() {
             cout << "Semilla aleatoria: ";
             cin >> semilla;
             temp -> rellenarAleatorio(semilla);
+            //TODO Show
+            temp->mostrarMatriz();
             break;
         case 'A':
             a = * temp;
@@ -50,7 +53,6 @@ int main() {
             c = * copia;
             cout << "Duplicando" << endl;
             break;
-        /*
         case '+':
             c = a + b;
             cout << "C=A+B" << endl;
@@ -94,9 +96,9 @@ int main() {
         case 'F':
             cout << "FIN" << endl;
             break;
-        */
         }
 
     } while (operacion != 'F');
+    
     return 0;
 }

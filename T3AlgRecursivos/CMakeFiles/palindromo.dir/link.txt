@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/palindromo.dir/Palindromo.cpp.o -o palindromo  -lpthread 

@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/raizCuadrada.dir/RaizCuadrada.cpp.o -o raizCuadrada  -lpthread 

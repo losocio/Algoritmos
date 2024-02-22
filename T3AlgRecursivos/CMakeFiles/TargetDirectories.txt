@@ -1,0 +1,6 @@
+/home/losocio/Repos/Algorithms/T3AlgRecursivos/CMakeFiles/matriz.dir
+/home/losocio/Repos/Algorithms/T3AlgRecursivos/CMakeFiles/palindromo.dir
+/home/losocio/Repos/Algorithms/T3AlgRecursivos/CMakeFiles/raizCuadrada.dir
+/home/losocio/Repos/Algorithms/T3AlgRecursivos/CMakeFiles/combinaciones.dir
+/home/losocio/Repos/Algorithms/T3AlgRecursivos/CMakeFiles/edit_cache.dir
+/home/losocio/Repos/Algorithms/T3AlgRecursivos/CMakeFiles/rebuild_cache.dir

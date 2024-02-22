@@ -14,11 +14,11 @@ class Matriz {
     public:
 	
     /* Constructor por defecto.
-    	   Parámetro: Ninguno.
-    	   Retorno: Objeto de Matriz con dimension 0x0 y un puntero a NULL.
-    	   Precondicion: Ninguno.
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(n_filas*n_columnas)
+			Parámetro: Ninguno.
+			Retorno: Objeto de Matriz con dimension 0x0 y un puntero a NULL.
+			Precondicion: Ninguno.
+			Complejidad Temporal: O(1)
+			Complejidad Espacial: 
     */
     Matriz();
 
@@ -70,7 +70,7 @@ class Matriz {
     /* Suma dos matrices.Crea una nueva matriz con el resultado.
     	   Parámetro: las matrices operando con las mismas dimensiones
     	   Retorno: una nueva matriz con el resultado.
-    	   Precondicion: Que exsitan las dos matrices operador y sean de la misma dimension.
+    	   Precondicion: Que existan las dos matrices operador y sean de la misma dimension.
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(n_filas*n_columnas)
     */

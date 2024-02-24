@@ -138,14 +138,14 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-    double calcularAdjunto(int fila, int columna);
+    //double calcularAdjunto(int fila, int columna);
 
     /* Comprueba si la matriz es simetrica 
     	   Parámetro: Ninguno
     	   Retorno: booleano segun simetria
     	   Precondicion: La matriz no debe estar vacía
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
+    	   Complejidad Temporal: No necesario
+    	   Complejidad Espacial: No necesario
     */
     double calcularDeterminante();
     

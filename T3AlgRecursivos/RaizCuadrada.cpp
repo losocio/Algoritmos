@@ -11,8 +11,6 @@ Calculo de la raiz cuadrada de un numero mediante aproximacion
     Parámetro: Numero de que se quiere calcular la raiz (objetivo) y el error maximo permitido
     Retorno: Ninguno
     Precondicion: objetivo >= 0, error > 0
-    Complejidad Temporal: 
-    Complejidad Espacial: 
 */
 void raizCuadradaAprox(const float objetivo, const float error){
     //Tanto el error como el operando deben ser positivos 

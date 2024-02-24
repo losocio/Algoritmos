@@ -241,25 +241,52 @@ bool Matriz::esSimetrica(){
     return simetrica;
 }
 
-//Calcular el adjunto de un elemento de una matrix
-double Matriz::calcularAdjunto(int i_fila, int i_columna){
+//Calcular la matriz necesaria para el adjunto de un elemento de una matriz
+Matriz& Matriz::calcularMatrizAdjunto(int i_fila, int i_columna){
     //Compruebo que el numero de filas y columnas son iguales, matriz cuadrada
     assertdomjudge(n_filas==n_columnas);
 
-    //Compruebo que las posiciones elegidas existan en la matriz, no pueden ser negativas y mayores que la matriz
-    assertdomjudge(i_fila>0&&i_fila<n_filas);
-    assertdomjudge(i_columna>0&&i_columna<n_columnas);
-
+    //Compruebo que las posiciones elegidas existan en la matriz, no pueden ser negativas ni mayores que la matriz
+    assertdomjudge(i_fila>0 && i_fila<n_filas);
+    assertdomjudge(i_columna>0 && i_columna<n_columnas);
 
     //TODO copypasted, revisar
-    Matriz* adjunto = new Matriz(n_filas-1, n_columnas-1);
-    for(int j=0;j<n_filas-1;j++){
-        for(int k=0;k<n_columnas-1;k++){
-            adjunto[j][k]=matriz[j+1][k+1]; //TODO seguramente MAL pero los tiros van por i
+    Matriz* matrizAdjunto = new Matriz(n_filas-1, n_columnas-1);
+
+
+
+    //OPCION1 Itero por la matriz original
+    for(int i=0;i<n_filas;i++){
+        for(int j=0;j<n_columnas;j++){
+            //Me salto la fila y la columna del elemento elegido
+            if(j!=i_fila || k!=i_columna) matrizAdjunto[][]=matriz[j][k]; //TODO seguramente MAL pero los tiros van por i
         }
     }
 
-    return *adjunto;
+    //OPCION2 Itero por la matriz nueva, la del adjunto
+    //Itero por los elemetos de la matriz adjunto
+    for(int i=0;i<n_filas-1;i++){
+        for(int j=0;j<n_columnas-1;j++){
+            //Itero por la matriz original
+            for(int k=0;k<n_filas;k++){
+                for(int l=0;l<n_columnas;l++){
+                    //Me salto la fila y la columna del elemento elegido
+                    if(k!=i_fila || l!=i_columna) matrizAdjunto[i][j]=matriz[k][l]; //TODO seguramente MAL pero los tiros van por i
+                }
+            }
+        }
+    }
+
+    /*
+    //TODO copypasted, revisar
+    Matriz* matrizAdjunto = new Matriz(n_filas-1, n_columnas-1);
+    for(int j=0;j<n_filas-1;j++){
+        for(int k=0;k<n_columnas-1;k++){
+            matrizAdjunto[j][k]=matriz[j+1][k+1]; //TODO seguramente MAL pero los tiros van por i
+        }
+    }*/
+
+    return *matrizAdjunto;
 }
 
 //Calculo recursivo del determianate
@@ -268,21 +295,34 @@ double Matriz::calcularDeterminante(){
     assertdomjudge(n_filas==n_columnas);
 
     //TODO condicion de salida de recursion
+    if(n_filas==1 && n_columnas==1) return matriz[0][0]; //
 
     double resultado=0;
     //Itero la primera fila de la matriz
     for(int i=0;i<n_columnas;i++){
 
         //Calculo el adjunto
-        Matriz* adjunto = calcularAdjunto(0, i); //TODO creo que esta bien
+        Matriz* matrizAdjunto = calcularMatrizAdjunto(0, i); //TODO creo que esta bien
 
-        //Si el indice es impar se resta el valor
+        //Calculo el adjunto
+        /*
+        Matriz* adjunto = new Matriz(n_filas-1, n_columnas-1);
+        for(int j=0;j<n_filas-1;j++){
+            for(int k=0;k<n_columnas-1;k++){
+                adjunto[j][k]=matriz[j+1][k+1]; //TODO seguramente MAL pero los tiros van por i
+            }
+        }*/
+
+        //Si el indice es par se suma el valor
         if(i%2==0){
-            resultado+=matriz[0][i]*adjunto.calcularDeterminante();
+            resultado+=matriz[0][i]*matrizAdjunto.calcularDeterminante();
+        //Si el indice es impar se resta el valor
         } else {
-            resultado-=matriz[0][i]*adjunto.calcularDeterminante();
+            resultado-=matriz[0][i]*matrizAdjunto.calcularDeterminante();
         }
     }
+
+    return resultado;
 }
 
 // Leer matriz

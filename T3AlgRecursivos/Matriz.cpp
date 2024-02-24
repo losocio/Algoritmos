@@ -42,22 +42,17 @@ Matriz::Matriz(int n_filas, int n_columnas) {
 //Matriz::Matriz(Matriz & matrizOld) : matriz(matrizOld->matrin_filas(matrizOld->n_filas), n_columnas(matrizOld->n_columnas) {}
 Matriz::Matriz(Matriz& m) {
     
-    //assertdomjudge(matriz);
+    //assertdomjudge(matriz); //No es necesario, pero puede tener sentido
 	//Copio numero de filas y columnas
 	n_filas=m.n_filas; //NOTE No uso la flecha para las filas, ya que es una referencia. Con punteros si
 	n_columnas=m.n_columnas;
-
-    /*
-	//Esto esta mal. Solo creo una nueva referencia a la matriz original, no cero una segunda copia
-	matriz=matriz.matriz;
-    */
 
     //Copio los elementos de la matriz original a una nueva
     matriz = new double* [n_filas];
     for(int i = 0;i<n_filas;i++){
         matriz[i]=new double[n_columnas];
         for(int j=0;j<n_columnas;j++){
-            assertdomjudge(m.matriz[i][j]); //NOTE No era necesario comprobar que existe la matriz, seguramente no sera necesario en el resto de funcs
+            //assertdomjudge(m.matriz[i][j]); //NOTE No era necesario comprobar que existe la matriz, seguramente no sera necesario en el resto de funcs
             matriz[i][j]=m.matriz[i][j]; 
         }
     }
@@ -65,11 +60,11 @@ Matriz::Matriz(Matriz& m) {
 
 //Destructor
 Matriz::~Matriz() {
-    assertdomjudge(matriz); //No era necesario
+    //assertdomjudge(matriz); //No era necesario, pero puede tener sentido
     for(int i=0;i<n_filas;i++){
         delete [] matriz[i];
     }
-    delete matriz;
+    delete [] matriz;
 }
 
 //Asignacion de matrices
@@ -82,7 +77,7 @@ Matriz& Matriz::operator = (const Matriz & m) {
         matriz = NULL;
     }
 
-    //TODO no se si te puedes saltar los this ->
+    //Te puede saltar el this->
     this -> n_filas = m.n_filas;
     this -> n_columnas = m.n_columnas;
     this -> matriz = NULL;
@@ -102,10 +97,14 @@ Matriz& Matriz::operator = (const Matriz & m) {
 
 //Suma de matrices
 Matriz& Matriz::operator + (const Matriz & m2) {
-    //TODO Assert para que las dimensiones sean iguales
-    //TODO asser para que existan las matrices
+    
+    //Compruebo que el numero de filas y columnas son compatibles
+    assertdomjudge(n_filas==m2.n_filas);
+    assertdomjudge(n_columnas==m2.n_columnas);
+
     Matriz *resultado = new Matriz(m2.n_filas, m2.n_columnas);
     
+    //Sumo los elementos uno a uno en la nueva matriz
     for(int i=0;i<m2.n_filas;i++){
         for(int j=0;j<m2.n_columnas;j++){
             resultado->matriz[i][j]=matriz[i][j]+m2.matriz[i][j];
@@ -118,10 +117,14 @@ Matriz& Matriz::operator + (const Matriz & m2) {
 
 //Resta de matrices
 Matriz& Matriz::operator - (const Matriz & m2) {
-    //TODO Assert para que las dimensiones sean iguales
-    //TODO asser para que existan las matrices
+    
+    //Compruebo que el numero de filas y columnas son compatibles
+    assertdomjudge(n_filas==m2.n_filas);
+    assertdomjudge(n_columnas==m2.n_columnas);
+
     Matriz* resultado = new Matriz(m2.n_filas, m2.n_columnas);
     
+    //Resto los elementos uno a uno en la nueva matriz
     for(int i=0;i<m2.n_filas;i++){
         for(int j=0;j<m2.n_columnas;j++){
             resultado->matriz[i][j]=matriz[i][j]-m2.matriz[i][j];
@@ -135,7 +138,6 @@ Matriz& Matriz::operator - (const Matriz & m2) {
 //Producto de matriz por escalar
 Matriz & Matriz::operator * (const double & escalar) {
 
-    //TODO assert para que exista la matriz
     Matriz* resultado = new Matriz(n_filas, n_columnas);
     
     for(int i=0;i<n_filas;i++){
@@ -149,19 +151,26 @@ Matriz & Matriz::operator * (const double & escalar) {
 
 //Producto de matriz por matriz
 Matriz& Matriz::operator * (const Matriz & m2) {
-
-    //TODO implementar el algoritmo
-    //TODO assert para que exista la matriz
-    //TODO assert dimensiones compatibles para multiplicar
-    Matriz* resultado = new Matriz(n_filas, m2.n_columnas);
     
+    //Compruebo que las columnas de la primera son iguales que las filas de la segunda
+    assertdomjudge(n_columnas==m2.n_filas);
+
+    //Creo una nueva matriz con las dimensiones necesarias
+    Matriz* resultado = new Matriz(n_filas, m2.n_columnas);
+
     double temp;
-    for(int i=0;i<n_filas;i++){
-        temp = 0;
-        for(int j=0;j<n_columnas;j++){
-            temp += matriz[i][j]*m2.matriz[j][i];
+    //Fila de la primera matriz
+    for(int i=0;i<n_filas;i++) {
+        //Columnas de la segunda matriz
+        for(int j=0;j<m2.n_columnas;j++) {
+            temp=0;
+            //Mutiplicar y sumar todos los elementos
+            for(int k=0;k<n_columnas;k++){
+                temp += matriz[i][k]*m2.matriz[k][j];
+            }
+            //Guardarlo los resultados
+            resultado->matriz[i][j]=temp;
         }
-        //resultado->matriz[i][j]=temp;
     }
 
     return *resultado;
@@ -185,7 +194,7 @@ Matriz& Matriz::calcularTraspuesta() {
 
 //Obtener elemento maximo de una matriz
 double Matriz::obtenerMaximo() {
-    //TODO assert para que exista la matriz
+    
     //Le pongo una valor de la matriz por si esta tiene valores muy extremos
     double max=matriz[0][0];
     
@@ -200,10 +209,9 @@ double Matriz::obtenerMaximo() {
  
 //Obtener elemento minimo de una matriz
 double Matriz::obtenerMinimo() {
-    //TODO assert para que exista la matriz
+
     
     //Le pongo una valor de la matriz por si esta tiene valores muy extremos
-    //NOTE bien esto esta bien hecho
     double min=matriz[0][0];
 
     for(int i=0;i<n_filas;i++){
@@ -217,10 +225,13 @@ double Matriz::obtenerMinimo() {
 
 //Comprobar simetria
 bool Matriz::esSimetrica(){
-    //TODO assert si es cuadrada
+    
+    //Compruebo que el numero de filas y columnas son iguales, matriz cuadrada
+    assertdomjudge(n_filas==n_columnas);
+
     bool simetrica=true;
 
-    //TODO implementar de manera que te saltas
+    //Se puede implementar de manera mas eficiente, se comprueban todos los numeros dos veces
     for(int i=0;i<n_filas;i++){
         for(int j=0;j<n_columnas;j++){
             if(matriz[i][j]!=matriz[j][i]) simetrica=false;
@@ -228,6 +239,11 @@ bool Matriz::esSimetrica(){
     }
 
     return simetrica;
+}
+
+//Calculo recursivo del determianate
+double Matriz::calcularDeterminante(){
+    
 }
 
 // Leer matriz
@@ -260,6 +276,16 @@ void Matriz::mostrarMatriz() {
     for (int i = 0; i < n_filas; i++) {
         for (int j = 0; j < n_columnas; j++){
             cout << matriz[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Imprimir matrix con sus indices
+void Matriz::mostrarMatrizIndices() {
+    for (int i = 0; i < n_filas; i++) {
+        for (int j = 0; j < n_columnas; j++){
+            cout << matriz[i][j] << "=" << "["<<i<<"]"<<"["<<j<<"] ";
         }
         cout << endl;
     }

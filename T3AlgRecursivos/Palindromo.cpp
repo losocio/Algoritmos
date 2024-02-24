@@ -2,23 +2,34 @@
 #include <stdlib.h>
 #include <cstring>
 
-bool esPalindromo(char pal, int i){
+#define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
+
+using namespace std;
+
+/* 
+Palidromo recursivo.
+    Parámetro: Array de longitud inferior a 20.
+    Retorno: int segun si es palidromo.
+    Precondicion: Ninguno.
+    Complejidad Temporal: O(1)
+    Complejidad Espacial: O()
+*/
+int esPalindromo(const char pal[], int i){
 
     if(pal[i]==pal[strlen(pal)-i-1]){
         // Si llego al final del string, retornar 1
-        if(0==strlen(pal)-1) return true;
-        // Si no es el final hacer recursion
-        return esPalindromo(pal, --i);
+        if(strlen(pal)/2==i) return 1;
+        // Si no es el final, hacer recursion
+        return esPalindromo(pal, ++i);
     // Si dos letras simetricas no son iguales ya no es palindromo
-    } else return false;
+    } else return 0;
 }
 
 int main(){
-    char pal[20] = "ojorojo";
-    char noPal[20] = "ojor4jo";
-    
-    cout<<"ya";
-    //cout<<esPalindromo(pal);
+    char pal[20];
+
+    cin>>pal;
+    cout<<esPalindromo(pal, 0);
 
     return 0;
 }

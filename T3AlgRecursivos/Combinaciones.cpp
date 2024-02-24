@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
-#include <cstring>
+
+#define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
 
 using namespace std;
 
@@ -14,9 +15,8 @@ Producto una matriz por matriz
     Complejidad Espacial: O(1)
 */
 int factorial(int n){
-    
     // Compruebo que el numero factorial es mayor que 0
-    if(n<0) return -1;
+    assertdomjudge(n>=0);
 
     // Condicion se salida, si el factorial es de 0!
     if(n==0) return 1;
@@ -25,21 +25,30 @@ int factorial(int n){
     return n*factorial(n-1);
 }
 
+/*  
+
+    Parámetro: 
+    Retorno: 
+    Precondicion: 
+    Complejidad Temporal: O()
+    Complejidad Espacial: O()
+*/
 int combinaciones(int n, int r){
-    if(r>n) cout<<"ERROR"<<endl;
+    // Compruebo si n es mayor o igual que r, sino no se puede hacer la 
+    assertdomjudge(n>=r);
 
     return factorial(n)/(factorial(r)*factorial(n-r));
 }
 
 int main() {
-    int n, r, i = 1;
-    while(i){
+    int n, r;
+    while(true){
         cin>>n;
         cin>>r;
-        combinaciones(n, r)<<endl;
-        if(;;){
-            
-        }
+        if(n<0) break;
+        //if(n<r && n>=0) cout<<"ERROR";
+        if(n<r) cout<<"ERROR";
+        else cout<<combinaciones(n, r)<<endl;
     }
 
     return 0;

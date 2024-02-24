@@ -33,8 +33,6 @@ int main() {
             cout << "Semilla aleatoria: ";
             cin >> semilla;
             temp -> rellenarAleatorio(semilla);
-            //TODO Show
-            temp->mostrarMatriz();
             break;
         case 'A':
             a = * temp;

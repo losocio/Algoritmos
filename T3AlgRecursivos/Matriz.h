@@ -8,7 +8,7 @@ class Matriz {
     
 	int n_filas;
     int n_columnas;
-    
+
 	double ** matriz;
 
     public:
@@ -138,7 +138,17 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
+    double calcularAdjunto(int fila, int columna);
+
+    /* Comprueba si la matriz es simetrica 
+    	   Parámetro: Ninguno
+    	   Retorno: booleano segun simetria
+    	   Precondicion: La matriz no debe estar vacía
+    	   Complejidad Temporal: O(n_filas*n_columnas)
+    	   Complejidad Espacial: O(1)
+    */
     double calcularDeterminante();
+    
 
     /* Permite rellenar todos los elementos de la matriz del objeto actual preguntando al usuario 
     	   Parámetro: Ninguno

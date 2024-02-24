@@ -241,9 +241,48 @@ bool Matriz::esSimetrica(){
     return simetrica;
 }
 
+//Calcular el adjunto de un elemento de una matrix
+double Matriz::calcularAdjunto(int i_fila, int i_columna){
+    //Compruebo que el numero de filas y columnas son iguales, matriz cuadrada
+    assertdomjudge(n_filas==n_columnas);
+
+    //Compruebo que las posiciones elegidas existan en la matriz, no pueden ser negativas y mayores que la matriz
+    assertdomjudge(i_fila>0&&i_fila<n_filas);
+    assertdomjudge(i_columna>0&&i_columna<n_columnas);
+
+
+    //TODO copypasted, revisar
+    Matriz* adjunto = new Matriz(n_filas-1, n_columnas-1);
+    for(int j=0;j<n_filas-1;j++){
+        for(int k=0;k<n_columnas-1;k++){
+            adjunto[j][k]=matriz[j+1][k+1]; //TODO seguramente MAL pero los tiros van por i
+        }
+    }
+
+    return *adjunto;
+}
+
 //Calculo recursivo del determianate
 double Matriz::calcularDeterminante(){
-    
+    //Compruebo que el numero de filas y columnas son iguales, matriz cuadrada
+    assertdomjudge(n_filas==n_columnas);
+
+    //TODO condicion de salida de recursion
+
+    double resultado=0;
+    //Itero la primera fila de la matriz
+    for(int i=0;i<n_columnas;i++){
+
+        //Calculo el adjunto
+        Matriz* adjunto = calcularAdjunto(0, i); //TODO creo que esta bien
+
+        //Si el indice es impar se resta el valor
+        if(i%2==0){
+            resultado+=matriz[0][i]*adjunto.calcularDeterminante();
+        } else {
+            resultado-=matriz[0][i]*adjunto.calcularDeterminante();
+        }
+    }
 }
 
 // Leer matriz

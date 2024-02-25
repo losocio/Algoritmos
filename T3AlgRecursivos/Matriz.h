@@ -138,7 +138,7 @@ class Matriz {
     	   Complejidad Temporal: O(n_filas*n_columnas)
     	   Complejidad Espacial: O(1)
     */
-    //double calcularAdjunto(int fila, int columna);
+    Matriz& calcularMatrizMenorComplementario(int fila, int columna);
 
     /* Comprueba si la matriz es simetrica 
     	   Parámetro: Ninguno

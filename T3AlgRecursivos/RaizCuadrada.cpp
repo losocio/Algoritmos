@@ -12,34 +12,39 @@ Calculo de la raiz cuadrada de un numero mediante aproximacion
     Retorno: Ninguno
     Precondicion: objetivo >= 0, error > 0
 */
-void raizCuadradaAprox(const float objetivo, const float error){
-    //Tanto el error como el operando deben ser positivos 
-    assertdomjudge(objetivo>=0 && error>0); //TODO puede que objetivo tenga se ser mayor que 0
+void raizCuadradaAprox(const float objetivo, const float minimo, const float maximo, const float error){
+    //Tanto el error como los operandos deben ser positivos 
+    //Asumo que el error debe ser mayor que 0, sino entraremoes en resursividad infinita en algunos casos
+    assertdomjudge(objetivo>=0 && minimo>=0 && maximo>=0 && error>0);
 
-    float medioObjetivo=objetivo/2;
-    float cuadrado = medioObjetivo*medioObjetivo;
+    //Calculo el valor medio y luego su cuadrado
+    float valorMedio=(minimo*maximo)/2; //NOTE valor medio de un rango, no la mitad del maximo
+    float cuadrado = valorMedio*valorMedio;
     
-    cout<<cuadrado<<endl;
+    //Imprimo la aproximacion
+    cout<<valorMedio<<endl;
     
-    //Si el error es mayor que es requerido se continua
-    if(fabs(cuadrado-objetivo)>error){ //TODO floating absolute value
-        if(cuadrado>objetivo){
-            float objetivoMenor;
-            raizCuadradaAprox(objetivoMenor, error);
-        }else{
-            float objetivoMenor;
-            raizCuadradaAprox(objetivoMenor, error);
-        }
-    } else return;
+    //Si el error es menor que es requerido se sale de la recursion
+    if(fabs(cuadrado-objetivo)<=error) return;
+    
+    //Si el cuadrado del valor medio en mayor que el objetivo, el valor medio pasa a ser el maximo del nuevo rango
+    if(cuadrado>objetivo) raizCuadradaAprox(objetivo, minimo, valorMedio, error);
+    //Si es menor, el valor medio pasa a ser el minimo del nuevo rango
+    else raizCuadradaAprox(objetivo, valorMedio, maximo, error);
+    
+    return;
 }
 
 int main() {
-    float objetivo, error;
+    float objetivo, minimo, maximo, error;
     
     cin>>objetivo;
     cin>>error;
 
-    raizCuadradaAprox(objetivo, error);
+    minimo=0;
+    maximo=objetivo;
+
+    raizCuadradaAprox(objetivo, minimo, maximo, error);
 
     return 0;
 }

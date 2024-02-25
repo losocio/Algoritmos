@@ -242,7 +242,7 @@ bool Matriz::esSimetrica(){
 }
 
 //Calcular la matriz necesaria para el adjunto de un elemento de una matriz
-Matriz& Matriz::calcularMatrizAdjunto(int i_fila, int i_columna){
+Matriz& Matriz::calcularMatrizMenorComplementario(int i_fila, int i_columna){
     //Compruebo que el numero de filas y columnas son iguales, matriz cuadrada
     assertdomjudge(n_filas==n_columnas);
 
@@ -302,7 +302,7 @@ double Matriz::calcularDeterminante(){
     for(int i=0;i<n_columnas;i++){
 
         //Calculo el adjunto
-        Matriz* matrizAdjunto = calcularMatrizAdjunto(0, i); //TODO creo que esta bien
+        Matriz* matrizAdjunto = calcularMatrizMenorComplementario(0, i); //TODO creo que esta bien
 
         //Calculo el adjunto
         /*

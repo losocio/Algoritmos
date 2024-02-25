@@ -5,13 +5,8 @@
 #define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
 
 using namespace std;
-
-/*  
-Calculo de la raiz cuadrada de un numero mediante aproximacion
-    Parámetro: Numero de que se quiere calcular la raiz (objetivo) y el error maximo permitido
-    Retorno: Ninguno
-    Precondicion: objetivo >= 0, error > 0
-*/
+ 
+//Calculo de la raiz cuadrada de un numero mediante aproximacion
 void raizCuadradaAprox(const float objetivo, const float minimo, const float maximo, const float error){
     //Tanto el error como los operandos deben ser positivos 
     //Asumo que el error debe ser mayor que 0, sino entraremoes en resursividad infinita en algunos casos

@@ -1,11 +1,9 @@
+#include "Combinaciones.h"
 #include <iostream>
 #include <stdlib.h>
 
 #define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
 
-using namespace std;
-
-  
 //Calcula el factorial
 int factorial(int n){
     // Compruebo que el numero factorial es mayor que 0
@@ -29,6 +27,7 @@ int combinaciones(int n, int r){
 int main() {
     int n, r;
     
+    //Bucle para que se repita hasta cometer un error
     while(true){
         cin>>n;
         cin>>r;

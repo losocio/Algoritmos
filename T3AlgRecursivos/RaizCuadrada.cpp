@@ -1,10 +1,9 @@
+#include "RaizCuadrada.h"
 #include <iostream>
 #include <stdlib.h>
 #include <cmath>
 
 #define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
-
-using namespace std;
  
 //Calculo de la raiz cuadrada de un numero mediante aproximacion
 void raizCuadradaAprox(const float objetivo, const float minimo, const float maximo, const float error){

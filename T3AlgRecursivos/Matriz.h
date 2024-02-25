@@ -131,19 +131,19 @@ class Matriz {
     */
     bool esSimetrica();
 
-    /* Comprueba si la matriz es simetrica 
-    	   Parámetro: Ninguno
-    	   Retorno: booleano segun simetria
-    	   Precondicion: La matriz no debe estar vacía
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
+    /* 
+    	   Parámetro: 
+    	   Retorno: 
+    	   Precondicion: 
+    	   Complejidad Temporal: No necesario
+    	   Complejidad Espacial: No necesario
     */
     Matriz& calcularMatrizMenorComplementario(int fila, int columna);
 
-    /* Comprueba si la matriz es simetrica 
+    /* 
     	   Parámetro: Ninguno
-    	   Retorno: booleano segun simetria
-    	   Precondicion: La matriz no debe estar vacía
+    	   Retorno: 
+    	   Precondicion: 
     	   Complejidad Temporal: No necesario
     	   Complejidad Espacial: No necesario
     */

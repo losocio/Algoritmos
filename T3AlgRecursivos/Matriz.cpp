@@ -263,6 +263,8 @@ Matriz& Matriz::calcularMatrizMenorComplementario(int i_fila, int i_columna){
         }
     }
 
+    //hacer esto con un contador
+    
     //OPCION2 Itero por la matriz nueva, la del adjunto
     //Itero por los elemetos de la matriz adjunto
     for(int i=0;i<n_filas-1;i++){

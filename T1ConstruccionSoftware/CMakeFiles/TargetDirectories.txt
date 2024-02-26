@@ -1,3 +1,0 @@
-/home/losocio/Repos/Algorithms/T2AlgNoRecursivos/CMakeFiles/matriz.dir
-/home/losocio/Repos/Algorithms/T2AlgNoRecursivos/CMakeFiles/edit_cache.dir
-/home/losocio/Repos/Algorithms/T2AlgNoRecursivos/CMakeFiles/rebuild_cache.dir

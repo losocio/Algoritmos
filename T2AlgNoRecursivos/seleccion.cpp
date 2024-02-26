@@ -1,14 +1,16 @@
 #include<iostream>
+
+#define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
+
 using namespace std;
 
 void ordenarSeleccion(int x[],int len)
 {
-  for(int i=0;i<len;i++)
-    {
+  	for(int i=0;i<len;i++)
+	{
       /*Añadir código de ordenar mediante selección */
       
-      for(int k=0;k<len;k++)
-	cout<<x[k]<<" ";
+      for(int k=0;k<len;k++) cout<<x[k]<<" ";
       cout<<endl;
     }  
 }
@@ -17,11 +19,9 @@ void ordenarSeleccion(int x[],int len)
 
 int main()
 {
- int n;
- cin>>n;
- int *x=new int[n];
- for(int i=0;i<n;i++)
-   cin>>x[i];
- ordenarSeleccion(x,n);
+	int n;
+	cin>>n;
+	int *x=new int[n];
+	for(int i=0;i<n;i++) cin>>x[i];
+	ordenarSeleccion(x,n);
 }
-

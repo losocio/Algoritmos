@@ -1,66 +1,46 @@
 #include <iostream>
+#include "burbuja.h"
 
 #define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
 
-using namespace std;
+void ordenarBurbuja(int x[], int len)
+{
+	// La longitud debe ser mayor que 0
+	assertdomjudge(len>0);
 
-int printArray(int array[], int len){
-    
-    for(int i=0;i<len;i++){
-        cout<<array[i];
-    }
-    cout<<endl;
-    return 0;
-}
-
-void ordenarBurbuja(int x[], int len){
 	int temp;
-    int done=1;
-
-/*
-    while(done){
-        //done=0;
-        for(int i=0;i<len;i++){
-            if(x[i]>x[i+1]){
-               temp = x[i];
-               x[i] = x[i+1];
-               x[i+1] = temp;
-               //done=1;
-            }
-            
-        }
-        for(int k=0;k<len;k++) cout<<x[k]<<" ";
-      	cout<<endl;
-    }*/
-
-	
-	//Itero por todo el array empezando por el segundo elemento
-	for(int i=0;i<len;i++){
-		for(int j=i;j<len-1;j++){
-			//Si el elemento es anterior es mayor lo cambio
-			if(x[j]>x[j+1]){
+	// Una pasada del algoritmo por cada elemento de array
+  	for(int i=1;i<len;i++)
+    {
+		// Recorrer los elementos para hacer la comprobacion y actuar en consecuencia
+		// El recorrido disminuye cada iteracion, con cada iteracion se ordena un elemento
+		for(int j=0; j<len-i; j++)
+		{
+			if(x[j]>x[j+1])
+			{
+				// Cambiar posiciones
 				temp = x[j];
-				x[j] = x[j+1];
-				x[j+1] = temp;
+               	x[j] = x[j+1];
+               	x[j+1] = temp;
 			}
-			
-			for(int k=0;k<len;k++) cout<<x[k]<<" ";
-			cout<<endl;
 		}
-	}
+
+		// Mostrar las iteraciones
+      	for(int k=0;k<len;k++) cout<<x[k]<<" ";
+      	cout<<endl;
+    }  
+
+	return;
 }
 
-
-int main(){
+int main()
+{
  	int n;
  	cin>>n;
  	int *x=new int[n];
  	for(int i=0;i<n;i++) cin>>x[i];
 
-	int size = sizeof(x)/sizeof(int);
-	//cout<<"len "<<size<<endl;
-	//printArray(x, size);
- 	ordenarBurbuja(x,n);
+ 	ordenarBurbuja(x, n);
 
 	return 0;
 }

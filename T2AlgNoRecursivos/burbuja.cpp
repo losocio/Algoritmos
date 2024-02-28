@@ -5,8 +5,8 @@
 
 void ordenarBurbuja(int x[], int len)
 {
-	// La longitud debe ser mayor que 0
-	assertdomjudge(len>0);
+	// La longitud debe ser mayor o igual que 0
+	assertdomjudge(len>=0);
 
 	int temp;
 	// Una pasada del algoritmo por cada elemento de array

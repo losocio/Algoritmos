@@ -8,19 +8,17 @@ void ordenarSeleccion(int x[],int len)
 	// La longitud debe ser mayor o igual que 0
 	assertdomjudge(len>=0);
 
-	int temp,indiceMinimo;
+	int temp,minimo,indiceMinimo;
 
 	// Itero por todo el array
   	for(int i=0;i<len;i++)
 	{
-		// 
+		indiceMinimo=i;
+		// Para cada elemento comparado
 		for(int j=i+1;j<len;j++)
 		{
-			// 
-			//TODO esta mal ya que no se queda el indicel del mas pequeño sino el del ultimo mas pequeño
-			if(x[j]<x[i] && x[j]<x[indiceMinimo]) indiceMinimo = j;
-			
-			//8 5 6 7 0 3 9 2 4 1
+			// Si la iteracion actual es menor que en valor anterior, guardo su indice
+			if(x[j]<x[indiceMinimo]) indiceMinimo = j;
 		}
 
 		// Intercambio el menor por el valor de la iteracion actual

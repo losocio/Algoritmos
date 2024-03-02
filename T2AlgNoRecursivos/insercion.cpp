@@ -8,14 +8,14 @@ void ordenarInsercion(int x[],int len)
 	// La longitud debe ser mayor o igual que 0
 	assertdomjudge(len>=0);
 
-	int desplazado;
+	int desplazado, j;
 	// Itero todo el array
   	for(int i=1;i<len;i++)
     {
 		// Separo el elemento a ordenar
 		desplazado = x[i];
 
-		int j = i-1;
+		j = i-1;
 		// Si el elemento anterior al que se ordena es mayor lo desplazo
 		// Tambien termina el bucle si me saldria del array
 		while(x[j]>desplazado && j>=0)

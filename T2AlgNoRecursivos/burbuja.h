@@ -10,8 +10,8 @@ Ordenacion por burbuja, ordena un array de enteros
     Precondicion: longitud >= 0
     
     Complejidad Temporal: 
-        T(n)=
-        O()
+        T(n)= n²/2+n/2+1
+        O(n²)
     
     Complejidad Espacial: 
         M(n)=3*4=12bytes

@@ -18,7 +18,7 @@ void ordenarSeleccion(int x[],int len)
 		for(int j=i+1;j<len;j++)
 		{
 			// Si la iteracion actual es menor que en valor anterior, guardo su indice
-			if(x[j]<x[indiceMinimo]) indiceMinimo = j;
+			if(x[j]<x[indiceMinimo]) indiceMinimo = j; //NOTE esto seria siempre constante T(n)=1
 		}
 
 		// Intercambio el menor por el valor de la iteracion actual

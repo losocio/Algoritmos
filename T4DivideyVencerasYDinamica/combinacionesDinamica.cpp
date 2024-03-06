@@ -23,10 +23,7 @@ int combinacionesDinamica(int n,int r)
         soluciones[i]=new int[i+1];
         
         // Relleno con la nueva fila con sus soluciones
-        for(int j=0;j<i+1;j++)
-        {   
-            soluciones[i][j]=combinaciones(i,j);
-        }
+        for(int j=0;j<i+1;j++) soluciones[i][j]=combinaciones(i,j);
     }
 
     // Busco el la tabla de soluciones la combinacion pedida
@@ -55,6 +52,8 @@ int main()
 {
     int n,r;
 
+    // TODO: No tiene mucho sentido que se calcule la tabla para cada combinacion, si da tiempo haz una funcion separada para ese proposito
+    cout<<5/2<<endl;
     //Bucle para que se repita hasta cometer un error
     while(true)
     {

@@ -4,14 +4,15 @@
 using namespace std;
 
 /*  
-Calcula el factorial
-    Parámetro: int del que calcular factorial
-    Retorno: int con el factorial
-    Precondicion: la entrada debe de ser mayor o igual que 0
-    Complejidad Temporal: O(n)
-    T(n) = n + c
+Calculo de combinaciones mediante programacion dinamica
+    Parámetro: int n elementos y grupos de r elementos
+    Retorno: int con el numero de combinaciones
+    Precondicion: n >= r, n < 10
+    Complejidad Temporal: O()
+    T(n) = (6 + c) 3^(n - 1) - 2 
     Complejidad Espacial: O()
 */
+// TODO: No tiene mucho sentido que se calcule la tabla para cada combinacion, si da tiempo haz una funcion separada para ese proposito
 int combinacionesDinamica(int n,int r);
 
 #endif

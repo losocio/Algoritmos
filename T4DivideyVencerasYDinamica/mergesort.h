@@ -12,7 +12,7 @@ Calcula el factorial
     T(n) = n + c
     Complejidad Espacial: O()
 */
-void combinar(int a[], int len_a, int b[], int len_b, int c[]);
+void combinar(int a[],int lenA,int b[],int lenB,int c[]);
 
 /*  
 Calcula el factorial
@@ -23,6 +23,6 @@ Calcula el factorial
     T(n) = n + c
     Complejidad Espacial: O()
 */
-void ordenarMergeSort(int x[], int len);
+void ordenarMergeSort(const int x[],int inicio,int len);
 
 #endif

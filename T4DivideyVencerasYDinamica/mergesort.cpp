@@ -16,34 +16,35 @@ void combinar(int a[], int len_a, int b[], int len_b, int c[])
     return;
 }
 
-
-void ordenarMergeSort(int x[], int len) //TODO
+void ordenarMergeSort(const int x[],int inicio,int len) //TODO
 {
     int temp[len];
-    if(len==1){ // Si el len es el tamaño basico, 1 seguramente
-        /*caso básico */
-        // llamar al combinar
-        combinar();
-        return;
-    } 
+
+    // Si la longitud es 1 (caso basico), salir de la recursion  
+    if(len==1) return;
     else
     {
-        /*Ordenar dos mitades */
+        // Calculo el nuevo punto de inicio de los subarrays
+        int inicio1=inicio;
+        int inicio2=inicio+(len/2);
 
-        //TODO calcular la mitad dependiendo del len de entrada
+        // Recurencia, divido en dos el array
+        ordenarMergeSort(x,inicio1,len-len/2); // NOTE: si le paso len/2 dara error el los casos en el que se redondee la division
+        ordenarMergeSort(x,inicio2,len/2);
         
-        //Recurencia
-        ordenarMergeSort(x, len/2);
-        ordenarMergeSort(x, len/2);
+        // TODO: Combinar ambas mitades y guardarlo en temp
+        // TODO: al combinar elementos se necesitara un bucle para iterar distintas longitudes de array, ya que no seran iguales si el array tiene len inicial impar
         
-        /*Combinar ambas mitades y guardarlo en temp */
-        //Combinar
-        combinar();
+        // NOTE: para el combinar se usan el array x que ha sido modifica por los ordenarMeger y las variables de inicio1 e inicio2 
+        combinar(temp);
+        combinar(); //TODO: creo que hay que combinar para cada sort
+        //combinar(int a[], int len_a, int b[], int len_b, int c[])
+        
         
         // Copiar del array temporal al array resultado y mostrarlo
-        for(int k = 0; k < len; k++)
+        for(int k=0;k<len;k++)
 	    {
-            x[k] = temp[k];
+            x[k]temp[k];
             cout<<x[k]<<" ";
 	    }
         cout<<endl;
@@ -60,7 +61,7 @@ int main()
     cin>>n;
     int *x=new int[n];
     for(int i=0;i<n;i++) cin>>x[i];
-    ordenarMergeSort(x,n);
+    ordenarMergeSort(x,0,n);
 
     return 0;
 }

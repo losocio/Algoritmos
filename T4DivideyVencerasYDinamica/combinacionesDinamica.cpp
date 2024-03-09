@@ -4,56 +4,42 @@
 
 #define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
 
-//Calcula el numero de combinaciones de n numeros en grupos de r
-int combinacionesDinamica(int n,int r)
+/* 
+NOTE: Para niveles mas grandes no funciona bien
+    Da valores incorrectos o "Floating point exception"
+*/
+
+// Precalcula las combinaciones de hasta 9 elementos
+int** calcularCombinacionesDinamica(int nivel)
 {
-    // Compruebo si n es mayor o igual que r, sino no se puede hacer la 
-    assertdomjudge(n>=r);
+    // El triangulo no puede ser de tamaño negativo
+    assertdomjudge(nivel>=0);
 
-    // Compruebo que n es menor que 10, ya que solo se generan soluciones para hasta combinaciones de 10 elementos
-    assertdomjudge(n<10);
+    // Creo la tabla de combinaciones y la relleno
+    //int *tablaCombinaciones[10]; // NOTE: No entiendo del todo porque esto no es valido
+    int** tablaCombinaciones = new int*[nivel];
 
-    // Creo la tabla de soluciones y la relleno
-    int *soluciones[10];
-    
     // Con matriz a medida
-    for(int i=0;i<10;i++)
+    for(int i=0;i<nivel;i++)
     {
-        //Creo espacio para soluciones
-        soluciones[i]=new int[i+1];
+        //Creo espacio para combinaciones
+        tablaCombinaciones[i]=new int[i+1];
         
-        // Relleno con la nueva fila con sus soluciones
-        for(int j=0;j<i+1;j++) soluciones[i][j]=combinaciones(i,j);
+        // Relleno con la nueva fila con sus combinaciones
+        for(int j=0;j<i+1;j++) tablaCombinaciones[i][j]=combinaciones(i,j);
     }
 
-    // Busco el la tabla de soluciones la combinacion pedida
-    return soluciones[n][r];
-
-    /*
-    // Con matriz 10x10
-    for(int i=0;i<10;i++)
-    {
-        soluciones[i]=new int[10];
-        
-        //TODO: Relleno con la solucion
-        int val; 
-         
-        for(int j=0;j<=i;j++)// FIXED: con j<10 le pasaba valores n<r, algo no valido
-        { 
-            soluciones[i][j]=combinaciones(i,j); 
-        }
-        
-        //cout<<endl;
-    }
-    */
+    // Busco el la tabla de combinaciones la combinacion pedida
+    return tablaCombinaciones;
 }
 
 int main()
 {
     int n,r;
 
-    // TODO: No tiene mucho sentido que se calcule la tabla para cada combinacion, si da tiempo haz una funcion separada para ese proposito
-    cout<<5/2<<endl;
+    // Calculo las combinaciones hasta 9 elementos
+    int** tablaCombinaciones = calcularCombinacionesDinamica(10);
+
     //Bucle para que se repita hasta cometer un error
     while(true)
     {
@@ -64,7 +50,7 @@ int main()
         if(n<0) break;
 
         if(n<r) cout<<"ERROR"<<endl;
-        else cout<<combinacionesDinamica(n,r)<<endl;
+        else cout<<tablaCombinaciones[n][r]<<endl;
     }
 
     return 0;

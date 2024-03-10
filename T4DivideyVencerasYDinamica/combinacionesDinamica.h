@@ -12,12 +12,12 @@ Calculo de combinaciones mediante programacion dinamica
     Precondicion: nivel >= 0
     
     Complejidad Temporal:
-        T(n) = (6 + c) 3^(n - 1) - 2 
-        O()
+        T(n) = n³/2 + 3n²/2 + 3n
+        O(n³)
 
     Complejidad Espacial: 
-        M(n) = 
-        O()
+        M(n) = n²/2 + 3n/2 + 1
+        O(n²)
 */
 int** calcularCombinacionesDinamica(int nivel);
 

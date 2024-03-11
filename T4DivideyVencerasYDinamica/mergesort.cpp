@@ -41,6 +41,9 @@ void combinar(int x[],int inicioIzquierda,int lenIzquierda,int inicioDerecha,int
     return;
 }
 
+// NOTE: se pueden pasar referencias a la mitad del array
+
+
 // Divide el array a ordenar en subarrays y luego los combina, todo recursivamente
 void ordenarMergeSort(int x[],int inicio,int len) //TODO
 {

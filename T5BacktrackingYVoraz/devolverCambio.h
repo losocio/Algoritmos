@@ -9,9 +9,11 @@ Devuelve las cantidades de las distintas monedas de pesetas necesarias para de c
         int valor,  valor del que dar cambio
         int* cambio, referenci del array donde se guardan las cantidades de cambio
 
-    Retorno: Ninguno
+    Retorno: 
+        Ninguno
     
-    Precondicion: valor >= 0
+    Precondicion: 
+        valor >= 0
     
     Complejidad Temporal:
         T(n) = 

@@ -25,7 +25,7 @@ Matriz::Matriz(){
 }*/
 Matriz::Matriz(int n_filas, int n_columnas) {
     //Numero de filas y columnas
-    this->n_filas = n_filas; //NOTE aqui es estrictamente necesario usar this, sino no se crea la matriz correctamente. Esto no es Java
+    this->n_filas = n_filas; // NOTE: aqui es estrictamente necesario usar this, sino no se crea la matriz correctamente. Esto no es Java
     this->n_columnas = n_columnas;
 
     //Reservo un array de punteros a double para guardar la columnas

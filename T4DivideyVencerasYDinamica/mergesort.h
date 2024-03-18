@@ -37,6 +37,7 @@ Divide el array a ordenar en subarrays y luego los combina, todo recursivamente
     Complejidad Espacial: 
         M(1) = 1, M(n) = M(n/2) + 1
         O(n*logn)
+        
 */
 void ordenarMergeSort(int x[],int inicio,int len);
 

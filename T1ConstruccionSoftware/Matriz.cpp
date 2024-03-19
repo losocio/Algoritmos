@@ -47,7 +47,7 @@ Matriz::Matriz(int n_filas, int n_columnas) {
 Matriz::Matriz(Matriz& m) {
     
     assertdomjudge(m.n_filas>=0);
-    assertdomjudge(m.n_colmunas>=0);
+    assertdomjudge(m.n_columnas>=0);
 
 	//Copio numero de filas y columnas
 	n_filas=m.n_filas; //NOTE No uso la flecha para las filas, ya que es una referencia. Con punteros si

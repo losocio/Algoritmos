@@ -24,8 +24,12 @@ Matriz::Matriz(){
 	}
 }*/
 Matriz::Matriz(int n_filas, int n_columnas) {
+
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+
     //Numero de filas y columnas
-    this->n_filas = n_filas; // NOTE: aqui es estrictamente necesario usar this, sino no se crea la matriz correctamente. Esto no es Java
+    this->n_filas = n_filas; //NOTE aqui es estrictamente necesario usar this, sino no se crea la matriz correctamente. This Is Not Java
     this->n_columnas = n_columnas;
 
     //Reservo un array de punteros a double para guardar la columnas
@@ -42,7 +46,9 @@ Matriz::Matriz(int n_filas, int n_columnas) {
 //Matriz::Matriz(Matriz & matrizOld) : matriz(matrizOld->matrin_filas(matrizOld->n_filas), n_columnas(matrizOld->n_columnas) {}
 Matriz::Matriz(Matriz& m) {
     
-    //assertdomjudge(matriz); //No es necesario, pero puede tener sentido
+    assertdomjudge(m.n_filas>=0);
+    assertdomjudge(m.n_colmunas>=0);
+
 	//Copio numero de filas y columnas
 	n_filas=m.n_filas; //NOTE No uso la flecha para las filas, ya que es una referencia. Con punteros si
 	n_columnas=m.n_columnas;
@@ -77,7 +83,7 @@ Matriz& Matriz::operator = (const Matriz & m) {
         matriz = NULL;
     }
 
-    //Te puede saltar el this->
+    //Se puede saltar el this->
     this -> n_filas = m.n_filas;
     this -> n_columnas = m.n_columnas;
     this -> matriz = NULL;
@@ -98,6 +104,10 @@ Matriz& Matriz::operator = (const Matriz & m) {
 //Suma de matrices
 Matriz& Matriz::operator + (const Matriz & m2) {
     
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+    assertdomjudge(m2.n_filas>=0);
+    assertdomjudge(m2.n_columnas>=0);
     //Compruebo que el numero de filas y columnas son compatibles
     assertdomjudge(n_filas==m2.n_filas);
     assertdomjudge(n_columnas==m2.n_columnas);
@@ -118,6 +128,10 @@ Matriz& Matriz::operator + (const Matriz & m2) {
 //Resta de matrices
 Matriz& Matriz::operator - (const Matriz & m2) {
     
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+    assertdomjudge(m2.n_filas>=0);
+    assertdomjudge(m2.n_columnas>=0);
     //Compruebo que el numero de filas y columnas son compatibles
     assertdomjudge(n_filas==m2.n_filas);
     assertdomjudge(n_columnas==m2.n_columnas);
@@ -134,9 +148,12 @@ Matriz& Matriz::operator - (const Matriz & m2) {
     return *resultado;
 }
 
-//TODO no se si se puede M*3 y 3*M
+//NOte: no se puede M*3 y 3*M, solo M*3
 //Producto de matriz por escalar
 Matriz & Matriz::operator * (const double & escalar) {
+
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
 
     Matriz* resultado = new Matriz(n_filas, n_columnas);
     
@@ -152,6 +169,10 @@ Matriz & Matriz::operator * (const double & escalar) {
 //Producto de matriz por matriz
 Matriz& Matriz::operator * (const Matriz & m2) {
     
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+    assertdomjudge(m2.n_filas>=0);
+    assertdomjudge(m2.n_columnas>=0);
     //Compruebo que las columnas de la primera son iguales que las filas de la segunda
     assertdomjudge(n_columnas==m2.n_filas);
 
@@ -179,6 +200,9 @@ Matriz& Matriz::operator * (const Matriz & m2) {
 //Calcular matriz traspuesta
 Matriz& Matriz::calcularTraspuesta() {
 
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+
     //Creo una nueva matriz con las filas cambiadas por la columnas
     Matriz* traspuesta = new Matriz(n_columnas, n_filas);
 
@@ -195,7 +219,7 @@ Matriz& Matriz::calcularTraspuesta() {
 //Obtener elemento maximo de una matriz
 double Matriz::obtenerMaximo() {
     
-    //Le pongo una valor de la matriz por si esta tiene valores muy extremos
+    //NOTE: Le pongo una valor de la matriz por si esta tiene valores muy extremos
     double max=matriz[0][0];
     
     for(int i=0;i<n_filas;i++){
@@ -210,8 +234,7 @@ double Matriz::obtenerMaximo() {
 //Obtener elemento minimo de una matriz
 double Matriz::obtenerMinimo() {
 
-    
-    //Le pongo una valor de la matriz por si esta tiene valores muy extremos
+    //NOTE: Le pongo una valor de la matriz por si esta tiene valores muy extremos
     double min=matriz[0][0];
 
     for(int i=0;i<n_filas;i++){
@@ -226,7 +249,10 @@ double Matriz::obtenerMinimo() {
 //Comprobar simetria
 bool Matriz::esSimetrica(){
     
-    //Compruebo que el numero de filas y columnas son iguales, matriz cuadrada
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+
+    //Compruebo que el numero de filas y columnas son iguales
     assertdomjudge(n_filas==n_columnas);
 
     bool simetrica=true;

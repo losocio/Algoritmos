@@ -104,6 +104,10 @@ Matriz& Matriz::operator = (const Matriz & m) {
 //Suma de matrices
 Matriz& Matriz::operator + (const Matriz & m2) {
     
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+    assertdomjudge(m2.n_filas>=0);
+    assertdomjudge(m2.n_columnas>=0);
     //Compruebo que el numero de filas y columnas son compatibles
     assertdomjudge(n_filas==m2.n_filas);
     assertdomjudge(n_columnas==m2.n_columnas);
@@ -124,6 +128,10 @@ Matriz& Matriz::operator + (const Matriz & m2) {
 //Resta de matrices
 Matriz& Matriz::operator - (const Matriz & m2) {
     
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+    assertdomjudge(m2.n_filas>=0);
+    assertdomjudge(m2.n_columnas>=0);
     //Compruebo que el numero de filas y columnas son compatibles
     assertdomjudge(n_filas==m2.n_filas);
     assertdomjudge(n_columnas==m2.n_columnas);
@@ -144,6 +152,9 @@ Matriz& Matriz::operator - (const Matriz & m2) {
 //Producto de matriz por escalar
 Matriz & Matriz::operator * (const double & escalar) {
 
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+
     Matriz* resultado = new Matriz(n_filas, n_columnas);
     
     for(int i=0;i<n_filas;i++){
@@ -158,6 +169,10 @@ Matriz & Matriz::operator * (const double & escalar) {
 //Producto de matriz por matriz
 Matriz& Matriz::operator * (const Matriz & m2) {
     
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+    assertdomjudge(m2.n_filas>=0);
+    assertdomjudge(m2.n_columnas>=0);
     //Compruebo que las columnas de la primera son iguales que las filas de la segunda
     assertdomjudge(n_columnas==m2.n_filas);
 
@@ -234,6 +249,9 @@ double Matriz::obtenerMinimo() {
 //Comprobar simetria
 bool Matriz::esSimetrica(){
     
+    assertdomjudge(n_filas>=0);
+    assertdomjudge(n_columnas>=0);
+
     //Compruebo que el numero de filas y columnas son iguales
     assertdomjudge(n_filas==n_columnas);
 

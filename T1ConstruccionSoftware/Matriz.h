@@ -67,7 +67,7 @@ class Matriz {
 
 
 	/*  
-	Copia una matriz a otra nueva
+	Constructor copia, copia una matriz a otra nueva
 		Parámetro: 
 			m: la matriz que se va a copiar
 
@@ -123,12 +123,12 @@ class Matriz {
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = ab
+			O(ab)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     Matriz & operator = (const Matriz & m);
 
@@ -150,8 +150,8 @@ class Matriz {
 			O(ab)
 
 		Complejidad Espacial: 
-			M(n) = a
-			O(a)
+			M(n) = ab // Aunque dudo
+			O(ab)
 	*/
     Matriz & operator + (const Matriz & m2);
 
@@ -173,8 +173,8 @@ class Matriz {
 			O(ab)
 
 		Complejidad Espacial: 
-			M(n) = a
-			O(a)
+			M(n) = ab // Aunque dudo
+			O(ab)
 	*/
     Matriz & operator - (const Matriz & m2);
 
@@ -195,8 +195,8 @@ class Matriz {
 			O(ab)
 
 		Complejidad Espacial: 
-			M(n) = a
-			O(a)
+			M(n) = ab // Aunque dudo
+			O(ab)
 	*/
     Matriz & operator * (const double & escalar); //TODO puede que el escalar no necesite &
 
@@ -219,8 +219,8 @@ class Matriz {
 			O(abd)
 
 		Complejidad Espacial: 
-			M(n) = a
-			O(a)
+			M(n) = ad // Aunque dudo
+			O(ad)
 	*/
     Matriz & operator * (const Matriz &m2);
  
@@ -242,8 +242,8 @@ class Matriz {
 			O(ab)
 
 		Complejidad Espacial: 
-			M(n) = b
-			O(b)
+			M(n) = ab // Aunque dudo 
+			O(ab)
 	*/
 	Matriz& calcularTraspuesta();
 

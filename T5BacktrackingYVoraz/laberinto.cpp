@@ -53,7 +53,9 @@ void resolverLaberinto(char** laberinto, int sizeX, int sizeY, int)
 int main()
 {
     // Arrays de movimientos como se especifico: Arriba, Derecha, Abajo e Izquierda
-    
+    int movimientoX[]={-1, 0, 1, 0};
+    int movimientoY[]={0, 1, 0, -1};
+
     // Matriz con el laberinto
     char laberinto[][]={
         {'.', '.', '*', '*', '*', '*', '*', '*', '*', '*'},
@@ -67,7 +69,6 @@ int main()
         {'*', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
         {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'}
     };
-
 
 
     return 0;

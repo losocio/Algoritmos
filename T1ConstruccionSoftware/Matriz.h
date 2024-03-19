@@ -12,195 +12,398 @@ class Matriz {
 	double ** matriz;
 
     public:
+
+	/*
+	Siendo:
+		a = número de filas de la matriz del objecto actual
+		b = número de columnas de la matriz del objecto actual
+		c = número de filas de la matriz pasada como parámetro (si existe)
+		d = número de columnas de la matriz pasada como parámetro (si existe)
+	*/
 	
-    /* Constructor por defecto.
-			Parámetro: Ninguno.
-			Retorno: Objeto de Matriz con dimension 0x0 y un puntero a NULL.
-			Precondicion: Ninguno.
-			Complejidad Temporal: O(1)
-			Complejidad Espacial: 
-    */
+	/*  
+	Constructor por defecto, crea una matriz vacia
+		Parámetro: 
+			Ninguno
+
+		Retorno: 
+			Objeto de Matriz con dimension 0x0 y un puntero a NULL.
+		
+		Precondicion: 
+			Ninguno
+		
+		Complejidad Temporal:
+			T(n) = 1
+			O(1)
+
+		Complejidad Espacial: 
+			M(n) = 1
+			O(1)
+	*/
     Matriz();
 
+	/*  
+	Constructor por parametros, crea una matriz con las dimensiones dadas
+		Parámetro: 
+			n_filas: Numero de filas de la matriz
+			n_columnas: Numero de columnas de la matriz
 
+		Retorno: 
+			Una nueva matriz con la matriz pasada como parámetro.
+		
+		Precondicion: 
+			n_filas >= 0
+			n_columnas >= 0
+		
+		Complejidad Temporal:
+			T(n) = a
+			O(a)
 
-    /*  Constructor por parametros
-    	   Parámetro: numero de filas y columnas de la matriz
-    	   Retorno: una nueva matriz con la matriz pasada como parámetro.
-    	   Precondicion: Ninguno.
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(n_filas*n_columnas)
-    */
+		Complejidad Espacial: 
+			M(n) = a
+			O(a)
+	*/
     Matriz(int n_filas, int n_colmunas);
 
 
+	/*  
+	Copia una matriz a otra nueva
+		Parámetro: 
+			m: la matriz que se va a copiar
 
-    /* Realiza la asignación entre dos objetos de la clase Matriz. Crea una nueva matriz  con el resultado.
-    	    Parámetro: la matriz que se va a asignar
-    	    Retorno: una nueva matriz con la matriz pasada como parámetro.
-    	    Precondicion: Ninguno.
-    	    Complejidad Temporal: O(n_filas*n_columnas)
-    	    Complejidad Espacial: O(n_filas*n_columnas)
-    */
-    Matriz(Matriz & m);
+		Retorno: 
+			Una nueva matriz con la matriz pasada como parámetro.
+		
+		Precondicion: 
+			m.n_filas>=0
+			m.n_columnas>=0
+		
+		Complejidad Temporal:
+			T(n) = cd
+			O(cd)
+
+		Complejidad Espacial: 
+			M(n) = c 
+			O(c)
+	*/
+    Matriz(Matriz &m);
 
 
+	/*  
+	Destructor
+		Parámetro: 
+			Ninguno
 
-    /* Realiza la asignación entre dos objetos de la clase Matriz. Crea una nueva matriz  con el resultado.
-    	   Parámetro: la matriz que se va a asignar
-    	   Retorno: una nueva matriz con la matriz pasada como parámetro.
-    	   Precondicion: Ninguno.
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(n_filas*n_columnas)
-    */
+		Retorno: 
+			Ninguno
+		
+		Precondicion: 
+			Ninguno
+		
+		Complejidad Temporal:
+			T(n) = a
+			O(a)
+
+		Complejidad Espacial: 
+			M(n) = 1
+			O(1)
+	*/
     ~Matriz();
 
 
+	/*  
+	Realiza la asignación entre dos objetos de la clase Matriz. Crea una nueva matriz con el resultado.
+		Parámetro: 
+			m: Matriz que se va a asignar
 
-    /* Realiza la asignación entre dos objetos de la clase Matriz. Crea una nueva matriz  con el resultado.
-    	   Parámetro: la matriz que se va a asignar
-    	   Retorno: una nueva matriz con la matriz pasada como parámetro.
-    	   Precondicion: Ninguno.
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(n_filas*n_columnas)
-    */
+		Retorno: 
+			Una nueva matriz con la matriz pasada como parámetro.
+		
+		Precondicion: 
+			Ninguno
+		
+		Complejidad Temporal:
+			T(n) = 
+			O()
+
+		Complejidad Espacial: 
+			M(n) = 
+			O()
+	*/
     Matriz & operator = (const Matriz & m);
 
 
-    /* Suma dos matrices.Crea una nueva matriz con el resultado.
-    	   Parámetro: las matrices operando con las mismas dimensiones
-    	   Retorno: una nueva matriz con el resultado.
-    	   Precondicion: Que existan las dos matrices operador y sean de la misma dimension.
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(n_filas*n_columnas)
-    */
+	/*  
+	Suma dos matrices.Crea una nueva matriz con el resultado.
+		Parámetro: 
+			m2: Matriz a sumar
+
+		Retorno: 
+			Una nueva matriz con el resultado.
+		
+		Precondicion: 
+			Las matrices deben existir
+			Las matrices deben de ser de las mismas dimensiones
+		
+		Complejidad Temporal:
+			T(n) = ab+a
+			O(ab)
+
+		Complejidad Espacial: 
+			M(n) = a
+			O(a)
+	*/
     Matriz & operator + (const Matriz & m2);
 
 
+	/*  
+	Resta dos matrices en el orden de los argumentos. Crea una nueva matriz con el resultado.
+		Parámetro: 
+			m2: Matriz a restar
 
-	/* Resta dos matrices en el orden de los argumentos. Crea una nueva matriz con el resultado.
-    	   Parámetro: las matrices operando con las mismas dimensiones
-    	   Retorno: una nueva matriz con el resultado.
-    	   Precondicion: Que exsitan las dos matrices operador y sean de la misma dimension.
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(n_filas*n_columnas)
-    */
+		Retorno: 
+			Una nueva matriz con el resultado.
+		
+		Precondicion: 
+			Las matrices deben existir
+			Las matrices deben de ser de las mismas dimensiones
+		
+		Complejidad Temporal:
+			T(n) = ab+a
+			O(ab)
+
+		Complejidad Espacial: 
+			M(n) = a
+			O(a)
+	*/
     Matriz & operator - (const Matriz & m2);
 
 	
+	/*  
+	Producto una matriz por un escalar 
+		Parámetro: 
+			escalar: double escalar para multiplicar
 
+		Retorno: 
+			Una nueva matriz con la matriz pasada como parámetro.
+		
+		Precondicion: 
+			La matriz debe existir
+		
+		Complejidad Temporal:
+			T(n) = ab+a
+			O(ab)
 
-    /* Producto una matriz por un escalar 
-    	   Parámetro: Una matriz y double escalar
-    	   Retorno: una nueva matriz con el resultado.
-    	   Precondicion: La matriz deve exsistir
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+		Complejidad Espacial: 
+			M(n) = a
+			O(a)
+	*/
     Matriz & operator * (const double & escalar); //TODO puede que el escalar no necesite &
 
  
 
+	/*  
+	Producto una matriz por matriz 
+		Parámetro: 
+			m2: Segunda matriz para multiplicar
 
-	/* Producto una matriz por matriz 
-    	   Parámetro: Dos matrices
-    	   Retorno: una nueva matriz con el resultado.
-    	   Precondicion: La matriz debe exsistir y las
-			filas_m1 == columnas_m2 && columnas_m1 == filas_m2
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+		Retorno: 
+			Una nueva matriz con el resultado.
+		
+		Precondicion: 
+			La matriz debe existir
+			n_columnas == m2.n_filas
+		
+		Complejidad Temporal:
+			T(n) = abd+a
+			O(abd)
+
+		Complejidad Espacial: 
+			M(n) = a
+			O(a)
+	*/
     Matriz & operator * (const Matriz &m2);
  
 
 
+	/*  
+	Calcular la matriz traspuesta
+		Parámetro: 
+			Ninguno
 
-	/* Calcular la matriz traspuesta
-    	   Parámetro: Ninguno
-    	   Retorno: Matriz traspuesta
-    	   Precondicion: La matriz debe exsistir
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+		Retorno: 
+			Matriz traspuesta
+		
+		Precondicion: 
+			La matriz debe existir
+		
+		Complejidad Temporal:
+			T(n) = ab+b
+			O(ab)
+
+		Complejidad Espacial: 
+			M(n) = b
+			O(b)
+	*/
 	Matriz& calcularTraspuesta();
 
 
+	/*  
+	Obtener el valor maximo de una matriz
+		Parámetro: 
+			Ninguno
 
-	/*  Obtener el valor maximo de una matriz
-    	   Parámetro: Ninguno
-    	   Retorno: double maximo
-    	   Precondicion: La matriz debe existir
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+		Retorno: 
+			double con el maximo
+		
+		Precondicion: 
+			La matriz debe existir
+		
+		Complejidad Temporal:
+			T(n) = ab
+			O(ab)
+
+		Complejidad Espacial: 
+			M(n) = 1
+			O(1)
+	*/
 	double obtenerMaximo();
 
 
 
-	/* Obtener el valor maximo de una matriz
-    	   Parámetro: Ninguno
-    	   Retorno: double minimo
-    	   Precondicion:La matriz debe existir
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+	/*  
+	Obtener el valor maximo de una matriz
+		Parámetro: 
+			Ninguno
+
+		Retorno: 
+			double con el minimo
+		
+		Precondicion: 
+			La matriz debe existir
+		
+		Complejidad Temporal:
+			T(n) = ab
+			O(ab)
+
+		Complejidad Espacial: 
+			M(n) = 1
+			O(1)
+	*/
 	double obtenerMinimo();
 
 
+	/*  
+	Comprueba si la matriz es simetrica 
+		Parámetro: 
+			Ninguno
 
-	/* Comprueba si la matriz es simetrica 
-    	   Parámetro: Ninguno
-    	   Retorno: booleano segun simetria
-    	   Precondicion: La matriz no debe estar vacía
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+		Retorno: 
+			booleano segun simetria
+		
+		Precondicion: 
+			n_filas == n_columnas
+		
+		Complejidad Temporal:
+			T(n) = ab
+			O(ab)
+
+		Complejidad Espacial: 
+			M(n) = 1
+			O(1)
+	*/
     bool esSimetrica();
 
 
 
-    /* Permite rellenar todos los elementos de la matriz del objeto actual preguntando al usuario 
-    	   Parámetro: Ninguno
-    	   Retorno: Ninguno
-    	   Precondicion: La matriz no debe estar vacía
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+	/*  
+	Permite rellenar todos los elementos de la matriz del objeto actual preguntando al usuario 
+		Parámetro: 
+			Ninguno
+
+		Retorno: 
+			Ninguno
+		
+		Precondicion: 
+			La matriz no debe estar vacía
+		
+		Complejidad Temporal:
+			T(n) = 
+			O()
+
+		Complejidad Espacial: 
+			M(n) = 
+			O()
+	*/
     void rellenarManual();
 
 
+	/*  
+	Constructor por parametros
+		Parámetro: 
+			seed: semilla que se utiliza para el generador aleatorio
 
-    /* Permite rellenar todos los elementos de la matriz del objeto actual de forma aleatoria 
-    	   Parámetro: semilla que se utiliza para el generador aleatorio
-    	   Retorno: Ninguno
-    	   Precondicion: La matriz no debe estar vacía
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+		Retorno: 
+			Ninguna
+		
+		Precondicion: 
+			La matriz no debe estar vacía
+		
+		Complejidad Temporal:
+			T(n) = 
+			O()
+
+		Complejidad Espacial: 
+			M(n) = 
+			O()
+	*/
     void rellenarAleatorio(long seed);
 
 
+	/*  
+	Imprime por pantalla todos los elementos de la matriz del objeto actual
+		Parámetro: 
+			Ninguno
 
-    /* Imprime por pantalla todos los elementos de la matriz del objeto actual  
-    	   Parámetro: Ninguno
-    	   Retorno: Ninguno
-    	   Precondicion: La matriz no debe estar vacía
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+		Retorno: 
+			Ninguno
+		
+		Precondicion: 
+			La matriz no debe estar vacía
+		
+		Complejidad Temporal:
+			T(n) = 
+			O()
+
+		Complejidad Espacial: 
+			M(n) = 
+			O()
+	*/
     void mostrarMatriz();
 
 
 
-	/* Imprime por pantalla todos los elementos de la matriz del objeto actual con sus indices  
-    	   Parámetro: Ninguno
-    	   Retorno: Ninguno
-    	   Precondicion: Ninguna
-    	   Complejidad Temporal: O(n_filas*n_columnas)
-    	   Complejidad Espacial: O(1)
-    */
+	/*  
+	Imprime por pantalla todos los elementos de la matriz del objeto actual con sus indices  
+		Parámetro: 
+			Ninguno
+
+		Retorno: 
+			Ninguno 
+
+		Precondicion: 
+			Ninguno
+		
+		Complejidad Temporal:
+			T(n) = 
+			O()
+
+		Complejidad Espacial: 
+			M(n) = 
+			O()
+	*/
     void mostrarMatrizIndices();
 
 };
 
-#endif // MATRIZ_H
+#endif

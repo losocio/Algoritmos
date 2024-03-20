@@ -324,7 +324,9 @@ class Matriz {
 		
 		Precondicion: 
 			n_filas == n_columnas
-		
+			i_fila>=0 && i_fila<n_filas
+			i_columna>=0 && i_columna<n_columnas
+			
 		Complejidad Temporal:
 			T(n) = 
 			O()
@@ -341,7 +343,7 @@ class Matriz {
 			Ninguno
 
 		Retorno: 
-			double con el determianante
+			double con el determinante
 		
 		Precondicion: 
 			n_filas == n_columnas

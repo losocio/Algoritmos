@@ -47,7 +47,7 @@ Matriz::Matriz(int n_filas, int n_columnas) {
 Matriz::Matriz(Matriz& m) {
     
     assertdomjudge(m.n_filas>=0);
-    assertdomjudge(m.n_colmunas>=0);
+    assertdomjudge(m.n_columnas>=0);
 
 	//Copio numero de filas y columnas
 	n_filas=m.n_filas; //NOTE No uso la flecha para las filas, ya que es una referencia. Con punteros si
@@ -121,7 +121,7 @@ Matriz& Matriz::operator + (const Matriz & m2) {
         }
     }
 
-    //TODO understand this referencing
+    //TODO: understand this referencing
     return *resultado;
 }
 
@@ -273,25 +273,65 @@ Matriz& Matriz::calcularMatrizMenorComplementario(int i_fila, int i_columna){
     assertdomjudge(n_filas==n_columnas);
 
     //Compruebo que las posiciones elegidas existan en la matriz, no pueden ser negativas ni mayores que la matriz
-    assertdomjudge(i_fila>0 && i_fila<n_filas);
-    assertdomjudge(i_columna>0 && i_columna<n_columnas);
+    assertdomjudge(i_fila>=0 && i_fila<n_filas);
+    assertdomjudge(i_columna>=0 && i_columna<n_columnas);
 
-    //TODO copypasted, revisar
+    //Creo una matriz para guardar el resultado
     Matriz* matrizAdjunto = new Matriz(n_filas-1, n_columnas-1);
 
+    //bool alternar=true; //NOTE: mal (mira mas abajo)
+    int indiceAdjuntoFilas=0, indiceAdjuntoColumnas=0;
+    //Itero por la matriz original
+    for(int i=0;i<n_filas;i++)
+    {
+        for(int j=0;j<n_columnas;j++)
+        {
+            //Me salto la los indices de fila y la columna del elemento elegido
+            //NOTE: esta comparacion con || estaba mal
+            if(i!=i_fila && j!=i_columna) 
+            {
+                // Guardo en la matriz resultado el valor que cumple las condiciones
+                matrizAdjunto->matriz[indiceAdjuntoFilas][indiceAdjuntoColumnas]=matriz[i][j]; 
+               
+                //Actualizo los indices de la matriz resultado para la proxima pasada
+                if(indiceAdjuntoColumnas==n_columnas-2)
+                {
+                    indiceAdjuntoFilas++;
+                    indiceAdjuntoColumnas=0;
+                }
+                else indiceAdjuntoColumnas++;
 
+                /*NOTE: esto esta mal, alternar los incrementos de contadores solo sirve para matrices 2x2
+                // Incremento los contadores alternativamente               
+                if(alternar)
+                {
+                    indiceAdjuntoColumnas++;
+                    alternar=false;
+                }
+                else 
+                {
+                    indiceAdjuntoFilas++;
+                    alternar=true;
+                }
+                */
 
-    //OPCION1 Itero por la matriz original
-    for(int i=0;i<n_filas;i++){
-        for(int j=0;j<n_columnas;j++){
-            //Me salto la fila y la columna del elemento elegido
-            if(j!=i_fila || k!=i_columna) matrizAdjunto[][]=matriz[j][k]; //TODO seguramente MAL pero los tiros van por i
+            }
         }
     }
 
-    //hacer esto con un contador
-    
-    //OPCION2 Itero por la matriz nueva, la del adjunto
+    /*
+    //OPCION usando continue
+    for(int i=0;i<n_filas;i++){
+        for(int j=0;j<n_columnas;j++){
+            //Me salto la fila y la columna del elemento elegido
+            if(i==i_fila || j==i_columna) continue;
+
+            matrizAdjunto[][]=matriz[i][j]; //TODO: aqui es donde se usarian los contadores, para saber que poner en matrizAdjunto[ ][ ]
+        }
+    }*/
+
+    /*
+    //OPCION Itero por la matriz nueva, la del adjunto DEMASIADO BUCLE
     //Itero por los elemetos de la matriz adjunto
     for(int i=0;i<n_filas-1;i++){
         for(int j=0;j<n_columnas-1;j++){
@@ -299,20 +339,12 @@ Matriz& Matriz::calcularMatrizMenorComplementario(int i_fila, int i_columna){
             for(int k=0;k<n_filas;k++){
                 for(int l=0;l<n_columnas;l++){
                     //Me salto la fila y la columna del elemento elegido
-                    if(k!=i_fila || l!=i_columna) matrizAdjunto[i][j]=matriz[k][l]; //TODO seguramente MAL pero los tiros van por i
+                    if(k!=i_fila || l!=i_columna) matrizAdjunto[i][j]=matriz[k][l]; //TODO: seguramente MAL pero los tiros van por i
                 }
             }
         }
     }
-
-    /*
-    //TODO copypasted, revisar
-    Matriz* matrizAdjunto = new Matriz(n_filas-1, n_columnas-1);
-    for(int j=0;j<n_filas-1;j++){
-        for(int k=0;k<n_columnas-1;k++){
-            matrizAdjunto[j][k]=matriz[j+1][k+1]; //TODO seguramente MAL pero los tiros van por i
-        }
-    }*/
+    */
 
     return *matrizAdjunto;
 }
@@ -322,32 +354,20 @@ double Matriz::calcularDeterminante(){
     //Compruebo que el numero de filas y columnas son iguales, matriz cuadrada
     assertdomjudge(n_filas==n_columnas);
 
-    //TODO condicion de salida de recursion
+    //TODO: Condicion de salida de recursion, si la matriz es 1x1 devulelve el elemento
     if(n_filas==1 && n_columnas==1) return matriz[0][0]; //
 
     double resultado=0;
     //Itero la primera fila de la matriz
-    for(int i=0;i<n_columnas;i++){
-
+    for(int i=0;i<n_columnas;i++)
+    {
         //Calculo el adjunto
-        Matriz* matrizAdjunto = calcularMatrizMenorComplementario(0, i); //TODO creo que esta bien
-
-        //Calculo el adjunto
-        /*
-        Matriz* adjunto = new Matriz(n_filas-1, n_columnas-1);
-        for(int j=0;j<n_filas-1;j++){
-            for(int k=0;k<n_columnas-1;k++){
-                adjunto[j][k]=matriz[j+1][k+1]; //TODO seguramente MAL pero los tiros van por i
-            }
-        }*/
+        Matriz matrizAdjunto = calcularMatrizMenorComplementario(0, i); //TODO: creo que esta bien
 
         //Si el indice es par se suma el valor
-        if(i%2==0){
-            resultado+=matriz[0][i]*matrizAdjunto.calcularDeterminante();
+        if(i%2==0) resultado+=matriz[0][i]*matrizAdjunto.calcularDeterminante();
         //Si el indice es impar se resta el valor
-        } else {
-            resultado-=matriz[0][i]*matrizAdjunto.calcularDeterminante();
-        }
+        else resultado-=matriz[0][i]*matrizAdjunto.calcularDeterminante();
     }
 
     return resultado;

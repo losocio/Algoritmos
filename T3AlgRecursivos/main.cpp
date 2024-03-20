@@ -89,10 +89,16 @@ int main()
 	  cout<<a.calcularDeterminante();
 	  cout<<endl;
 	  break;
-
+	/* Probar el menor complementario
+	case 'M':
+		cout<<"Menor Complementario de A"<<endl;
+		c=a.calcularMatrizMenorComplementario(0,1);
+		cout<<endl;
+		break;
+	*/
 	case 'F':
-	  cout<<"FIN"<<endl;
-	  break;
+	  	cout<<"FIN"<<endl;
+	  	break;
 	}
       
     }while(operacion!='F');

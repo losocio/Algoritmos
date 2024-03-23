@@ -1,5 +1,6 @@
-#include"ListaContigua.h"
-#include<iostream>
+#include "ListaContigua.h"
+#include <iostream>
+
 using namespace std;
 
 int main()

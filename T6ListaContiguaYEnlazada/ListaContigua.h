@@ -171,24 +171,23 @@ public:
 	void eliminar(int posicion);
 
 	/*  
-	Devuelve las cantidades de las distintas monedas de pesetas necesarias para de cambio
+	Concatena dos listas
 		Parámetro: 
-			int valor,  valor del que dar cambio
-			int* cambio, referenci del array donde se guardan las cantidades de cambio
+			ListaContigua *listaAConcatenar, lisca que se concatenara al final
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			valor >= 0
+			listaAConcatenar->n >= 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = n
+			O(n)
 	*/
 	void concatenar(ListaContigua *listaAConcatenar);
 

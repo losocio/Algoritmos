@@ -129,28 +129,39 @@ void ListaContigua::eliminar(int posicion)
         // void *realloc(void *ptr, size_t size)
         // void *realloc(puntero a la memoria dinamica por redimensionar, nuevo tamaño total)
         // Reservo memoria con la nueva capacidad aumentada
-        vector = (int*) realloc(vector, capacidad);
+        vector=(int*) realloc(vector, capacidad);
     }
 
     return;
 }
 
-// 
+// Concatena dos listas
 void ListaContigua::concatenar(ListaContigua *listaAConcatenar)
 {
-    // Aumento el vectro para poder añadir los elemetos del otro vector
-    //realloc(vector, capacidad+listaAConcatenar->capacidad);
-    //memmove(&vector[FINAL], listaAConcatenar->vector, (n-posicion)*sizeof(int));
+    // Compruebo que se accede un valor posible
+    assertdomjudge(listaAConcatenar->n>=0);
+    
+    // Aumento el vector para poder añadir los elemetos del otro vector
+    vector=(int*) realloc(vector, capacidad+listaAConcatenar->n);
+    
+    // void *memmove(void *str1, const void *str2, size_t n)
+    // void *memmove(vector destino, vector origen, Numero de bytes a mover)
+    // Añado los elemento del otro vector
+    memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
 
+    // Actualizo los contadores de n y capacidad
+    n=n+listaAConcatenar->n;
+    capacidad=capacidad+listaAConcatenar->n;
+    
     return;
 }
 
 // Encontrar el indice del elemento a buscar
 int ListaContigua::buscar(int elementoABuscar)
 {
-    int i=0, indiceEncontrado=-1;
+    int indiceEncontrado=-1;
 
-    while(vector[i]!=elementoABuscar)
+    for(int i=0;i<n;i++)
     {
         if(vector[i]==elementoABuscar) indiceEncontrado=i;
         i++;    

@@ -1,5 +1,6 @@
 #pragma once
 #include "Nodo.h"
+#include "assertdomjudge.h"
 
 class ListaEnlazada
 {
@@ -7,7 +8,7 @@ class ListaEnlazada
 
 	int n;
 
-	Nodo * getNodo (int posicion);
+	Nodo* getNodo(int posicion);
 
 public:
 

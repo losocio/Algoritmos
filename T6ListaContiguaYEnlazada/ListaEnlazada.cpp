@@ -158,7 +158,7 @@ void ListaEnlazada::eliminar(int posicion)
         lista = nodoSiguiente;
     }
     // Si se elimina al final de la lista
-    else if(posicion==n)
+    else if(posicion==n-1)
     {
         Nodo* nodoAnterior=getNodo(posicion-1);
 

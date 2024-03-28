@@ -159,18 +159,39 @@ void ListaContigua::concatenar(ListaContigua *listaAConcatenar)
 // Encontrar el indice del elemento a buscar
 int ListaContigua::buscar(int elementoABuscar)
 {
+    int i=0;
+
+    // Aumento el contador de indice hasta encontar el valor buscado o cuando se llega al final de la lista
+    while(vector[i]!=elementoABuscar && i<n) i++;
+
+    // FIXED: Estaba mal la condicion
+    // while(vector[i]!=elementoABuscar || i<n) i++;
+
+    // Si el indice es igual al tamaño de la lista lo cambio por -1
+    if(i==n) i=-1;
+
+    // Devuelvo el indice o -1
+    return i;
+
+
+
+    /* NOTE: he pensado algo mejor
     int indiceEncontrado=-1;
 
     for(int i=0;i<n;i++)
     {
-        if(vector[i]==elementoABuscar) indiceEncontrado=i;
+        if(vector[i]==elementoABuscar) 
+        {
+            indiceEncontrado=i;
+            break;
+        }    
         i++;    
     }
 
     return indiceEncontrado;
+    */
 
-
-    /* NOTE: esta implementacion esta mal, si no se encuentra el elemento se devulve el ultimo
+    /* NOTE: esta implementacion esta mal, si no se encuentra el elemento se pasa de memoria
     int i=-1;
     
     do i++;
@@ -180,6 +201,7 @@ int ListaContigua::buscar(int elementoABuscar)
     */
 }
 
+// Destructor
 ListaContigua::~ListaContigua()
 {
     delete [] vector;

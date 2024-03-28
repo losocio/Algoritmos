@@ -4,16 +4,37 @@
 
 class ListaEnlazada
 {
-	Nodo *lista;
+	// Comienzo de la lista
+	Nodo* lista;
 
+	// Cantidad de nodos
 	int n;
 
+	/*  
+	Devuelve puntero al nodo en la posicion solicitada
+		Parámetro: 
+			int incremento, 
+
+		Retorno: 
+			Ninguno
+		
+		Precondicion: 
+			incremento > 0
+		
+		Complejidad Temporal:
+			T(n) = 
+			O()
+
+		Complejidad Espacial: 
+			M(n) =  
+			O()
+	*/
 	Nodo* getNodo(int posicion);
 
 public:
 
 	/*  
-	ttt
+	Crea una lista enlazada vacia
 		Parámetro: 
 			int incremento, 
 
@@ -34,7 +55,7 @@ public:
 	ListaEnlazada();
 
 	/*  
-	ttt
+	Devuelve el valor en la posicion pedida
 		Parámetro: 
 			int incremento, 
 
@@ -55,7 +76,7 @@ public:
 	int getValor(int posicion);
 
 	/*  
-	ttt
+	Modifica el valor de la posicion pedida
 		Parámetro: 
 			int incremento, 
 
@@ -76,7 +97,7 @@ public:
 	void setValor(int posicion, int nuevoValor);
 
 	/*  
-	ttt
+	Devuelve n
 		Parámetro: 
 			int incremento, 
 
@@ -97,7 +118,7 @@ public:
 	int getN(); 
 
 	/*  
-	ttt
+	Inserta elementos en la lista, el comportamiento varia dependiendo de donde se quiera insertar
 		Parámetro: 
 			int incremento, 
 
@@ -118,7 +139,7 @@ public:
 	void insertar (int posicion, int nuevoValor);
 
 	/*  
-	ttt
+	Elimina elementos de la lista, el comportamiento varia dependiendo de donde se quiera eliminar
 		Parámetro: 
 			int incremento, 
 
@@ -139,7 +160,7 @@ public:
 	void eliminar (int posicion);
 
 	/*  
-	ttt
+	Concatena la lista indicada como parámetro al final de nuestra lista
 		Parámetro: 
 			int incremento, 
 
@@ -160,7 +181,7 @@ public:
 	void concatenar(ListaEnlazada *listaAConcatenar);
 
 	/*  
-	ttt
+	Encontrar el indice del elemento a buscar
 		Parámetro: 
 			int incremento, 
 
@@ -181,7 +202,7 @@ public:
 	int buscar(int elementoABuscar);
 
 	/*  
-	ttt
+	Destructor
 		Parámetro: 
 			int incremento, 
 

@@ -3,7 +3,7 @@
 // Devuelve puntero al nodo en la posicion solicitada
 Nodo* ListaEnlazada::getNodo(int posicion)
 {
-    assertdomjudge(posicion>=0 && posicion<n);
+    assertdomjudge(posicion>=0 && posicion<=n);
 
     // Guardo el comienzo de la lista
     Nodo* nodoIterar=lista;
@@ -83,7 +83,6 @@ void ListaEnlazada::insertar(int posicion, int nuevoValor)
         nodoAnterior->siguienteNodo=nodoNuevo;
     }
     // Si se inserta dentro de la lista, entre dos nodos
-    // FIXME: segfault si se inserta en la mitad de la lista
     else
     {
         Nodo* nodoAnterior=getNodo(posicion-1);
@@ -92,7 +91,8 @@ void ListaEnlazada::insertar(int posicion, int nuevoValor)
         nodoNuevo->elemento=nuevoValor;
 
         // Apunto el nuevo nodo a siguiente nodo
-        nodoNuevo->siguienteNodo=getNodo(posicion+1);
+        // FIXED: nodoAnterior->siguienteNodo en vez de nodoAnterior->getNodo(posicion+1)
+        nodoNuevo->siguienteNodo=nodoAnterior->siguienteNodo;
 
         // Apunto el nodo anterior al nodo nuevo
         nodoAnterior->siguienteNodo=nodoNuevo;

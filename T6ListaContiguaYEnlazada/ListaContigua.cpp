@@ -145,22 +145,41 @@ void ListaContigua::concatenar(ListaContigua *listaAConcatenar)
 {
     // Compruebo que la lista a concatenar tiene algun elemento
     assertdomjudge(listaAConcatenar->n>0);
-    
-    // TODO: el realloc() da 11 en vez de 12 con incremento de 4, puede que necesite un +1 en algun lado
-    // Necesita mas testing
-    // Aumento el vector para poder añadir los elemetos del otro vector
-    //vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->n));
-    vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->capacidad));
 
-    // void *memmove(void *str1, const void *str2, size_t n)
-    // void *memmove(vector destino, vector origen, Numero de bytes a mover)
-    // Añado los elemento del otro vector
+    // Implementacion sumando la capacidad del segundo vector
+
+    // Reservo memoria para acomodar los elementos del primer vector, su incremento y los elementos del segundo
+    // No reservo memoria para el incremento del segundo
+    vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->capacidad));
+    //vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->capacidad));
+  
+    // Añado los elementos del segundo vector, pero no su capacidad
+    //memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
+    memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->capacidad));
+
+    // Actualizo los contadores de n y capacidad
+    n+=listaAConcatenar->n;
+    capacidad+=listaAConcatenar->capacidad; // NOTE: no guardo la capacidad del segundo vector
+
+
+
+    /* OPCION: Sin sumar la capacidad del segundo vector
+    // TODO: el realloc() da 11 en vez de 12 con incremento de 4, puede que necesite un +1 en algun lado
+
+    // Reservo memoria para acomodar los elementos del primer vector, su incremento y los elementos del segundo
+    // No reservo memoria para el incremento del segundo
+    vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->n));
+    //vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->capacidad));
+
+  
+    // Añado los elementos del segundo vector, pero no su capacidad
+    //memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
     memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
 
     // Actualizo los contadores de n y capacidad
     n+=listaAConcatenar->n;
-    capacidad+=listaAConcatenar->n;
-    
+    capacidad+=listaAConcatenar->n; // NOTE: no guardo la capacidad del segundo vector
+    */
     return;
 }
 
@@ -180,8 +199,6 @@ int ListaContigua::buscar(int elementoABuscar)
 
     // Devuelvo el indice o -1
     return i;
-
-
 
     /* NOTE: he pensado algo mejor
     int indiceEncontrado=-1;

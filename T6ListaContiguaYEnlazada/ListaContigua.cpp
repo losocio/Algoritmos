@@ -1,12 +1,5 @@
 #include "ListaContigua.h"
-//#include "assertdomjudge.h"
 
-/* TODO
-    Creo que aqui hay que poner & :
-    memmove(&vector[posicion+1], &vector[posicion], (n-posicion)*sizeof(int));
-
-
-*/
 
 // Constructor de ListaContigua
 ListaContigua::ListaContigua(int incremento)
@@ -28,6 +21,7 @@ ListaContigua::ListaContigua(int incremento)
 	
 }
 
+
 // Leer un valor segun su indice
 int ListaContigua::getValor(int posicion)
 {
@@ -37,6 +31,7 @@ int ListaContigua::getValor(int posicion)
     // Devuelvo valor
     return vector[posicion];
 }
+
 
 // Cambia un valor segun su posicion, perdiendo lo que se guardaba ahi
 void ListaContigua::setValor(int posicion, int nuevoValor)
@@ -52,11 +47,13 @@ void ListaContigua::setValor(int posicion, int nuevoValor)
     return;
 }
 
+
 // Devuelve la cantidad de elementos contenidos en la lista
 int ListaContigua::getN() 
 {
     return n;
 }
+
 
 // Devuelve la capacidad actual de la lista
 int ListaContigua::getCapacidad() 
@@ -64,12 +61,14 @@ int ListaContigua::getCapacidad()
     return capacidad;
 }
 
+
 // Insertar un valor en la lista en la posicion elegida, desplazando los elementos de la derecha a la derecha
 void ListaContigua::insertar(int posicion, int nuevoValor)
 {
 
-    /* NOTE: Esto estaria mal, ya que los elementos tiene que estar siempre seguidos
-    Si pudiese insertar en cualquier parde del incremento este no seria el caso
+    /* NOTE: Esto esta mal, ya que los elementos tiene que estar siempre seguidos.
+    No tendria mucho sentido que no lo estuviesen.
+    Si pudiese insertar en cualquier parte del incremento este no seria el caso
     
     // Aqui uso capacidad en vez de n, este metodo puede expandir la lista
     assertdomjudge(posicion>=0 && posicion<capacidad);
@@ -78,12 +77,11 @@ void ListaContigua::insertar(int posicion, int nuevoValor)
     // Compruebo que se accede un valor posible
     // NOTE: Es <=n y no <n porque asi puedo añadir un elemento al final de la lista
     assertdomjudge(posicion>=0 && posicion<=n);
-    
 
     // Desplazo los elementos una posicion a la derecha
     // void *memmove(void *str1, const void *str2, size_t n)
     // void *memmove(vector destino, vector origen, Numero de bytes a mover)
-    memmove(&vector[posicion+1], &vector[posicion], sizeof(int)*(n-posicion)); // TODO: puede ser n-pos-1
+    memmove(&vector[posicion+1], &vector[posicion], sizeof(int)*(n-posicion));
 
     // Inserto el nuevo valor
     vector[posicion]=nuevoValor;
@@ -100,11 +98,16 @@ void ListaContigua::insertar(int posicion, int nuevoValor)
         // void *realloc(void *ptr, size_t size)
         // void *realloc(puntero a la memoria dinamica por redimensionar, nuevo tamaño total)
         // Reservo memoria con la nueva capacidad aumentada
-        vector = (int*) realloc(vector, capacidad);
+        vector = (int*) realloc(vector, sizeof(int)*capacidad);
+
+        // Esto es muy raro profe :/
+        // NOTE: Por alguna razon funciona si le paso el numero de elementos y no la cantidad de bytes
+        // vector = (int*) realloc(vector, capacidad);
     }
     
     return;
 }
+
 
 // Eliminar un elemento de la posicion elegida de la lista
 void ListaContigua::eliminar(int posicion)
@@ -115,43 +118,48 @@ void ListaContigua::eliminar(int posicion)
     // void *memmove(void *str1, const void *str2, size_t n)
     // void *memmove(vector destino, vector origen, Numero de bytes a mover)
     // Desplazo los elementos a la derecha, machacando el elemento a eliminar
-    memmove(&vector[posicion], &vector[posicion+1], sizeof(int)*(n-posicion)); // TODO: puede ser n-pos-1
+    memmove(&vector[posicion], &vector[posicion+1], sizeof(int)*(n-posicion));
 
     // Decremento n
     n--;
 
     // Si eliminando un elemento la capacidad el mayor que 2*incremento la disminuyo
-    if(capacidad-n>2*incremento)
+    // FIXED: if(capacidad-n>2*incremento) estaba mal
+    if(capacidad-n>incremento)
     {   
-        // Aumento la capacidad por el incremento
+        // Disminuyo la capacidad por el incremento
         capacidad-=incremento;
-
+    
         // void *realloc(void *ptr, size_t size)
         // void *realloc(puntero a la memoria dinamica por redimensionar, nuevo tamaño total)
         // Reservo memoria con la nueva capacidad aumentada
-        vector=(int*) realloc(vector, capacidad);
+        vector=(int*) realloc(vector, sizeof(int)*capacidad);
     }
 
     return;
 }
 
+// FIX: mirar TODO de dentro
 // Concatena dos listas
 void ListaContigua::concatenar(ListaContigua *listaAConcatenar)
 {
-    // Compruebo que se accede un valor posible
-    assertdomjudge(listaAConcatenar->n>=0);
+    // Compruebo que la lista a concatenar tiene algun elemento
+    assertdomjudge(listaAConcatenar->n>0);
     
+    // TODO: el realloc() da 11 en vez de 12 con incremento de 4, puede que necesite un +1 en algun lado
+    // Necesita mas testing
     // Aumento el vector para poder añadir los elemetos del otro vector
-    vector=(int*) realloc(vector, capacidad+listaAConcatenar->n);
-    
+    //vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->n));
+    vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->capacidad));
+
     // void *memmove(void *str1, const void *str2, size_t n)
     // void *memmove(vector destino, vector origen, Numero de bytes a mover)
     // Añado los elemento del otro vector
     memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
 
     // Actualizo los contadores de n y capacidad
-    n=n+listaAConcatenar->n;
-    capacidad=capacidad+listaAConcatenar->n;
+    n+=listaAConcatenar->n;
+    capacidad+=listaAConcatenar->n;
     
     return;
 }
@@ -201,6 +209,7 @@ int ListaContigua::buscar(int elementoABuscar)
     */
 }
 
+// TODO: check
 // Destructor
 ListaContigua::~ListaContigua()
 {

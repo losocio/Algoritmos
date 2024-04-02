@@ -2,16 +2,18 @@
 #include <cstring>
 #include "assertdomjudge.h"
 
-using namespace std;
-
 class ListaContigua
 {
+	// Array
 	int *vector;
 
+	// Numero de elementos
 	int n;
 
+	// Total de memoria que ocupa la lista, incluidos espacios sin valor asignado
 	int capacidad;
 
+	// Incremento
 	int incremento;
 
 

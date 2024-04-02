@@ -2,8 +2,6 @@
 #include "Nodo.h"
 #include "assertdomjudge.h"
 
-using namespace std;
-
 class ListaEnlazada
 {
 	// Comienzo de la lista

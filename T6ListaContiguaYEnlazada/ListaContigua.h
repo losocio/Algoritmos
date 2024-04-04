@@ -1,5 +1,6 @@
 #pragma once
 #include <cstring>
+#include <cstdlib>
 #include "assertdomjudge.h"
 
 class ListaContigua
@@ -215,24 +216,23 @@ public:
 	int buscar(int elementoABuscar);
 
 	/*  
-	Devuelve las cantidades de las distintas monedas de pesetas necesarias para de cambio
+	Destructor
 		Parámetro: 
-			int valor,  valor del que dar cambio
-			int* cambio, referenci del array donde se guardan las cantidades de cambio
+			Ninguno
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			valor >= 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	~ListaContigua();
 };

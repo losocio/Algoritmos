@@ -13,21 +13,22 @@ class ListaEnlazada
 	/*  
 	Devuelve puntero al nodo en la posicion solicitada
 		Parámetro: 
-			int incremento, 
+			int posicion, posicion del nodo a devolver
 
 		Retorno: 
-			Ninguno
+			Nodo* nodoIterar, nodo en la posicion solicitada
 		
 		Precondicion: 
-			incremento > 0
+			posicion >= 0 
+			posicion < n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	Nodo* getNodo(int posicion);
 
@@ -36,189 +37,195 @@ public:
 	/*  
 	Crea una lista enlazada vacia
 		Parámetro: 
-			int incremento, 
+			Ninguno
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	ListaEnlazada();
 
 	/*  
 	Devuelve el valor en la posicion pedida
 		Parámetro: 
-			int incremento, 
+			int posicion, posicion del valor a devolver
 
 		Retorno: 
-			Ninguno
+			valor de la posicion dada
 		
 		Precondicion: 
-			incremento > 0
+			posicion >= 0 
+			posicion < n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	int getValor(int posicion);
 
 	/*  
 	Modifica el valor de la posicion pedida
 		Parámetro: 
-			int incremento, 
+			int posicion, posicion del valor a modificar
+			int nuevoValor, nuevo valor
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			posicion >= 0 
+			posicion < n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	void setValor(int posicion, int nuevoValor);
 
 	/*  
 	Devuelve n
 		Parámetro: 
-			int incremento, 
+			Ninguno
 
 		Retorno: 
-			Ninguno
+			int n, n
 		
 		Precondicion: 
-			incremento > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	int getN(); 
 
 	/*  
 	Inserta elementos en la lista, el comportamiento varia dependiendo de donde se quiera insertar
 		Parámetro: 
-			int incremento, 
+			int posicion, posicion donde insertar el nuevo nodo
+			int nuevoValor, nuevo valor
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			posicion >= 0 
+			posicion <= n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
-	void insertar (int posicion, int nuevoValor);
+	void insertar(int posicion, int nuevoValor);
 
 	/*  
 	Elimina elementos de la lista, el comportamiento varia dependiendo de donde se quiera eliminar
 		Parámetro: 
-			int incremento, 
+			int posicion, posicion del nodo a eliminar
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			posicion >= 0 
+			posicion < n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 2*n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
-	void eliminar (int posicion);
+	void eliminar(int posicion);
 
 	/*  
 	Concatena la lista indicada como parámetro al final de nuestra lista
 		Parámetro: 
-			int incremento, 
+			ListaEnlazada *listaAConcatenar, lista que concatenar al final
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	void concatenar(ListaEnlazada *listaAConcatenar);
 
 	/*  
 	Encontrar el indice del elemento a buscar
 		Parámetro: 
-			int incremento, 
+			int elementoABuscar, valor a buscar
 
 		Retorno: 
-			Ninguno
+			int indiceEncontrado, posicion donde del valor encontrado, -1 a su defecto
 		
 		Precondicion: 
-			incremento > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	int buscar(int elementoABuscar);
 
 	/*  
 	Destructor
 		Parámetro: 
-			int incremento, 
+			Ninguno
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	~ListaEnlazada();
 };

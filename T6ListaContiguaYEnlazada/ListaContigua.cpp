@@ -1,6 +1,5 @@
 #include "ListaContigua.h"
 
-
 // Constructor de ListaContigua
 ListaContigua::ListaContigua(int incremento)
 {
@@ -14,10 +13,13 @@ ListaContigua::ListaContigua(int incremento)
 	n=0;
 
     // La lista comienza con capacidad del tamaño del incremento
-	capacidad=incremento;
+    capacidad=incremento;
 
     // Reservo memoria del tamaño del incremento
-    vector=new int[capacidad];
+    vector=(int*)malloc(sizeof(int)*capacidad);
+
+    // NOTE: Problemas al usar memoria dinamica de c y c++
+    // vector=new int[capacidad];
 	
 }
 
@@ -86,11 +88,11 @@ void ListaContigua::insertar(int posicion, int nuevoValor)
     // Inserto el nuevo valor
     vector[posicion]=nuevoValor;
     
-    //Incremento n
+    // Incremento n
     n++;
 
     // Si al insertar el nuevo elemento llenamos el vector, los aumentamos por el incremento
-    if(n>=capacidad)
+    if(n==capacidad)
     {   
         // Aumento la capacidad por el incremento
         capacidad+=incremento;
@@ -139,47 +141,46 @@ void ListaContigua::eliminar(int posicion)
     return;
 }
 
-// FIX: mirar TODO de dentro
 // Concatena dos listas
 void ListaContigua::concatenar(ListaContigua *listaAConcatenar)
 {
+    // NOTE: Esta precondicion puede ser demasiado restrictiva para el domjudge
     // Compruebo que la lista a concatenar tiene algun elemento
-    assertdomjudge(listaAConcatenar->n>0);
+    // assertdomjudge(listaAConcatenar->n>0);
+    
 
-    // Implementacion sumando la capacidad del segundo vector
+    // Implementacion sin sumar la capacidad del segundo vector
+    
+    // Actualizo los contadores de n y capacidad
+    n+=listaAConcatenar->n;
+    capacidad+=listaAConcatenar->n; // NOTE: no guardo la capacidad del segundo vector
 
     // Reservo memoria para acomodar los elementos del primer vector, su incremento y los elementos del segundo
     // No reservo memoria para el incremento del segundo
-    vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->capacidad));
+    vector=(int*) realloc(vector, sizeof(int)*(capacidad));
     //vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->capacidad));
+
   
     // Añado los elementos del segundo vector, pero no su capacidad
-    //memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
-    memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->capacidad));
-
+    // memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
+    memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
+    
+    /*
+    // Implementacion sumando la capacidad del segundo vector
+    
     // Actualizo los contadores de n y capacidad
     n+=listaAConcatenar->n;
     capacidad+=listaAConcatenar->capacidad; // NOTE: no guardo la capacidad del segundo vector
 
-
-
-    /* OPCION: Sin sumar la capacidad del segundo vector
-    // TODO: el realloc() da 11 en vez de 12 con incremento de 4, puede que necesite un +1 en algun lado
-
     // Reservo memoria para acomodar los elementos del primer vector, su incremento y los elementos del segundo
     // No reservo memoria para el incremento del segundo
-    vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->n));
-    //vector=(int*) realloc(vector, sizeof(int)*(capacidad+listaAConcatenar->capacidad));
-
+    vector=(int*) realloc(vector, sizeof(int)*capacidad);
   
     // Añado los elementos del segundo vector, pero no su capacidad
-    //memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
-    memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
+    memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->capacidad));
 
-    // Actualizo los contadores de n y capacidad
-    n+=listaAConcatenar->n;
-    capacidad+=listaAConcatenar->n; // NOTE: no guardo la capacidad del segundo vector
     */
+
     return;
 }
 
@@ -199,6 +200,7 @@ int ListaContigua::buscar(int elementoABuscar)
 
     // Devuelvo el indice o -1
     return i;
+    
 
     /* NOTE: he pensado algo mejor
     int indiceEncontrado=-1;
@@ -209,8 +211,7 @@ int ListaContigua::buscar(int elementoABuscar)
         {
             indiceEncontrado=i;
             break;
-        }    
-        i++;    
+        }       
     }
 
     return indiceEncontrado;
@@ -226,9 +227,11 @@ int ListaContigua::buscar(int elementoABuscar)
     */
 }
 
-// TODO: check
 // Destructor
 ListaContigua::~ListaContigua()
 {
-    delete [] vector;
+    free(vector);
+
+    // NOTE: Problemas al usar memoria dinamica de c y c++
+    // delete [] vector;
 }

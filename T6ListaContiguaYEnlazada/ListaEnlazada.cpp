@@ -3,7 +3,7 @@
 // Devuelve puntero al nodo en la posicion solicitada
 Nodo* ListaEnlazada::getNodo(int posicion)
 {
-    assertdomjudge(posicion>=0 && posicion<=n);
+    assertdomjudge(posicion>=0 && posicion<n);
 
     // Guardo el comienzo de la lista
     Nodo* nodoIterar=lista;
@@ -51,8 +51,7 @@ void ListaEnlazada::insertar(int posicion, int nuevoValor)
     // Compruebo que se accede un valor posible
     assertdomjudge(posicion>=0 && posicion<=n);
 
-    // NOTE: Nodo* nodoAnterior=getNodo(posicion-1); da segfault si se elimina el primer elemento
-    // Lo pongo en el if
+    // NOTE: Nodo* nodoAnterior=getNodo(posicion-1); da segfault si se elimina el primer elemento, lo pongo en el if
     Nodo* nodoNuevo=new Nodo();
 
     // Si se inserta al principio de la lista
@@ -68,7 +67,7 @@ void ListaEnlazada::insertar(int posicion, int nuevoValor)
         lista = nodoNuevo;
 
     }
-    // Si se inserta al final de la lista
+    // Si se inserta un elemento nuevo al final de la lista
     else if(posicion==n)
     {
         Nodo* nodoAnterior=getNodo(posicion-1);
@@ -137,16 +136,12 @@ void ListaEnlazada::insertar(int posicion, int nuevoValor)
 // Elimina elementos de la lista, el comportamiento varia dependiendo de donde se quiera eliminar
 void ListaEnlazada::eliminar(int posicion)
 {
-    // TODO: check it
     // Compruebo que se accede un valor posible
     assertdomjudge(posicion>=0 && posicion<n);
 
     // NOTE: Ejemplo de buena practica, solo llamo a getNodo() una vez para dos variables
-    // NOTE: Nodo* nodoAnterior=getNodo(posicion-1); da segfault si se elimina el primer elemento
-    // Lo pongo en el if
-    Nodo* nodoABorrar=getNodo(posicion);
-    //Nodo* nodoABorrar=getNodo(posicion)->siguienteNodo;
-    Nodo* nodoSiguiente=nodoABorrar->siguienteNodo;
+    // NOTE: Nodo* nodoAnterior=getNodo(posicion-1); da segfault si se elimina el primer elemento, lo pongo en el if
+    Nodo* nodoABorrar=getNodo(posicion);   
 
     // Si se elimina al principio de la lista
     if(posicion==0)
@@ -155,7 +150,7 @@ void ListaEnlazada::eliminar(int posicion)
         delete nodoABorrar;
         
         // Apunto el comienzo de la lista al siguiente
-        lista = nodoSiguiente;
+        lista = nodoABorrar->siguienteNodo;
     }
     // Si se elimina al final de la lista
     else if(posicion==n-1)
@@ -174,9 +169,9 @@ void ListaEnlazada::eliminar(int posicion)
         Nodo* nodoAnterior=getNodo(posicion-1);
 
         // Apunto el nodo anterior al siguiente
-        nodoAnterior->siguienteNodo=nodoSiguiente;
+        nodoAnterior->siguienteNodo=nodoABorrar->siguienteNodo;
 
-        // Borrao el nodo a borrar
+        // Borro el nodo a borrar
         delete nodoABorrar;
     }
 
@@ -190,7 +185,7 @@ void ListaEnlazada::eliminar(int posicion)
             delete lista;
             
 
-            lista = nodoSiguiente;
+            lista = nodoABorrar->siguienteNodo;;
 
           
             break;
@@ -218,7 +213,7 @@ void ListaEnlazada::eliminar(int posicion)
 
     return;
 }
-
+// CHECK
 // Concatena la lista indicada como parámetro al final de nuestra lista
 void ListaEnlazada::concatenar(ListaEnlazada *listaAConcatenar)
 {
@@ -244,12 +239,35 @@ void ListaEnlazada::concatenar(ListaEnlazada *listaAConcatenar)
 int ListaEnlazada::buscar(int elementoABuscar)
 {
     Nodo* nodoIterar=lista;
+
+    int indiceEncontrado=-1;
+
+    // Itero por todos los nodos en orden
+    for(int i=0;i<n;i++)
+    {
+        // Si encuentro el elemento lo guardo y salgo del bucle
+        if(nodoIterar->elemento==elementoABuscar) 
+        {
+            indiceEncontrado=i;
+            break;
+        }    
+
+        // Apunto al siguiente nodo
+        nodoIterar=nodoIterar->siguienteNodo;
+    }
+
+    return indiceEncontrado;
+    
+    /* NOTE: Otro intento de implementacion
+
+    // FIX: Last element causes problems, look at the if()
     int i=0;
 
     // Aumento el contador de indice hasta encontar el valor buscado o cuando se llega al final de la lista
     // FIXED: era n-1, no n. Asi tiene sentido con los indices
     while(nodoIterar->elemento!=elementoABuscar && i<n-1) 
     {
+        // Apunto al siguiente nodo
         nodoIterar=nodoIterar->siguienteNodo;
         i++;
     }
@@ -259,39 +277,28 @@ int ListaEnlazada::buscar(int elementoABuscar)
 
     // Devuelvo el indice o -1
     return i;
-
-
-    /* NOTE: Implementacion menos eficiente que itera todos los elementos
-    int indiceEncontrado=-1;
-
-    for(int i=0;i<n;i++)
-    {
-        if(vector[i]==elementoABuscar) indiceEncontrado=i;
-        i++;    
-    }
-
-    return indiceEncontrado;
     */
-
 }
-
+// CHECK
 // Destructor
 ListaEnlazada::~ListaEnlazada()
 {
-    // NOTE: Nodo* nodoSiguiente=lista, nodoAux; Es esta mal se define un Nodo* y despues un Nodo
-    Nodo* nodoSiguiente=lista, *nodoAux;
+    // NOTE: Nodo* nodoABorrar=lista, nodoAux; Es esta mal se define un Nodo* y despues un Nodo
+    // Seria: Nodo* nodoABorrar=lista, *nodoAux;
+    Nodo* nodoABorrar=lista;
+    Nodo* nodoAux;
 
     // Itero por todos los nodos
     for(int i=0;i<n;i++)
     {
         // Guardo la direccion del siguiente nodo para poder acceder a ella una vez el nodo actual
-        nodoAux=nodoSiguiente->siguienteNodo;
+        nodoAux=nodoABorrar->siguienteNodo;
         
         // Borro nodo actual
-        delete nodoSiguiente;
+        delete nodoABorrar;
         
         // Paso al siguiente nodo para borrarlo en la sigiuente iteracion
-        nodoSiguiente=nodoAux; 
+        nodoABorrar=nodoAux; 
     }
 
     // NOTE: no necesario, se borra automaticamente con el constructor 

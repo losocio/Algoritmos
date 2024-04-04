@@ -5,7 +5,8 @@ using namespace std;
 
 int main()
 {
-  ListaContigua *lista; 
+	//ListaContigua *lista; 
+  ListaContigua *lista=NULL; 
   ListaContigua* numeros;
   int incremento,numero,posicion;
   char operacion;

@@ -4,7 +4,8 @@ using namespace std;
 
 int main()
 {
-  ListaEnlazada *lista; 
+	//ListaEnlazada *lista; 
+  ListaEnlazada *lista=NULL; 
   ListaEnlazada* numeros;
   int numero,posicion;
   char operacion;

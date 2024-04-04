@@ -146,11 +146,14 @@ void ListaEnlazada::eliminar(int posicion)
     // Si se elimina al principio de la lista
     if(posicion==0)
     {
+        // FIXED: Estaban estas dos alreves
+
+        // Apunto el comienzo de la lista al siguiente
+        lista = nodoABorrar->siguienteNodo;
+        
         // Borro el primer nodo
         delete nodoABorrar;
         
-        // Apunto el comienzo de la lista al siguiente
-        lista = nodoABorrar->siguienteNodo;
     }
     // Si se elimina al final de la lista
     else if(posicion==n-1)
@@ -213,7 +216,8 @@ void ListaEnlazada::eliminar(int posicion)
 
     return;
 }
-// CHECK
+
+// No se me ocurre como se podria hacer sin getNodo() :/
 // Concatena la lista indicada como parámetro al final de nuestra lista
 void ListaEnlazada::concatenar(ListaEnlazada *listaAConcatenar)
 {
@@ -279,7 +283,7 @@ int ListaEnlazada::buscar(int elementoABuscar)
     return i;
     */
 }
-// CHECK
+
 // Destructor
 ListaEnlazada::~ListaEnlazada()
 {

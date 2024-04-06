@@ -147,6 +147,25 @@ void ListaContigua::eliminar(int posicion)
     n--;
 
     // Si eliminando un elemento la capacidad el mayor que 2*incremento la disminuyo
+    if((capacidad-n)>=incremento)
+    {   
+        // Disminuyo la capacidad por el incremento
+        capacidad-=incremento;
+
+        // Reservo memoria con la nueva capacidad aumentada
+        vector=(int*) realloc(vector, sizeof(int)*capacidad);
+    }
+    
+    /* NOTE: La capacidad debe crecer al intentar insertar un nuevo elemento, no al llenarse la capacidad
+    // Mi implementacion no esta mal, solo es otra forma de hacerlo
+
+    // Desplazo los elementos a la derecha, machacando el elemento a eliminar
+    memmove(&vector[posicion], &vector[posicion+1], sizeof(int)*(n-posicion));
+
+    // Decremento n
+    n--;
+
+    // Si eliminando un elemento la capacidad el mayor que 2*incremento la disminuyo
     // FIXED: if(capacidad-n>2*incremento) estaba mal
     if(capacidad-n>incremento)
     {   
@@ -156,6 +175,7 @@ void ListaContigua::eliminar(int posicion)
         // Reservo memoria con la nueva capacidad aumentada
         vector=(int*) realloc(vector, sizeof(int)*capacidad);
     }
+    */
 
     return;
 }

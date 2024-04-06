@@ -142,12 +142,12 @@ public:
 			posicion <= n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	void insertar(int posicion, int nuevoValor);
 
@@ -164,12 +164,12 @@ public:
 			posicion < n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	void eliminar(int posicion);
 
@@ -185,12 +185,12 @@ public:
 			listaAConcatenar->n >= 0
 		
 		Complejidad Temporal:
-			T(n) = n
-			O(n)
+			T(m) = m + 1
+			O(m)
 
 		Complejidad Espacial: 
-			M(n) = n
-			O(n)
+			M(m) = m
+			O(m)
 	*/
 	void concatenar(ListaContigua *listaAConcatenar);
 
@@ -206,7 +206,7 @@ public:
 			Ninguna
 		
 		Complejidad Temporal:
-			T(n) = n
+			T(n) = n + 1
 			O(n)
 
 		Complejidad Espacial: 

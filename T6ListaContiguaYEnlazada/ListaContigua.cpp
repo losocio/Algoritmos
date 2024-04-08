@@ -146,8 +146,9 @@ void ListaContigua::eliminar(int posicion)
     // Decremento n
     n--;
 
+    // FIXED: if((capacidad-n)>=incremento), era incorrecto
     // Si eliminando un elemento la capacidad el mayor que 2*incremento la disminuyo
-    if((capacidad-n)>=incremento)
+    if(n<=(capacidad-2*incremento))
     {   
         // Disminuyo la capacidad por el incremento
         capacidad-=incremento;
@@ -189,8 +190,7 @@ void ListaContigua::concatenar(ListaContigua *listaAConcatenar)
     
     // Implementacion sin sumar la capacidad del segundo vector
     
-    // Actualizo los contadores de n y capacidad
-    n+=listaAConcatenar->n;
+    // Actualizo la capacidad
     capacidad+=listaAConcatenar->n; // NOTE: no guardo la capacidad del segundo vector
 
     // Reservo memoria para acomodar los elementos del primer vector, su incremento y los elementos del segundo
@@ -198,8 +198,12 @@ void ListaContigua::concatenar(ListaContigua *listaAConcatenar)
     vector=(int*) realloc(vector, sizeof(int)*(capacidad));
   
     // Añado los elementos del segundo vector, pero no su capacidad
-    memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*(listaAConcatenar->n));
+    memmove(&vector[n], listaAConcatenar->vector, sizeof(int)*listaAConcatenar->n);
     
+    // Actualizo n
+    n+=listaAConcatenar->n;
+
+
     /* NOTE: Implementacion sumando la capacidad del segundo vector
     
     // Actualizo los contadores de n y capacidad

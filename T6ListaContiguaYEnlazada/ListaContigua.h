@@ -192,6 +192,7 @@ public:
 			M(m) = m
 			O(m)
 	*/
+	// T(n)=m+n ya que hay qye redimensionar lista 1 en la implementacion correcta
 	void concatenar(ListaContigua *listaAConcatenar);
 
 	/*  

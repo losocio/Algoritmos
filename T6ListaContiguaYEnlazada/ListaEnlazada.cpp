@@ -217,6 +217,9 @@ void ListaEnlazada::eliminar(int posicion)
     return;
 }
 
+
+// NOTE: Esta mal, hay que copiar los elementos de la segunda lista a la primera. ya que asi se respeta la integridad de la segunda lista
+
 // No se me ocurre como se podria hacer sin getNodo() :/
 // Concatena la lista indicada como parámetro al final de nuestra lista
 void ListaEnlazada::concatenar(ListaEnlazada *listaAConcatenar)

@@ -3,16 +3,23 @@
 #include "assertdomjudge.h"
 using namespace std;
 
+// Algoritmo de torre de Hanoi
 void Hanoi(int n, Pila *origen, Pila *destino, Pila *temporal) 
 {
 	// Implementacion copiada de los apuntes
 
-	Hanoi(--n, origen, destino, temporal);
+	// Si se llega 0 se sale de la recursion
+	if(n>0)
+	{
+		// Recursividad
+		Hanoi(n-1, origen, temporal, destino);
 
-	// Mover de origen a
-	destino->apilar(origen->desapilar());
+		// Mover de origen a destino
+		destino->apilar(origen->desapilar());
 
-	Hanoi(--n, temporal, origen, destino);
+		// Recursividad
+		Hanoi(n-1, temporal, destino, origen);
+	}
 
 	return;
 }
@@ -27,13 +34,11 @@ int main()
 	int n;
 	cin>>n;
 
-	for(int i=n;i>0;i--)
-		A->apilar(i);
+	for(int i=n;i>0;i--) A->apilar(i);
 
 	Hanoi(n,A,C,B);
 	
-	for(int i=0;i<n;i++)
-		C->desapilar();
+	for(int i=0;i<n;i++) C->desapilar();
 
 	return 0;
 }

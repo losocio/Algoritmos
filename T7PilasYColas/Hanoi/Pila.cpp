@@ -33,7 +33,6 @@ void Pila::apilar(int num)
 	return;
 }
 
-// FIX: causa segfault sa
 // Sacar un elemento a la parte superior de la pila, pop
 int Pila::desapilar()
 {    

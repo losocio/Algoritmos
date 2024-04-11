@@ -10,7 +10,7 @@ public:
 	Nodo *siguiente;
   
 	// Constructor
-  	Nodo(int v,Nodo *sig=NULL)
+  	Nodo(int v, Nodo *sig=NULL)
 	{
 		valor=v;
 		siguiente=sig;

@@ -196,8 +196,8 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
 			M(n) = 1

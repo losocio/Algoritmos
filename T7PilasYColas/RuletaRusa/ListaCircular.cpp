@@ -141,10 +141,9 @@ void ListaCircular::girar(int p)
     // Sino girar a la izquierda
     else
     {
-        //FIX: algo falla aqui
-        
+        // FIXED: no se puede iterar si p es negativo
         // Itero p veces apuntando lista al anterior nodo
-        for(int i=0;i<p;i++) lista=lista->anteriorNodo;
+        for(int i=0;i<-p;i++) lista=lista->anteriorNodo;
     }
 
     return;

@@ -54,14 +54,15 @@ void ListaEnlazada::insertar(int posicion, int nuevoValor)
     // NOTE: Nodo* nodoAnterior=getNodo(posicion-1); da segfault si se elimina el primer elemento, lo pongo en el if
     Nodo* nodoNuevo=new Nodo();
 
+    // Guardo el valor en el nuevo nodo
+    nodoNuevo->elemento=nuevoValor;
+
     // Si se inserta al principio de la lista
     if(posicion==0)
     {
-        // Guardo el valor en el nuevo nodo
-        nodoNuevo->elemento=nuevoValor;
-
         // Apunto el nuevo nodo al nodo 0
-        nodoNuevo->siguienteNodo=lista;
+        // NOTE: Antes tenia nodoNuevo->siguienteNodo=lista;
+        nodoNuevo->siguienteNodo=NULL;
 
         // Apunto la lista al nodo nuevo
         lista = nodoNuevo;
@@ -71,9 +72,6 @@ void ListaEnlazada::insertar(int posicion, int nuevoValor)
     else if(posicion==n)
     {
         Nodo* nodoAnterior=getNodo(posicion-1);
-
-        // Guardo el valor en el nuevo nodo
-        nodoNuevo->elemento=nuevoValor;
 
         // Apunto el nuevo nodo a NULL
         nodoNuevo->siguienteNodo=NULL;
@@ -85,9 +83,6 @@ void ListaEnlazada::insertar(int posicion, int nuevoValor)
     else
     {
         Nodo* nodoAnterior=getNodo(posicion-1);
-
-        // Guardo el valor en el nuevo nodo
-        nodoNuevo->elemento=nuevoValor;
 
         // Apunto el nuevo nodo a siguiente nodo
         // FIXED: nodoAnterior->siguienteNodo en vez de nodoAnterior->getNodo(posicion+1)

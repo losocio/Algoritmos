@@ -1,5 +1,6 @@
-#include<cstdlib>
+#include <cstdlib>
 #include "Nodo.h"
+#include "assertdomjudge.h"
 
 class ListaCircular
 {
@@ -7,174 +8,200 @@ class ListaCircular
 
 	int n;
 
-	Nodo * getNodo (int posicion);
+	/*  
+	Devuelve puntero al nodo en la posicion solicitada
+		Parámetro: 
+			int posicion, posicion del nodo a devolver
+
+		Retorno: 
+			Nodo* nodoIterar, nodo en la posicion solicitada
+		
+		Precondicion: 
+			posicion >= 0 
+			posicion < n
+		
+		Complejidad Temporal:
+			T(n) = n + 1
+			O(n)
+
+		Complejidad Espacial: 
+			M(n) = 1
+			O(1)
+	*/
+	Nodo* getNodo(int posicion);
 
 public:
 	/*  
-	ttt
+	Crea una lista vacia
 		Parámetro: 
-			int incremento, 
+			Ninguno
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	ListaCircular();
 
 	/*  
-	ttt
+	Devuelve el valor en la posicion pedida
 		Parámetro: 
-			int incremento, 
+			int posicion, posicion del valor a devolver 
 
 		Retorno: 
-			Ninguno
+			string elemento, elemento contenido en la posicion
 		
 		Precondicion: 
-			incremento > 0
+			posicion >= 0 
+			posicion < n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	string getValor(int posicion);
 
 	/*  
-	ttt
+	Modifica el valor de la posicion pedida
 		Parámetro: 
-			int incremento, 
+			int posicion, posicion del valor a modificar
+			string nuevoValor, nuevo valor
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			posicion >= 0
+			posicion < n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	void setValor(int posicion, string nuevoValor);
 
 	/*  
-	ttt
+	Devuelve n
 		Parámetro: 
-			int incremento, 
+			Ninguno
 
 		Retorno: 
-			Ninguno
+			int n, n
 		
 		Precondicion: 
-			incremento > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	int getN(); 
 
 	/*  
-	ttt
+	Inserta nodos en la lista, el comportamiento varia dependiendo de si se inserta el primer nodo
 		Parámetro: 
-			int incremento, 
+			int posicion, posicion donde insertar el nuevo nodo
+			string nuevoValor, nuevo valor
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			posicion >= 0 
+			posicion <= n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
-	void insertar (int posicion, string nuevoValor);
+	void insertar(int posicion, string nuevoValor);
 
 	/*  
-	ttt
+	Elimina nodos de la lista, el comportamiento varia dependiendo de si se vacia la lista
 		Parámetro: 
-			int incremento, 
+			int posicion, posicion del nodo a eliminar
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			posicion >= 0 
+			posicion < n
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
-	void eliminar (int posicion);
+	void eliminar(int posicion);
 
 	/*  
-	ttt
+	Girar el tambor, apunta la lista al siguiente nodo
 		Parámetro: 
-			int incremento, 
+			int p, numero de nodo que iterar
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
-	void girar (int p);
+	void girar(int p);
 
 	/*  
-	ttt
+	Destructor
 		Parámetro: 
-			int incremento, 
+			Ninguno
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			Ninguno
 		
 		Complejidad Temporal:
 			T(n) = 
 			O()
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	~ListaCircular();
 };

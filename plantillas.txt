@@ -1,19 +1,19 @@
-/*  
-ttt
-	Parámetro: 
-		int incremento, 
+	/*  
+	ttt
+		Parámetro: 
+			int incremento, 
 
-	Retorno: 
-		Ninguno
-	
-	Precondicion: 
-		incremento > 0
-	
-	Complejidad Temporal:
-		T(n) = 
-		O()
+		Retorno: 
+			Ninguno
+		
+		Precondicion: 
+			incremento > 0
+		
+		Complejidad Temporal:
+			T(n) = 
+			O()
 
-	Complejidad Espacial: 
-		M(n) = 
-		O()
-*/
+		Complejidad Espacial: 
+			M(n) = 
+			O()
+	*/

@@ -30,31 +30,28 @@ void Supermercado::nuevoUsuario(int n, int id)
     return;
 }  
 
-// FIX: 
 // Reparte los usuarios encolados en la caja a cerrar entre el resto de cajas
 void Supermercado::cerrarCaja(int n)
 {
     assertdomjudge(n>=0 && n<n_cajas);
 
-    //TODO: borrar std::cout<<"Esta vacia: "<<cajas[n].estaVacia()<<std::endl;
-
     // Mientras queden usuarios en la caja
     while(!cajas[n].estaVacia())
     {
-        for(int i=0;i<n_cajas;i++){ // TODO: no comprobada
+        for(int i=0;i<n_cajas;i++){
+            
+            // FIXED: !cajas[i].estaVacia() se cumple siempre, no se desencola nada y por tanto el bucle de fuera es infinito
             // Si la iteracion pasa por la caja a cerrar o una caja vacia, me la salto
-            if(i==n || !cajas[i].estaVacia()) continue; // TODO: no comprobada
+            if(i==n || cajas[i].estaVacia()) continue;
 
             // Desencolo en la caja a borra y encolo en otra caja
             cajas[i].encolar(cajas[n].desencolar());
         }
-        std::cout<<"while"<<std::endl;
     }
 
     return;
 }  
 
-// FIX: si atiendo usuario de una caja cerrada se queda pillado	
 // Desencola un usuario
 int Supermercado::atenderUsuario(int n)
 {

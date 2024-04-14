@@ -13,11 +13,12 @@ Cola::Cola()
 // Añadir un nuevo nodo al final de la cola
 void Cola::encolar(int num)
 {
+    // NOTE: Al ser el orden de llegada no puede ser negativo
     assertdomjudge(num>=0);
 
     Nodo* nuevoNodo=new Nodo(num);
 
-    // Apunto a NULL, es el ultmo de la cola
+    // Apunto a NULL, es el ultimo de la cola
     nuevoNodo->siguiente=NULL;
 
     // Si la cola esta vacia
@@ -43,14 +44,17 @@ void Cola::encolar(int num)
 // Extraer el primer nodo de la cola
 int Cola::desencolar()
 {
-    // TODO: Implementar si se borra el ultimo elemento aunk puede que no se necesario
+    // TODO: Implementar si se borra el ultimo elemento aunk puede que no sea necesario
 
     // Guardo el valor desencolado
-    int valorDesencolado=pricipio->valor;
+    int valorDesencolado=principio->valor;
     
     // Guardo el siguiente nodo
     Nodo* nodoSiguiente=principio->siguiente;
     
+    // Si principio y final son iguales (solo queda el ultimo nodo) Apunto final a NULL
+    if(principio==final) final=NULL;
+
     // Borro el primer nodo
     delete principio;
 

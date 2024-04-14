@@ -9,57 +9,60 @@ private:
 
 public:
 	/*  
-	ttt
+	Constructor, reserva n cajas
 		Parámetro: 
-			int incremento, 
+			int n, numero de cajas a crear 
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			n > 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = n + 1
+			O(n)
 	*/
 	Supermercado(int n);
 
 	/*  
-	ttt
+	Añade un usuario nuevo a la caja elegida
 		Parámetro: 
-			int incremento, 
+			int n, numero de caja donde insertar
+			int id, valor del usuario
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			n >= 0
+			n < n_cajas
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	void nuevoUsuario(int n,int id);  
 
 	/*  
-	ttt
+	Reparte los usuarios encolados en la caja a cerrar entre el resto de cajas
 		Parámetro: 
-			int incremento, 
+			int n, numero de caja
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			n >= 0
+			n < n_cajas
 		
 		Complejidad Temporal:
 			T(n) = 
@@ -72,44 +75,46 @@ public:
 	void cerrarCaja(int n);  
 	
 	/*  
-	ttt
+	Desencola un usuario
 		Parámetro: 
-			int incremento, 
+			int n, numero de caja
 
 		Retorno: 
-			Ninguno
+			int valor, valor del ususario
 		
 		Precondicion: 
-			incremento > 0
+			n >= 0
+			n < n_cajas
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	int atenderUsuario(int n);
 
 	/*  
-	ttt
+	Comprueba si esta vacia la caja n
 		Parámetro: 
-			int incremento, 
+			int n, numero de caja
 
 		Retorno: 
-			Ninguno
+			bool estaVacia
 		
 		Precondicion: 
-			incremento > 0
+			n >= 0
+			n < n_cajas
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	bool cajaVacia(int n);
 };

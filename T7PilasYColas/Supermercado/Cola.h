@@ -1,4 +1,5 @@
 #include "Nodo.h"
+#include "assertdomjudge.h"
 
 class Cola
 {
@@ -19,8 +20,8 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 1
-			O(1)
+			T(n) = n + 1
+			O(n)
 
 		Complejidad Espacial: 
 			M(n) = 1
@@ -40,12 +41,12 @@ public:
 			num >= 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	void encolar(int num);  
 
@@ -55,39 +56,39 @@ public:
 			Ninguno
 
 		Retorno: 
-			Ninguno
+			int valorDesencolado, valor desencolado
 		
 		Precondicion: 
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	int desencolar();
 
 	/*  
 	Devuelve si esta vacia la cola
 		Parámetro: 
-			int incremento, 
+			Ninguno
 
 		Retorno: 
-			Ninguno
+			bool estaVacia
 		
 		Precondicion: 
 			incremento > 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	bool estaVacia();  
 };

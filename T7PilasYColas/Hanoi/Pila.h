@@ -25,12 +25,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1 
+			O(1)
 	*/
 	Pila(string name);
 
@@ -46,12 +46,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	string nombrePila();
 
@@ -67,12 +67,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	void apilar(int num);
 
@@ -88,12 +88,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	int desapilar();
 
@@ -109,12 +109,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) =  
-			O()
+			M(n) = 1
+			O(1)
 	*/
 	bool estaVacia();
 };

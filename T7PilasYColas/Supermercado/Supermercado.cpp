@@ -36,17 +36,14 @@ void Supermercado::cerrarCaja(int n)
 {
     assertdomjudge(n>=0 && n<n_cajas);
 
-    std::cout<<"Esta vacia: "<<cajas[n].estaVacia()<<std::endl;
+    //TODO: borrar std::cout<<"Esta vacia: "<<cajas[n].estaVacia()<<std::endl;
 
-
-    // FIX: Esta condicion nunca se cumple
     // Mientras queden usuarios en la caja
     while(!cajas[n].estaVacia())
     {
-        for(int i=0;i<n_cajas;i++){
-            // TODO: repasar condiciones
+        for(int i=0;i<n_cajas;i++){ // TODO: no comprobada
             // Si la iteracion pasa por la caja a cerrar o una caja vacia, me la salto
-            if(i==n || !cajas[i].estaVacia()) continue;
+            if(i==n || !cajas[i].estaVacia()) continue; // TODO: no comprobada
 
             // Desencolo en la caja a borra y encolo en otra caja
             cajas[i].encolar(cajas[n].desencolar());

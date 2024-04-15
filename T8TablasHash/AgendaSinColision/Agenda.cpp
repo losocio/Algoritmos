@@ -8,11 +8,11 @@ Agenda::Agenda(int capacidad)
 {
 	this->capacidad=capacidad;
 
-	nombres=NULL;
+	nombres=new string[capacidad];
 
-	telefonos=NULL;
+	telefonos=new long[capacidad];
 
-	ocupados=NULL;
+	ocupada=new bool[capacidad];
 }
 
 int obtenerPosicion(long telefono)

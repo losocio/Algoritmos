@@ -14,7 +14,7 @@ private:
     long* telefonos;
 
     // Array de los espacios ocupados
-    bool* ocupados;
+    bool* ocupada;
 
 public:
 	/*  

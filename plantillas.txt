@@ -1,13 +1,13 @@
 	/*  
-	ttt
+	x
 		Parámetro: 
-			int incremento, 
+			int x, 
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			incremento > 0
+			x > 0
 		
 		Complejidad Temporal:
 			T(n) = 

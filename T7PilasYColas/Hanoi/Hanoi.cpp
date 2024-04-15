@@ -8,7 +8,7 @@ void Hanoi(int n, Pila *origen, Pila *destino, Pila *temporal)
 {
 	// Implementacion copiada de los apuntes
 
-	// NOTE: Si empieza por 0 da NO-OUTPUT creo
+	// NOTE: Si empieza por 0 da NO-OUTPUT
 	assertdomjudge(n>0);
 
 	// Si se llega 0 se sale de la recursion

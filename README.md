@@ -1,2 +1,2 @@
-# Algorithms
-All the problems from the class
+# Algoritmos
+Todos los problemas de la asginatura

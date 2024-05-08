@@ -1,5 +1,7 @@
 #include "assertdomjudge.h"
-#include  <string>
+#include <string>
+
+using namespace std;
 
 class Agenda
 {
@@ -16,172 +18,174 @@ private:
     // Array de los espacios ocupados
     bool* ocupada;
 
-public:
 	/*  
-	x
+	Aplica la funcion de hash a la clave para determinar su posicion
 		Parámetro: 
-			int x, 
+			long telefono, clave
+
+		Retorno: 
+			int posicion, posicion relacionada con la clave
+		
+		Precondicion: 
+			telefono >= 0
+		
+		Complejidad Temporal:
+			T(n) = 1
+			O(1)
+
+		Complejidad Espacial: 
+			M(n) = 1
+			O(1)
+	*/
+    int obtenerPosicion(long telefono);
+
+public:
+
+	/*  
+	Constructor por parametros
+		Parámetro: 
+			int capacidad, capacidad de la tabla hash
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			x > 0
+			capacidad >= 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 3*capacidad
+			O(capacidad)
 	*/
     Agenda(int capacidad);
 
 	/*  
-	x
+	Comprueba si existe un contacto en la tabla hash
 		Parámetro: 
-			int x, 
+			long telefono, clave
 
 		Retorno: 
-			Ninguno
+			bool ocupada, si esta o no ocupada la posicion
 		
 		Precondicion: 
-			x > 0
-		
-		Complejidad Temporal:
-			T(n) = 
-			O()
-
-		Complejidad Espacial: 
-			M(n) = 
-			O()
-	*/
-    int obtenerPosicion(long telefono);
-
-	/*  
-	x
-		Parámetro: 
-			int x, 
-
-		Retorno: 
 			Ninguno
 		
-		Precondicion: 
-			x > 0
-		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     bool existeContacto(long telefono);
 
 	/*  
-	x
+	Devuelve el contacto asiciado a un numero de telefono
 		Parámetro: 
-			int x, 
+			long telefono, clave
 
 		Retorno: 
-			Ninguno
+			string nombre, nombre de contacto asociado a un telefono
 		
 		Precondicion: 
-			x > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     string getContacto(long telefono);
 
 	/*  
-	x
+	Introduce un contacto en la tabla hash, si una posicion esta llena la sobreescribe
 		Parámetro: 
-			int x, 
+			long telefono, clave
+			string contacto, valor
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			x > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     void introducirContacto(long telefono, string contacto);
 
 	/*  
-	x
+	Marca como vacia un espacio en la tabla hash
 		Parámetro: 
-			int x, 
+			long telefono, clave
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			x > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     void eliminarContacto(long telefono);
 
 	/*  
-	x
+	Imprime los contenidos de la tabla hash
 		Parámetro: 
-			int x, 
+			Ninguno
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			x > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = capacidad
+			O(capacidad)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     void imprimir();  
 
 	/*  
-	x
+	Destructor
 		Parámetro: 
-			int x, 
+			Ninguno 
 
 		Retorno: 
 			Ninguno
 		
 		Precondicion: 
-			x > 0
+			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     ~Agenda();
-}
+};

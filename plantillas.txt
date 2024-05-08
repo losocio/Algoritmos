@@ -1,5 +1,5 @@
 	/*  
-	x
+	
 		Parámetro: 
 			int x, 
 

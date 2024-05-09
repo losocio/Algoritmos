@@ -2,62 +2,6 @@
 #include "assertdomjudge.h"
 #include <iostream>
 
-// Aplica la funcion de hash a la clave para determinar su posicion
-int Agenda::obtenerPosicion(long telefono)
-{
-	assertdomjudge(telefono>=0);
-
-	// Aplico funcion hash
-	return telefono%capacidad;
-}
-
-// Indica si la tabla hash esta llena
-bool Agenda::isLlena()
-{
-	if(capacidad==n) return true;
-	else return false;
-}
-
-// Busca la posicion de un contacto en la tabla hash
-int Agenda::buscarContacto(long telefono)
-{
-	// Posicion inicial
-	int posicion = obtenerPosicion(telefono);
-
-	// Mientras el contacto no sea el buscado se pasa al siguiente
-	while(telefonos[posicion]!=telefono)
-	{
-		posicion++;
-
-		// Si se llega al final de la tabla vuelvo al principio
-		if(posicion=capacidad-1) posicion=0;
-	}
-
-	return posicion;
-}
-
-//TODO
-// Busca un hueco adecuado para almacenar un contacto
-int Agenda::buscarHueco(long telefono)
-{
-	int posicion = obtenerPosicion(telefono);
-
-	// Mientras el espacio no este vacio o/y (decidir) o este borrado
-
-	// NOTE: Es necesario usar == en las condiciones, ya que esos bits empiezan como basura (los booleanos en c++ ocupan 1 byte, no un bit)
-	// TODO: esta condicion esta mal cienpor
-	while(vacias[posicion]==false && borradas[posicion]==true)
-	{
-		posicion++;
-
-		// Si se llega al final de la tabla vuelvo al principio
-		if(posicion=capacidad-1) posicion=0;
-	}
-
-	return posicion;
-
-}
-
 // Constructor por parametros
 Agenda::Agenda(int capacidad)
 {
@@ -78,6 +22,82 @@ Agenda::Agenda(int capacidad)
 	borradas=new bool[capacidad];
 }
 
+// Aplica la funcion de hash a la clave para determinar su posicion
+int Agenda::obtenerPosicion(long telefono)
+{
+	assertdomjudge(telefono>=0);
+
+	// Aplico funcion hash
+	return telefono%capacidad;
+}
+
+//TODO
+// Busca la posicion de un contacto en la tabla hash
+int Agenda::buscarContacto(long telefono)
+{
+	// Posicion inicial
+	int posicion = obtenerPosicion(telefono);
+
+	// Mientras el contacto no sea el buscado se pasa al siguiente
+	/*
+	Para seguir buscando deben cumplirse varias cosas:
+		La clave no es la buscada (telefonos[posicion]!=telefono)
+
+
+	*/
+	while(telefonos[posicion]!=telefono && borradas[posicion]==true && vacias[posicion]!=true)
+	{
+		// Apuntar a la siguiente posicion
+		posicion++;
+
+		// Si se llega al final de la tabla vuelvo al principio
+		if(posicion=capacidad-1) posicion=0;
+	}
+
+
+	// Mientras el contacto no sea el buscado se pasa al siguiente
+	// NOTE: esto esta mal, si no esta en la tabla es bucle infinito
+	while(telefonos[posicion]!=telefono)
+	{
+		// Apuntar a la siguiente posicion
+		posicion++;
+
+		// Si se llega al final de la tabla vuelvo al principio
+		if(posicion=capacidad-1) posicion=0;
+	}
+
+	return posicion;
+}
+
+//TODO
+// Busca un hueco adecuado para almacenar un contacto
+int Agenda::buscarHueco(long telefono)
+{
+	int posicion = obtenerPosicion(telefono);
+
+	// Mientras el espacio no este vacio o/y (decidir) o este borrado
+
+	// NOTE: Es necesario usar == en las condiciones, ya que esos bits empiezan como basura (los booleanos en c++ ocupan 1 byte, no un bit)
+	// TODO: esta condicion esta mal cienpor
+	while(vacias[posicion]==false /*&& borradas[posicion]==true*/)
+	{
+		// Apuntar a la siguiente posicion
+		posicion++;
+
+		// Si se llega al final de la tabla vuelvo al principio
+		if(posicion=capacidad-1) posicion=0;
+	}
+
+	return posicion;
+
+}
+
+// Indica si la tabla hash esta llena
+bool Agenda::isLlena()
+{
+	if(capacidad==n) return true;
+	else return false;
+}
 
 // existeContacto y getContacto son iguales, solo que uno devuelve true y otro el contacto en string
 
@@ -129,7 +149,7 @@ void Agenda::introducirContacto(long telefono, string contacto)
 	return;
 }
 
-// TODO: ajustar a la posibilidad de dispersion
+// TODO: creo que ya esta
 // Marca como vacia un espacio en la tabla hash
 void Agenda::eliminarContacto(long telefono)
 {

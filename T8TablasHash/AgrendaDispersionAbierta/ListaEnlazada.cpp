@@ -22,7 +22,7 @@ ListaEnlazada::ListaEnlazada()
 }
 
 // Devuelve el valor en la posicion pedida
-int ListaEnlazada::getValor(int posicion)
+Contacto ListaEnlazada::getValor(int posicion)
 {
     assertdomjudge(posicion>=0 && posicion<n);
     
@@ -30,7 +30,7 @@ int ListaEnlazada::getValor(int posicion)
 }
 
 // Modifica el valor de la posicion pedida
-void ListaEnlazada::setValor(int posicion, int nuevoValor)
+void ListaEnlazada::setValor(int posicion, Contacto nuevoValor)
 {
     assertdomjudge(posicion>=0 && posicion<n);
 
@@ -46,7 +46,7 @@ int ListaEnlazada::getN()
 } 
 
 // Inserta elementos en la lista, el comportamiento varia dependiendo de donde se quiera insertar
-void ListaEnlazada::insertar(int posicion, int nuevoValor)
+void ListaEnlazada::insertar(int posicion, Contacto nuevoValor)
 {
     // Compruebo que se accede un valor posible
     assertdomjudge(posicion>=0 && posicion<=n);
@@ -238,7 +238,7 @@ void ListaEnlazada::concatenar(ListaEnlazada *listaAConcatenar)
 }
 
 // Encontrar el indice del elemento a buscar
-int ListaEnlazada::buscar(int elementoABuscar)
+int ListaEnlazada::buscar(Contacto elementoABuscar)
 {
     Nodo* nodoIterar=lista;
 
@@ -248,7 +248,8 @@ int ListaEnlazada::buscar(int elementoABuscar)
     for(int i=0;i<n;i++)
     {
         // Si encuentro el elemento lo guardo y salgo del bucle
-        if(nodoIterar->elemento==elementoABuscar) 
+        // FIXED: Al buscar el elemento se comparar las claves (telefono), no el objeto Contacto entero
+        if(nodoIterar->elemento.telefono==elementoABuscar.telefono)
         {
             indiceEncontrado=i;
             break;

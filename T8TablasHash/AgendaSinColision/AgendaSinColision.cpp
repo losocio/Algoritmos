@@ -2,15 +2,6 @@
 #include "assertdomjudge.h"
 #include <iostream>
 
-// Aplica la funcion de hash a la clave para determinar su posicion
-int Agenda::obtenerPosicion(long telefono)
-{
-	assertdomjudge(telefono>=0);
-
-	// Aplico funcion hash
-	return telefono%capacidad;
-}
-
 // Constructor por parametros
 Agenda::Agenda(int capacidad)
 {
@@ -25,6 +16,15 @@ Agenda::Agenda(int capacidad)
 	telefonos=new long[capacidad];
 
 	ocupada=new bool[capacidad];
+}
+
+// Aplica la funcion de hash a la clave para determinar su posicion
+int Agenda::obtenerPosicion(long telefono)
+{
+	assertdomjudge(telefono>=0);
+
+	// Aplico funcion hash
+	return telefono%capacidad;
 }
 
 // Comprueba si existe un contacto en la tabla hash
@@ -50,14 +50,24 @@ string Agenda::getContacto(long telefono)
 	// return nombres[obtenerPosicion(telefono)];
 }
 
-// Introduce un contacto en la tabla hash, si una posicion esta llena la sobreescribe
+// Introduce un contacto en la tabla hash, si una posicion esta llena NO la sobreescribe
 void Agenda::introducirContacto(long telefono, string contacto)
 {
 	int posicion=obtenerPosicion(telefono);
 
-	telefonos[posicion]=telefono;
-	nombres[posicion]=contacto;
-	ocupada[posicion]=true;
+	// Si la posicion esta llena no hace nada
+	if(ocupada[posicion]!=true)
+	{
+		telefonos[posicion]=telefono;
+		nombres[posicion]=contacto;
+		ocupada[posicion]=true;
+	}
+
+	/*Si queremos sobreescribir seria sin el if()
+		telefonos[posicion]=telefono;
+		nombres[posicion]=contacto;
+		ocupada[posicion]=true;
+	*/
 
 	return;
 }

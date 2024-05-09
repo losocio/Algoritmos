@@ -18,27 +18,6 @@ private:
     // Array de los espacios ocupados
     bool* ocupada;
 
-	/*  
-	Aplica la funcion de hash a la clave para determinar su posicion
-		Parámetro: 
-			long telefono, clave
-
-		Retorno: 
-			int posicion, posicion relacionada con la clave
-		
-		Precondicion: 
-			telefono >= 0
-		
-		Complejidad Temporal:
-			T(n) = 1
-			O(1)
-
-		Complejidad Espacial: 
-			M(n) = 1
-			O(1)
-	*/
-    int obtenerPosicion(long telefono);
-
 public:
 
 	/*  
@@ -61,6 +40,27 @@ public:
 			O(capacidad)
 	*/
     Agenda(int capacidad);
+
+	/*  
+	Aplica la funcion de hash a la clave para determinar su posicion
+		Parámetro: 
+			long telefono, clave
+
+		Retorno: 
+			int posicion, posicion relacionada con la clave
+		
+		Precondicion: 
+			telefono >= 0
+		
+		Complejidad Temporal:
+			T(n) = 1
+			O(1)
+
+		Complejidad Espacial: 
+			M(n) = 1
+			O(1)
+	*/
+    int obtenerPosicion(long telefono);
 
 	/*  
 	Comprueba si existe un contacto en la tabla hash
@@ -105,7 +105,7 @@ public:
     string getContacto(long telefono);
 
 	/*  
-	Introduce un contacto en la tabla hash, si una posicion esta llena la sobreescribe
+	Introduce un contacto en la tabla hash, si una posicion esta llena NO la sobreescribe
 		Parámetro: 
 			long telefono, clave
 			string contacto, valor

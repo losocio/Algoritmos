@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Agenda.h"
+#include "AgendaSinColision.h"
 
 using namespace std;
 

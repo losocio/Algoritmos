@@ -24,6 +24,28 @@ private:
     // Array de los espacios ocupados
     bool* borradas;
 
+public:
+
+	/*  
+	Constructor por parametros
+		Parámetro: 
+			int capacidad, capacidad de la tabla hash
+
+		Retorno: 
+			Ninguno
+		
+		Precondicion: 
+			capacidad >= 0
+		
+		Complejidad Temporal:
+			T(n) = 
+			O()
+
+		Complejidad Espacial: 
+			M(n) = 
+			O()
+	*/
+    Agenda(int capacidad);
 
 	/*  
 	Aplica la funcion de hash a la clave para determinar su posicion
@@ -45,27 +67,6 @@ private:
 			O()
 	*/
     int obtenerPosicion(long telefono);
-
-	/*  
-	Indica si la tabla hash esta llena
-		Parámetro: 
-			Ninguno
-
-		Retorno: 
-			bool llena, si la tabla hash esta llena o no
-		
-		Precondicion: 
-			Ninguno
-		
-		Complejidad Temporal:
-			T(n) = 
-			O()
-
-		Complejidad Espacial: 
-			M(n) = 
-			O()
-	*/
-    bool isLlena();
 
 	/*  
 	Busca la posicion de un contacto en la tabla hash
@@ -109,18 +110,16 @@ private:
 	*/
     int buscarHueco(long telefono);
 
-public:
-
 	/*  
-	Constructor por parametros
+	Indica si la tabla hash esta llena
 		Parámetro: 
-			int capacidad, capacidad de la tabla hash
+			Ninguno
 
 		Retorno: 
-			Ninguno
+			bool llena, si la tabla hash esta llena o no
 		
 		Precondicion: 
-			capacidad >= 0
+			Ninguno
 		
 		Complejidad Temporal:
 			T(n) = 
@@ -130,7 +129,7 @@ public:
 			M(n) = 
 			O()
 	*/
-    Agenda(int capacidad);
+    bool isLlena();
 
 	/*  
 	Comprueba si existe un contacto en la tabla hash

@@ -1,4 +1,5 @@
 #include <string>
+#pragma once
 using namespace std;
 
 // Estructura que representa a un contacto

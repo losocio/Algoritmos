@@ -1,5 +1,6 @@
 #pragma once
 #include "Nodo.h"
+#include "Contacto.h"
 #include "assertdomjudge.h"
 
 // Clase que representa a una lista enlazada simple. No tiene restricci�n de tama�o
@@ -13,9 +14,13 @@ class ListaEnlazada
 	// Precondici�n: n>=0
 	int n;
 
+	/* NOTE: Esto no se utiliza en ningun momento
+
 	// Posici�n y puntero del nodo que devolvi� la �ltima llamada a getNodo()
 	int posicionUltimoNodoAccedido;
 	Nodo *punteroUltimoNodoAccedido;
+	
+	*/
 
 	// Obtiene un nodo de la lista
 	// Par�metro: la posici�n del nodo
@@ -86,7 +91,16 @@ public:
 	// Retorno: posici�n del elemento (de 0 a n-1) si se encuentra, o -1 en caso contrario
 	// Complejidad temporal: O(n)
 	// Complejidad espacial: O(1)
-	int buscar(Contacto elementoABuscar);
+
+	/* 
+
+	NOTE: Me tomo la libertad de modificar el codigo del enunciado,
+	ya que los contactos se buscan segun su clave aka telefono.
+	No por un contacto con nombre y demas
+
+	*/
+
+	int buscar(/*Contacto*/ long elementoABuscar);
 
 	// Destructor. Libera memoria
 	// Complejidad temporal: O(n)

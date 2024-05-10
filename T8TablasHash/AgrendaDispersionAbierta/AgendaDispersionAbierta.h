@@ -1,4 +1,5 @@
 #include "assertdomjudge.h"
+#include "ListaEnlazada.h"
 
 using namespace std;
 
@@ -11,27 +12,6 @@ private:
     int n;
 
     ListaEnlazada *tabla;
-
-    /*  
-	Aplica la funcion de hash a la clave para determinar su posicion
-		Parámetro: 
-			long telefono, clave
-
-		Retorno: 
-			int posicion, posicion relacionada con la clave
-		
-		Precondicion: 
-			telefono >= 0
-		
-		Complejidad Temporal:
-			T(n) = 
-			O()
-
-		Complejidad Espacial: 
-			M(n) = 
-			O()
-	*/
-    int obtenerPosicion(long telefono);
 
 public:
 
@@ -56,6 +36,27 @@ public:
 	*/
     Agenda(int capacidad);
 
+	/*  
+	Aplica la funcion de hash a la clave para determinar su posicion
+		Parámetro: 
+			long telefono, clave
+
+		Retorno: 
+			int posicion, posicion relacionada con la clave
+		
+		Precondicion: 
+			telefono >= 0
+		
+		Complejidad Temporal:
+			T(n) = 
+			O()
+
+		Complejidad Espacial: 
+			M(n) = 
+			O()
+	*/
+    int obtenerPosicion(long telefono);
+	
 	/*  
 	Comprueba si existe un contacto en la tabla hash
 		Parámetro: 

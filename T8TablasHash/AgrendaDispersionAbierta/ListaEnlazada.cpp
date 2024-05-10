@@ -237,8 +237,16 @@ void ListaEnlazada::concatenar(ListaEnlazada *listaAConcatenar)
     return;
 }
 
+/* 
+
+NOTE: Me tomo la libertad de modificar el codigo del enunciado,
+ya que los contactos se buscan segun su clave aka telefono.
+No por un contacto con nombre y demas
+
+*/
+
 // Encontrar el indice del elemento a buscar
-int ListaEnlazada::buscar(Contacto elementoABuscar)
+int ListaEnlazada::buscar(/*Contacto*/ long elementoABuscar)
 {
     Nodo* nodoIterar=lista;
 
@@ -249,7 +257,7 @@ int ListaEnlazada::buscar(Contacto elementoABuscar)
     {
         // Si encuentro el elemento lo guardo y salgo del bucle
         // FIXED: Al buscar el elemento se comparar las claves (telefono), no el objeto Contacto entero
-        if(nodoIterar->elemento.telefono==elementoABuscar.telefono)
+        if(nodoIterar->elemento.telefono==elementoABuscar/*.telefono*/)
         {
             indiceEncontrado=i;
             break;

@@ -7,10 +7,13 @@ class Agenda
 {
 private:
 
+	// Capacidad de elementos de la lista hash
     int capacidad;
 
+	// Numero de elementos en la tabla hash
     int n;
 
+	// Tabla hash de listas enlazadas
     ListaEnlazada *tabla;
 
 public:
@@ -27,12 +30,12 @@ public:
 			capacidad >= 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = capacidad
+			O(capacidad)
 	*/
     Agenda(int capacidad);
 
@@ -48,12 +51,12 @@ public:
 			telefono >= 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     int obtenerPosicion(long telefono);
 	
@@ -69,12 +72,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     bool existeContacto(long telefono);
 
@@ -90,17 +93,17 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 2*n
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     string getContacto(long telefono);
 
 	/*  
-	Introduce un contacto en la tabla hash, si una posicion esta llena la sobreescribe
+	Introduce un contacto en la lista enlazada de la posicion de la tabla hash
 		Parámetro: 
 			long telefono, clave
 			string contacto, valor
@@ -112,17 +115,17 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = n
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     void introducirContacto(long telefono, string contacto);
 
 	/*  
-	Marca como vacia un espacio en la tabla hash
+	Elimina un contacto en la lista enlazada de la posicion de la tabla hash
 		Parámetro: 
 			long telefono, clave
 
@@ -133,12 +136,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 2*n
+			O(n)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     void eliminarContacto(long telefono);
 
@@ -154,12 +157,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = capacidad * n
+			O(capacidad)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     void imprimir();  
 
@@ -175,12 +178,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     ~Agenda();
     

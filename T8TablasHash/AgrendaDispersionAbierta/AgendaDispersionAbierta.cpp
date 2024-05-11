@@ -57,7 +57,7 @@ string Agenda::getContacto(long telefono)
 	else return tabla[posicion].getValor(posicionEncontrada).nombre;
 }
 
-// Introduce un contacto en la tabla hash, si una posicion esta llena la sobreescribe
+// Introduce un contacto en la lista enlazada de la posicion de la tabla hash
 void Agenda::introducirContacto(long telefono, string contacto)
 {
 	// Determino la posicion usand obtenerPosicion()
@@ -79,7 +79,7 @@ void Agenda::introducirContacto(long telefono, string contacto)
 	return;
 }
 
-// Marca como vacia un espacio en la tabla hash
+// Elimina un contacto en la lista enlazada de la posicion de la tabla hash
 void Agenda::eliminarContacto(long telefono)
 {
 	// Determino la posicion usand obtenerPosicion()

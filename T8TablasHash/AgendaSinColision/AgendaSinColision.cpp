@@ -2,6 +2,16 @@
 #include "assertdomjudge.h"
 #include <iostream>
 
+/*
+
+Pensamiento espontaneo sin relacion alguna al codigo:
+
+El nombre de la asignatura, "Análisis y Diseño de Algoritmos", 
+se llama asi solamente para que el acronimo sea ADAL y no ANAL.
+En ningun momento diseñamos ningun algoritmo.
+
+*/
+
 // Constructor por parametros
 Agenda::Agenda(int capacidad)
 {

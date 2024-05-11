@@ -69,12 +69,12 @@ public:
     int obtenerPosicion(long telefono);
 
 	/*  
-	Busca la posicion de un contacto en la tabla hash
+	Busca la posicion de un contacto en la tabla hash, si este no esta devuelve -1
 		Parámetro: 
 			long telefono, clave
 
 		Retorno: 
-			int posicion, posicion del contacto adecuado
+			int encontrado, posicion del contacto adecuado
 		
 		Precondicion: 
 			telefono >= 0

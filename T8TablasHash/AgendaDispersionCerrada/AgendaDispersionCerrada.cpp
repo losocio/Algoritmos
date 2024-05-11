@@ -31,7 +31,7 @@ int Agenda::obtenerPosicion(long telefono)
 	return telefono%capacidad;
 }
 
-// FIX: se queda colgado, BUCLE INFINITO
+// FIX: no continua hasta donde deberia
 // Busca la posicion de un contacto en la tabla hash, si este no esta devuelve -1
 int Agenda::buscarContacto(long telefono)
 {
@@ -41,20 +41,29 @@ int Agenda::buscarContacto(long telefono)
 	// Si no se encuentra el contacto se devuleve -1
 	int encontrado = -1;
 	
+	// Como si los bits de V y B no fuesen basura
+	while(vacias[posicion]==false && borradas[posicion]==false)
+
+
 	// NOTE: Usar telefonos[posicion]!=telefono como una de las condiciones no tiene sentido, ya que el bucle sera infinito ni no se existe el contacto
 	// Mientras el contacto no sea el buscado se pasa al siguiente
 	// FIX: Bucle infinito
 	while(vacias[posicion]!=true && borradas[posicion]!=true)
 	{
-		cout<<"infinito??"<<endl;
 		// NOTE: Primero se incrementa este contador,
 		// porque la condicion del while() se cumple si la posicion NO cumple los requisitos
 		// Se apunta a la siguiente posicion para comprobar si ahi esta el contacto buscado
 		posicion++;
 
 		// NOTE: hay que comprobar vacias[posicion]!=true, sino podria devolver un dato borrado previamente
-		// Si el contacto es el buscado y la posicion no esta vacia, lo guardo en encontrado
-		if(telefonos[posicion]==telefono && vacias[posicion]!=true) encontrado=posicion;
+		// Si el contacto es el buscado y la posicion no esta vacia
+		if(telefonos[posicion]==telefono && vacias[posicion]!=true) //TODO: lo esto comprobando dos veces, borrar de aqui
+		{
+			// Guardo en encontrado la posicion
+			encontrado=posicion;
+			// Salgo del bucle
+			break;
+		}
 
 
 		// Si la posicion se sale del rango de la tabla vuelve a la primera posicion
@@ -89,17 +98,16 @@ int Agenda::buscarHueco(long telefono)
 	}
 
 	return posicion;
-
 }
 
 // Indica si la tabla hash esta llena
 bool Agenda::isLlena()
 {
+	// Si la cantidad de contactos en igual que la capacidad la lista esta llena
 	if(capacidad==n) return true;
 	else return false;
 }
 
-// FIX: BUCLE INFINITO EN buscarContacto()
 // Comprueba si existe un contacto en la tabla hash
 bool Agenda::existeContacto(long telefono)
 {
@@ -109,7 +117,6 @@ bool Agenda::existeContacto(long telefono)
 	else return true;
 }
 
-// FIX: BUCLE INFINITO EN buscarContacto()
 // FIX: devolver NULL peta
 // Devuelve el contacto asiciado a un numero de telefono
 string Agenda::getContacto(long telefono)
@@ -123,7 +130,7 @@ string Agenda::getContacto(long telefono)
 	else return nombres[posicionContacto];
 }
 
-// Introduce un contacto en la tabla hash, si una posicion esta llena la sobreescribe
+// Introduce un contacto en la tabla hash
 void Agenda::introducirContacto(long telefono, string contacto)
 {
 	// Si la lista esta llena sale del metodo sin introducir nada
@@ -139,7 +146,7 @@ void Agenda::introducirContacto(long telefono, string contacto)
 	// Marco como llena la posicion
 	vacias[posicionHueco] = false;
 
-	// NOTE: No es necesario, ya que buscarHueco() no lo nunca lo consulta
+	// NOTE: No es necesario, ya que buscarHueco() nunca lo consulta
 	// Marco como no borrada la posicion
 	// borradas[posicionHueco] = false;
 
@@ -148,7 +155,6 @@ void Agenda::introducirContacto(long telefono, string contacto)
 	return;
 }
 
-// FIX: BUCLE INFINITO EN buscarContacto()
 // Marca como vacia un espacio en la tabla hash
 void Agenda::eliminarContacto(long telefono)
 {

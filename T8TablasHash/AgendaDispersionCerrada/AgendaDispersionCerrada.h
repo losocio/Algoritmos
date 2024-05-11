@@ -38,12 +38,12 @@ public:
 			capacidad >= 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 4*capacidad
+			O(capacidad)
 	*/
     Agenda(int capacidad);
 
@@ -59,12 +59,12 @@ public:
 			telefono >= 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     int obtenerPosicion(long telefono);
 
@@ -84,8 +84,8 @@ public:
 			O()
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     int buscarContacto(long telefono);
 
@@ -98,15 +98,15 @@ public:
 			int posicion, posicion del hueco adecuado
 		
 		Precondicion: 
-			telefono >= 0
+			Ninguna
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = capacidad
+			O(capacidad)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     int buscarHueco(long telefono);
 
@@ -122,12 +122,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     bool isLlena();
 
@@ -147,8 +147,8 @@ public:
 			O()
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     bool existeContacto(long telefono);
 
@@ -168,13 +168,13 @@ public:
 			O()
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     string getContacto(long telefono);
 
 	/*  
-	Introduce un contacto en la tabla hash, si una posicion esta llena la sobreescribe
+	Introduce un contacto en la tabla hash
 		Parámetro: 
 			long telefono, clave
 			string contacto, valor
@@ -190,8 +190,8 @@ public:
 			O()
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     void introducirContacto(long telefono, string contacto);
 
@@ -211,8 +211,8 @@ public:
 			O()
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     void eliminarContacto(long telefono);
 
@@ -228,12 +228,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = capacidad
+			O(capacidad)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     void imprimir();  
 
@@ -249,12 +249,12 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = 1
+			O(1)
 
 		Complejidad Espacial: 
-			M(n) = 
-			O()
+			M(n) = 1
+			O(1)
 	*/
     ~Agenda();
 };

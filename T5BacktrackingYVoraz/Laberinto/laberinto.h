@@ -1,15 +1,17 @@
-#ifndef LABERINTO_H
-#define LABERINTO_H
+#pragma once
 
 using namespace std;
 
 /* 
-Resolucion de un laberinto por backtracking
+Resolucion de un laberinto por backtracking, si los caracteres utilizados son los del enunciado y el laberinto es de 10x10
     Parámetro: 
 
+
     Retorno: 
-    
-    Precondicion: 
+        Ninguno
+
+    Precondicion:
+        
     
     Complejidad Temporal:
         T(n) = 
@@ -19,6 +21,4 @@ Resolucion de un laberinto por backtracking
         M(n) = 
         O()
 */
-void laberinto();
-
-#endif
+void resolverLaberinto(char laberinto[][10], int posX, int posY, bool* exito);

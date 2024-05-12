@@ -40,10 +40,6 @@ int Agenda::buscarContacto(long telefono)
 
 	// Si no se encuentra el contacto se devuleve -1
 	int encontrado = -1;
-	
-	// Como si los bits de V y B no fuesen basura
-	while(vacias[posicion]==false && borradas[posicion]==false)
-
 
 	// NOTE: Usar telefonos[posicion]!=telefono como una de las condiciones no tiene sentido, ya que el bucle sera infinito ni no se existe el contacto
 	// Mientras el contacto no sea el buscado se pasa al siguiente
@@ -55,9 +51,15 @@ int Agenda::buscarContacto(long telefono)
 		// Se apunta a la siguiente posicion para comprobar si ahi esta el contacto buscado
 		posicion++;
 
+		// Si la posicion se sale del rango de la tabla vuelve a la primera posicion
+		if(posicion==capacidad) posicion=0;
+
+		// FIXED: Se saltaria la ultima posicion
+		// if(posicion==capacidad-1) posicion=0;
+
 		// NOTE: hay que comprobar vacias[posicion]!=true, sino podria devolver un dato borrado previamente
 		// Si el contacto es el buscado y la posicion no esta vacia
-		if(telefonos[posicion]==telefono && vacias[posicion]!=true) //TODO: lo esto comprobando dos veces, borrar de aqui
+		if(telefonos[posicion]==telefono && vacias[posicion]!=true) //TODO: lo esto comprobando dos veces, pero puede que sea necesario
 		{
 			// Guardo en encontrado la posicion
 			encontrado=posicion;
@@ -65,12 +67,6 @@ int Agenda::buscarContacto(long telefono)
 			break;
 		}
 
-
-		// Si la posicion se sale del rango de la tabla vuelve a la primera posicion
-		if(posicion==capacidad) posicion=0;
-
-		// FIXED: Se saltaria la ultima posicion
-		// if(posicion==capacidad-1) posicion=0;
 	}
 
 	return encontrado;

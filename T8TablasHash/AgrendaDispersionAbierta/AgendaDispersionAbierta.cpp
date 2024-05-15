@@ -1,10 +1,7 @@
 #include <iostream>
 #include "AgendaDispersionAbierta.h"
 #include "ListaEnlazada.h"
-//#include "assertdomjudge.h"
 #include "impresionListasEnlazadas.h" // Para el m�todo imprimir de la tabla hash
-
-//using namespace std;
 
 // Constructor por parametros
 Agenda::Agenda(int capacidad)
@@ -42,19 +39,18 @@ bool Agenda::existeContacto(long telefono)
 	else return true;
 }
 
-// FIX Si no esta en la agenda peta
 // Devuelve el nombre asociado a un numero de telefono
 string Agenda::getContacto(long telefono)
 {
+	assertdomjudge(existeContacto(telefono));
+
 	int posicion = obtenerPosicion(telefono);
 	
-	// Busco el contacto
+	// Busco la posicion del contacto
 	int posicionEncontrada=tabla[posicion].buscar(telefono);
 	
-	// FIX: EL error ocuree al devolver NULL 100por
-	// Si se encuentra el contacto se devuelve, sino NULL
-	if(posicionEncontrada==-1) return NULL;
-	else return tabla[posicion].getValor(posicionEncontrada).nombre;
+	// Devuelve el contacto
+	return tabla[posicion].getValor(posicionEncontrada).nombre;
 }
 
 // Introduce un contacto en la lista enlazada de la posicion de la tabla hash
@@ -82,6 +78,8 @@ void Agenda::introducirContacto(long telefono, string contacto)
 // Elimina un contacto en la lista enlazada de la posicion de la tabla hash
 void Agenda::eliminarContacto(long telefono)
 {
+	assertdomjudge(existeContacto(telefono));
+
 	// Determino la posicion usand obtenerPosicion()
 	int posicion = obtenerPosicion(telefono);
 
@@ -89,8 +87,8 @@ void Agenda::eliminarContacto(long telefono)
 	// Busco el contacto a eliminar en la lista enlazada de la posicion dada
 	int posicionAEliminar=tabla[posicion].buscar(telefono);
 
-	// Si se ha encontrado el contacto buscado, lo elimino
-	if(posicionAEliminar!=-1) tabla[posicion].eliminar(posicionAEliminar);
+	// Elimino el contacto
+	tabla[posicion].eliminar(posicionAEliminar);
 	
 	// NOTE: Esto estaria mal, eliminaria el ultimo elemento de la lista enlazada, no el telefono a eliminar
 	// tabla[posicion].eliminar(tabla[posicion].getN());

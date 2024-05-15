@@ -113,24 +113,24 @@ bool Agenda::existeContacto(long telefono)
 	else return true;
 }
 
-// FIX: devolver NULL peta
+// FIXED: Si que era precondicion, me rayaba tener que usar buscar contacto dos veces
 // Devuelve el contacto asiciado a un numero de telefono
 string Agenda::getContacto(long telefono)
 {
+	assertdomjudge(existeContacto(telefono));
+
 	// Busco el contacto
 	int posicionContacto = buscarContacto(telefono);
 
-	// Si no encuentro el contacto devuelvo NULL(por ahora)
-	if(posicionContacto==-1) return "NULL";
-	// Si lo encuentro devuelvo el nombre del contacto
-	else return nombres[posicionContacto];
+	// Devuelvo el nombre del contacto
+	return nombres[posicionContacto];
 }
 
 // Introduce un contacto en la tabla hash
 void Agenda::introducirContacto(long telefono, string contacto)
 {
-	// Si la lista esta llena sale del metodo sin introducir nada
-	if(isLlena()) return;
+	// La lista necesita tener sitio
+	assertdomjudge(!isLlena());
 
 	// Encuentro un hueco apropiado
 	int posicionHueco = buscarHueco(telefono);
@@ -154,11 +154,15 @@ void Agenda::introducirContacto(long telefono, string contacto)
 // Marca como vacia un espacio en la tabla hash
 void Agenda::eliminarContacto(long telefono)
 {
+	assertdomjudge(existeContacto(telefono));
+	
 	// Encuentro el contacto
 	int posicionContacto = buscarContacto(telefono);
 
+	/* NOTE: Esto lo controlo con el assert()
 	// Si el contacto no esta en la agenda salgo del metodo sin hacer nada
 	if(posicionContacto==-1) return;
+	*/
 
 	// Marco como vacia la posicion
 	vacias[posicionContacto] = true;

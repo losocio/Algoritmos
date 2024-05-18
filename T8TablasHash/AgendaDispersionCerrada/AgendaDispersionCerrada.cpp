@@ -18,8 +18,9 @@ Agenda::Agenda(int capacidad)
 	telefonos=new long[capacidad];
 
 	vacias=new bool[capacidad];
+	std::fill(vacias, vacias+capacidad, true);
 
-	borradas=new bool[capacidad];
+	borradas=new bool[capacidad] ();
 }
 
 // Aplica la funcion de hash a la clave para determinar su posicion
@@ -39,13 +40,50 @@ int Agenda::buscarContacto(long telefono)
 	int posicion = obtenerPosicion(telefono);
 
 	// Si no se encuentra el contacto se devuleve -1
-	int encontrado = -1;
+	int posicionEncontrada = -1;
 
-	// NOTE: Usar telefonos[posicion]!=telefono como una de las condiciones no tiene sentido, ya que el bucle sera infinito ni no se existe el contacto
+	// NOTE: Usar telefonos[posicion]!=telefono como una de las condiciones no tiene sentido, ya que el bucle sera infinito si no se existe el contacto
 	// Mientras el contacto no sea el buscado se pasa al siguiente
-	// FIX: Bucle infinito
-	while(vacias[posicion]!=true && borradas[posicion]!=true)
+	// FIX: Falla si el contacto no esta o se borro
+	
+	// Sin adaptar a posibilidad de basura en la tabla
+	//while((vacias[posicion]==false && borradas[posicion]==false) || (vacias[posicion]==true && borradas[posicion]==true))
+
+	
+	// NOTE: candidato actual
+	// Sin basura
+	//while((/*Caso 1: posicion ocupada*/ vacias[posicion]==false) || (/*Caso 2: posicion borrada y vacia*/ borradas[posicion]==true && vacias[posicion]==true))
+
+	// Con basura
+	//while((/*Caso 1: posicion ocupada*/ vacias[posicion]==false) || (/*Caso 2: posicion borrada y vacia, en este caso no hay que tener en cuenta basura*/ borradas[posicion]==true && vacias[posicion]==true))
+
+	/*
+	Itero por las por las casillas que cumplan los requisitos 
+	Separo los distintos casos con ||
+	*/
+
+	cout<<"Posicion inicial: "<<posicion<<endl;
+	
+	while(vacias[posicion]==false && borradas[posicion]==true)
 	{
+		cout << "Posicion " << posicion << " | Vacia: " << vacias[posicion] << " | Borrada: " << borradas[posicion] << " | Telefono: " << telefonos[posicion] << " | Nombre: " << nombres[posicion] << endl;
+
+		// NOTE: hay que comprobar vacias[posicion]!=true, sino podria devolver un dato borrado previamente
+		// Si encuentro el contacto buscado y la posicion no esta vacia
+		if(telefonos[posicion]==telefono && vacias[posicion]!=true) //TODO: lo esto comprobando dos veces, pero puede que sea necesario
+		{
+			// Guardo en posicionEncontrada la posicion
+			posicionEncontrada=posicion;
+			// Salgo del bucle
+			break;
+		}
+
+		/* FIXED: He movido todo el codigo de abajo al final de la funcion 
+			porque si estaba encima del if() la posicion pasaban dos cosas:
+			- La posicion ideal del contacto nunca se comprobaba
+			- La posicion usada seria distinta a la del while()
+		*/
+
 		// NOTE: Primero se incrementa este contador,
 		// porque la condicion del while() se cumple si la posicion NO cumple los requisitos
 		// Se apunta a la siguiente posicion para comprobar si ahi esta el contacto buscado
@@ -56,20 +94,9 @@ int Agenda::buscarContacto(long telefono)
 
 		// FIXED: Se saltaria la ultima posicion
 		// if(posicion==capacidad-1) posicion=0;
-
-		// NOTE: hay que comprobar vacias[posicion]!=true, sino podria devolver un dato borrado previamente
-		// Si el contacto es el buscado y la posicion no esta vacia
-		if(telefonos[posicion]==telefono && vacias[posicion]!=true) //TODO: lo esto comprobando dos veces, pero puede que sea necesario
-		{
-			// Guardo en encontrado la posicion
-			encontrado=posicion;
-			// Salgo del bucle
-			break;
-		}
-
 	}
 
-	return encontrado;
+	return posicionEncontrada;
 }
 
 // Busca un hueco adecuado para almacenar un contacto

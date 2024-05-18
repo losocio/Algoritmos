@@ -105,7 +105,7 @@ public:
     string getContacto(long telefono);
 
 	/*  
-	Introduce un contacto en la tabla hash, si una posicion esta llena NO la sobreescribe
+	Introduce un contacto en la tabla hash
 		Parámetro: 
 			long telefono, clave
 			string contacto, valor

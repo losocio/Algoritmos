@@ -14,13 +14,9 @@ class ListaEnlazada
 	// Precondici�n: n>=0
 	int n;
 
-	/* NOTE: Esto no se utiliza en ningun momento
-
 	// Posici�n y puntero del nodo que devolvi� la �ltima llamada a getNodo()
 	int posicionUltimoNodoAccedido;
 	Nodo *punteroUltimoNodoAccedido;
-	
-	*/
 
 	// Obtiene un nodo de la lista
 	// Par�metro: la posici�n del nodo

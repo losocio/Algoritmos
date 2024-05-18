@@ -45,14 +45,13 @@ int Agenda::obtenerPosicion(long telefono)
 	return telefono%capacidad;
 }
 
-// TODO FIX creo que esta bien, fallo una vez pero ya no???
 // Comprueba si existe un contacto en la tabla hash
 bool Agenda::existeContacto(long telefono)
 {
 	int posicion = obtenerPosicion(telefono);
 	// NOTE: Puede darse el caso en que la basura inicial sea 1 y que de como ya hay un dato
 	// para evitar esto habria que inicializar todo a 0
-	if(ocupada[posicion]==1) return true;
+	if(ocupada[posicion]==true && telefonos[posicion]==telefono) return true;
 	else return false;
 
 	// NOTE: Es necesario usar un if() porque la basura inicial cuenta como true
@@ -70,13 +69,20 @@ string Agenda::getContacto(long telefono)
 	return nombres[posicion];
 }
 
-// Introduce un contacto en la tabla hash, si una posicion esta llena NO la sobreescribe
+// Introduce un contacto en la tabla hash
 void Agenda::introducirContacto(long telefono, string contacto)
 {
-	assertdomjudge(!existeContacto(telefono));
-
 	int posicion=obtenerPosicion(telefono);
+
+	// Que el contacto no este ya en la lista
+	assertdomjudge(ocupada[posicion]!=true);
 	
+	// Si la posicion esta llena la sobreescribe
+	telefonos[posicion]=telefono;
+	nombres[posicion]=contacto;
+	ocupada[posicion]=true;
+	
+	/*
 	// Si la posicion esta llena no la sobreescribe
 	if(ocupada[posicion]!=true)
 	{
@@ -84,12 +90,6 @@ void Agenda::introducirContacto(long telefono, string contacto)
 		nombres[posicion]=contacto;
 		ocupada[posicion]=true;
 	}
-	
-	/*
-	// Si la posicion esta llena la sobreescribe
-	telefonos[posicion]=telefono;
-	nombres[posicion]=contacto;
-	ocupada[posicion]=true;
 	*/
 
 	return;

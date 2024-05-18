@@ -11,6 +11,9 @@ Nodo* ListaEnlazada::getNodo(int posicion)
     // Itero hasta la posicion deseada
     for(int i=0;i<posicion;i++) nodoIterar=nodoIterar->siguienteNodo;
 
+    posicionUltimoNodoAccedido = posicion;
+	punteroUltimoNodoAccedido = nodoIterar;
+
     return nodoIterar;
 }
 
@@ -18,13 +21,16 @@ Nodo* ListaEnlazada::getNodo(int posicion)
 ListaEnlazada::ListaEnlazada()
 {
     n=0;
-    lista=NULL;
+    lista=nullptr;
+
+    posicionUltimoNodoAccedido = 0;
+	punteroUltimoNodoAccedido = NULL;
 }
 
 // Devuelve el valor en la posicion pedida
 Contacto ListaEnlazada::getValor(int posicion)
 {
-    assertdomjudge(posicion>=0 && posicion<n);
+    assertdomjudge(posicion>=0 && posicion<n && n>0);
     
     return getNodo(posicion)->elemento;
 }
@@ -32,7 +38,7 @@ Contacto ListaEnlazada::getValor(int posicion)
 // Modifica el valor de la posicion pedida
 void ListaEnlazada::setValor(int posicion, Contacto nuevoValor)
 {
-    assertdomjudge(posicion>=0 && posicion<n);
+    assertdomjudge(posicion>=0 && posicion<n && n>0);
 
     getNodo(posicion)->elemento=nuevoValor;
 
@@ -62,7 +68,7 @@ void ListaEnlazada::insertar(int posicion, Contacto nuevoValor)
     {
         // Apunto el nuevo nodo al nodo 0
         // NOTE: Antes tenia nodoNuevo->siguienteNodo=lista;
-        nodoNuevo->siguienteNodo=NULL;
+        nodoNuevo->siguienteNodo=nodoNuevo;
 
         // Apunto la lista al nodo nuevo
         lista = nodoNuevo;
@@ -132,7 +138,7 @@ void ListaEnlazada::insertar(int posicion, Contacto nuevoValor)
 void ListaEnlazada::eliminar(int posicion)
 {
     // Compruebo que se accede un valor posible
-    assertdomjudge(posicion>=0 && posicion<n);
+    assertdomjudge(posicion>=0 && posicion<n && n<0);
 
     // NOTE: Ejemplo de buena practica, solo llamo a getNodo() una vez para dos variables
     // NOTE: Nodo* nodoAnterior=getNodo(posicion-1); da segfault si se elimina el primer elemento, lo pongo en el if

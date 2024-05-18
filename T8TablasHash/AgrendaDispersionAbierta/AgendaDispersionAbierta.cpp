@@ -37,6 +37,12 @@ bool Agenda::existeContacto(long telefono)
 	// Si buscar contacto devuleve -1 no se encontro el contacto
 	if(posicionEncontrada==-1) return false;
 	else return true;
+
+	/* NOTE: Es inececsario ya que buscar ya compara el telefono
+	// Si buscar contacto devuleve -1 no se encontro el contacto
+	if(posicionEncontrada==-1) return false;
+	else if(tabla[posicion].getValor(posicionEncontrada).telefono==telefono) return true;
+	*/
 }
 
 // Devuelve el nombre asociado a un numero de telefono
@@ -66,9 +72,15 @@ void Agenda::introducirContacto(long telefono, string contacto)
 	nuevoContacto.nombre=contacto;
 
 	// NOTE: Esta lista enlazada no esta ordenada
+
+	// FIXED: Hay que insertar al principio de la lista, por esto me daba error. Deberia especificarse en el enunciado >:(
 	// En dicha posicion de la tabla hash, inserto un nuevo contacto al final de la lista enlazada
 	// Para saber donde cuantos elemento hay en la lista enlazada utilizo getN()
-	tabla[posicion].insertar(tabla[posicion].getN(), nuevoContacto);
+	//tabla[posicion].insertar(tabla[posicion].getN(), nuevoContacto);
+	
+
+	// Inserto el contacto en la primera posicion de la lista enlazada
+	tabla[posicion].insertar(0, nuevoContacto);
 
 	n++;
 

@@ -30,76 +30,95 @@ Mas bonito
 
 */
 
-// Comprueba si el movimiento se encuentra dentro del laberinto y no es hacia una pared
-bool esMovimientoValido(char laberinto[][10], int x, int y)
+// Muestra un laberinto 10x10
+void mostrarLaberinto(char** laberinto)
 {
-    return laberinto[x][y] != '*' && x > -1 && x < 10 && y > -1 && y < 10;
+    for(int i=0; i<10; i++)
+    {
+        for(int j=0; j<10; j++) cout<<laberinto[i][j];
+        cout << endl;
+    }
+
+    return;
+}
+
+// Comprueba si el movimiento se encuentra dentro del laberinto y no es hacia una pared o el movimiento anterior
+bool esMovimientoValido(char** laberinto, int x, int y)
+{
+    /* FIXED: Si entra una x o y negativa no puedo buscar esos indices en el laberinto,
+    primero hay que comprobar que los indices no son negativos
+
+    return laberinto[x][y] != '*' && laberinto[x][y] != 'X' && x >= 0 && x < 10 && y >= 0 && y < 10;
+    */
+
+    // Si los indices se salen de los limites devuelve false
+    if(x < 0 || x >= 10 || y < 0 || y >= 10) return false;
+    // Si los caracteres son * o X devuelve false
+    else if(laberinto[x][y] == '*' || laberinto[x][y] == 'X') return false;
+    // Sino true
+    else return true;
 }
 
 // Resolucion de un laberinto por backtracking, si los caracteres utilizados son los del enunciado y el laberinto es de 10x10
-void resolverLaberinto(char laberinto[][10], int posX, int posY, bool* exito)
+void resolverLaberinto(char** laberinto, int posX, int posY, bool* exito)
 {
     // Arrays de movimientos como se especifico: Arriba, Derecha, Abajo e Izquierda
     int movimientosX[]={-1, 0, 1, 0};
     int movimientosY[]={0, 1, 0, -1};
 
+    int siguienteX;
+    int siguienteY;
+
     // FIX: Se queda en un bucle infinito de algun tipo, pero no es verdaderamente infinito
     int i=0;
-    do
+    while(i<4 && !*exito)
     {
         // Determino la nueva posicion a la que moverse
-        int siguienteX = posX + movimientosX[i];
-        int siguienteY = posY + movimientosY[i];
+        siguienteX = posX + movimientosX[i];
+        siguienteY = posY + movimientosY[i];
 
-        // Si el movimiento no es valido prueba con el siguiente movimiento
+        
         if(esMovimientoValido(laberinto, siguienteX, siguienteY))
-        {
-            if(laberinto[siguienteX][siguienteY]!='X')
+        {            
+            /* FIXED: seria posX y posY no siguienteX y siguienteY
+            // Anoto el movimiento como valido
+            laberinto[siguienteX][siguienteY] = 'X';
+            */
+
+            // Anoto el movimiento como valido
+            laberinto[posX][posY] = 'X';
+
+            // Si el movimiento es la solucion
+            if(laberinto[siguienteX][siguienteY]=='T')
             {
-                // Anoto el movimiento como valido
-                laberinto[siguienteX][siguienteY] = 'X';
+                // Marco exito a true para poder terminar
+                *exito=true;
 
-                // Si el movimiento es la solucion ('T')
-                if(laberinto[siguienteX][siguienteY]=='T')
-                {
-                    // Marco exito a true
-                    *exito=true;
+                // Muestro solucion
+                mostrarLaberinto(laberinto);
+                cout<<"ENCONTRADO "<<siguienteX<<' '<<siguienteY<<endl;
+            }
+            // Si el movimiento es no es la solucion continuo la busqueda
+            else
+            {
+                // Si en el siguiente paso no exite posible solucion se saldra de esta recursion
+                resolverLaberinto(laberinto, siguienteX, siguienteY, exito);
 
-                    // Muestro solucion
-                    cout<<"ENCONTRADO "<<siguienteX<<' '<<siguienteY<<endl;
-                }
-                // Si el movimiento es el camino ('.')
-                else
-                {
-                    // Recurrencia
-                    //cout<<"Recursion"<<endl;
-                    resolverLaberinto(laberinto, siguienteX, siguienteY, exito);
-
-                    // TODO: puede que necesite un if()
-                    // Desanoto el movimiento como valido
-                    if(!*exito) laberinto[siguienteX][siguienteY]='.';
-                    else cout<<"INALCANZABLE"<<endl;
-                }
+                // Y por lo tanto se desanotara el paso
+                laberinto[posX][posY] = '.';
             }
         }
 
-        // TODO: puede que haya que poner esto al principio
+        // Aumento contador para probar el siguiente movimiento en la secuencia en la siguiente pasada del bucle
         i++;
-
     }
-    while(i<4 && !*exito);
-    
-    // Si ningun movimiento es valido no ocurre la recurrencia
-    // Por tanto, se vuelve al paso anterior y se prueba el siguiente movimiento del paso anterior
+
     return;
 }
 
 int main()
 {
-
-    // TODO: Puede lo cambie para que el input del laberinto lo haga el usuario
     /*
-    Laberinto
 
     ..********
     *.*......*
@@ -111,11 +130,50 @@ int main()
     *.******.*
     *........*
     **********
+
     */
 
+    bool exito=false;
 
-    // Matriz con el laberinto alcanzable
-    char laberinto[10][10]={
+    // Reservo memoria para laberinto 10x10 y lo relleno con el input
+    char** laberinto;
+    laberinto = new char* [10];
+	for(int i=0; i<10; i++)	
+    {
+        laberinto[i] = new char[10];
+        for(int j=0; j<10; j++)
+        {
+            cin>>laberinto[i][j];
+        }
+    }
+
+    // Resuelvo el laberinto
+    resolverLaberinto(laberinto, 0, 0, &exito);
+
+    // Si salgo de la llamada original con exito a false no exite solucion
+    if(!exito) cout<<"INALCANZABLE"<<endl;
+
+    return 0;
+
+    /*
+
+    ..********
+    *.*......*
+    *.*.****.*
+    *.*.*..*.*
+    *.*.*T.*.*
+    *.*.**.*.*
+    *.*....*.*
+    *.******.*
+    *........*
+    **********
+
+    */
+}
+
+/*
+// Matriz con el laberinto alcanzable
+    char laberintoAlcanzable[10][10]={
         {'.', '.', '*', '*', '*', '*', '*', '*', '*', '*'},
         {'*', '.', '*', '.', '.', '.', '.', '.', '.', '*'},
         {'*', '.', '*', '.', '*', '*', '*', '*', '.', '*'},
@@ -141,11 +199,4 @@ int main()
         {'*', '.', '.', '.', '.', '.', '.', '.', '.', '*'},
         {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'}
     };
-
-    bool exito=false;
-
-    // Resuelvo el laberinto
-    resolverLaberinto(laberinto, 0, 0, &exito);
-
-    return 0;
-}
+*/

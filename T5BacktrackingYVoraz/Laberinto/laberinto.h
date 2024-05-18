@@ -64,7 +64,7 @@ Resolucion de un laberinto por backtracking, si los caracteres utilizados son lo
         Que el laberinto sea 10x10
         posX >= 0
         posY >= 0
-        !exito
+        !*exito
     
     Complejidad Temporal:
         T(n) = 

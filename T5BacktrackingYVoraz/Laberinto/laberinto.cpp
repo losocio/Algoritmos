@@ -64,7 +64,7 @@ void resolverLaberinto(char** laberinto, int posX, int posY, bool* exito)
 {
     // Precondicion, que el laberinto sea 10x10
     assertdomjudge(posX>=0 && posY>=0);
-    assertdomjudge(!exito);
+    assertdomjudge(!*exito);
 
     // Arrays de movimientos como se especifico: Arriba, Derecha, Abajo e Izquierda
     int movimientosX[]={-1, 0, 1, 0};
@@ -98,7 +98,7 @@ void resolverLaberinto(char** laberinto, int posX, int posY, bool* exito)
 
                 // Muestro solucion
                 mostrarLaberinto(laberinto);
-                cout<<"ENCONTRADO "<<siguienteX<<' '<<siguienteY<<endl;
+                cout<<"ENCONTRADO "<<siguienteX<<' '<<siguienteY;
             }
             // Si el movimiento es no es la solucion continuo la busqueda
             else
@@ -153,7 +153,7 @@ int main()
     resolverLaberinto(laberinto, 0, 0, &exito);
 
     // Si salgo de la llamada original con exito a false no exite solucion
-    if(!exito) cout<<"INALCANZABLE"<<endl;
+    if(!exito) cout<<"INALCANZABLE";
 
     // Libero memoria
     for(int i=0; i<10; i++)	delete[] laberinto[i];

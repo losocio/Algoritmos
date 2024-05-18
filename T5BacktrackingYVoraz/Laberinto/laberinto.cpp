@@ -55,29 +55,31 @@ bool esMovimientoValido(char** laberinto, int x, int y)
     if(x < 0 || x >= 10 || y < 0 || y >= 10) return false;
     // Si los caracteres son * o X devuelve false
     else if(laberinto[x][y] == '*' || laberinto[x][y] == 'X') return false;
-    // Sino true
+    // De lo contrario devuelvo true
     else return true;
 }
 
 // Resolucion de un laberinto por backtracking, si los caracteres utilizados son los del enunciado y el laberinto es de 10x10
 void resolverLaberinto(char** laberinto, int posX, int posY, bool* exito)
 {
+    // Precondicion, que el laberinto sea 10x10
+    assertdomjudge(posX>=0 && posY>=0);
+    assertdomjudge(!exito);
+
     // Arrays de movimientos como se especifico: Arriba, Derecha, Abajo e Izquierda
     int movimientosX[]={-1, 0, 1, 0};
     int movimientosY[]={0, 1, 0, -1};
 
-    int siguienteX;
-    int siguienteY;
-
-    // FIX: Se queda en un bucle infinito de algun tipo, pero no es verdaderamente infinito
     int i=0;
+
+    // Mientras no se recorran los 4 movimientos y exito sea false
     while(i<4 && !*exito)
     {
         // Determino la nueva posicion a la que moverse
-        siguienteX = posX + movimientosX[i];
-        siguienteY = posY + movimientosY[i];
+        int siguienteX = posX + movimientosX[i];
+        int siguienteY = posY + movimientosY[i];
 
-        
+        // 
         if(esMovimientoValido(laberinto, siguienteX, siguienteY))
         {            
             /* FIXED: seria posX y posY no siguienteX y siguienteY
@@ -153,26 +155,15 @@ int main()
     // Si salgo de la llamada original con exito a false no exite solucion
     if(!exito) cout<<"INALCANZABLE"<<endl;
 
+    // Libero memoria
+    for(int i=0; i<10; i++)	delete[] laberinto[i];
+    delete[] laberinto;
+
     return 0;
-
-    /*
-
-    ..********
-    *.*......*
-    *.*.****.*
-    *.*.*..*.*
-    *.*.*T.*.*
-    *.*.**.*.*
-    *.*....*.*
-    *.******.*
-    *........*
-    **********
-
-    */
 }
 
 /*
-// Matriz con el laberinto alcanzable
+    // Matriz con el laberinto alcanzable
     char laberintoAlcanzable[10][10]={
         {'.', '.', '*', '*', '*', '*', '*', '*', '*', '*'},
         {'*', '.', '*', '.', '.', '.', '.', '.', '.', '*'},

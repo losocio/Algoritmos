@@ -3,16 +3,13 @@
 // Devuelve puntero al nodo en la posicion solicitada
 Nodo* ListaEnlazada::getNodo(int posicion)
 {
-    assertdomjudge(posicion>=0 && posicion<n);
+    assertdomjudge(posicion>=0 && posicion<n && n>0);
 
     // Guardo el comienzo de la lista
     Nodo* nodoIterar=lista;
 
     // Itero hasta la posicion deseada
     for(int i=0;i<posicion;i++) nodoIterar=nodoIterar->siguienteNodo;
-
-    posicionUltimoNodoAccedido = posicion;
-	punteroUltimoNodoAccedido = nodoIterar;
 
     return nodoIterar;
 }
@@ -21,10 +18,7 @@ Nodo* ListaEnlazada::getNodo(int posicion)
 ListaEnlazada::ListaEnlazada()
 {
     n=0;
-    lista=nullptr;
-
-    posicionUltimoNodoAccedido = 0;
-	punteroUltimoNodoAccedido = NULL;
+    lista=NULL;
 }
 
 // Devuelve el valor en la posicion pedida
@@ -53,7 +47,7 @@ int ListaEnlazada::getN()
 
 // Inserta elementos en la lista, el comportamiento varia dependiendo de donde se quiera insertar
 void ListaEnlazada::insertar(int posicion, Contacto nuevoValor)
-{
+{    
     // Compruebo que se accede un valor posible
     assertdomjudge(posicion>=0 && posicion<=n);
 
@@ -63,16 +57,23 @@ void ListaEnlazada::insertar(int posicion, Contacto nuevoValor)
     // Guardo el valor en el nuevo nodo
     nodoNuevo->elemento=nuevoValor;
 
+    // NOTE: no se puede usar switch case, los case no pueden definirse dinamicamente
     // Si se inserta al principio de la lista
     if(posicion==0)
     {
-        // Apunto el nuevo nodo al nodo 0
-        // NOTE: Antes tenia nodoNuevo->siguienteNodo=lista;
-        nodoNuevo->siguienteNodo=nodoNuevo;
+        /* FIXED: nodoNuevo->siguienteNodo=NULL;  es el bug.
+        Estoy asumiendo que insertar en pos==0 es insertar un nodo por primera vez, 
+        entonces apunto siguienteNodo a NULL. Para este caso tiene sentido
+
+        Pero si ya existen nodos en la lista y apunto siguienteNodo a NULL 
+        pierdo la conexion con los nodos en posiciones de 1 a n-1
+        */
+
+        // Apunto el nuevo nodo al anterior nodo 0
+        nodoNuevo->siguienteNodo=lista;
 
         // Apunto la lista al nodo nuevo
         lista = nodoNuevo;
-
     }
     // Si se inserta un elemento nuevo al final de la lista
     else if(posicion==n)
@@ -98,36 +99,6 @@ void ListaEnlazada::insertar(int posicion, Contacto nuevoValor)
         nodoAnterior->siguienteNodo=nodoNuevo;
     }
 
-    /* NOTE: no se puede usar switch case, los case no pueden definirse dinamicamente
-    switch(posicion)
-    {
-        // Si la lista esta vacia
-        case 0:
-            lista = nodo;
-            lista->elemento=nuevoValor;
-            lista->siguienteNodo=NULL;
-          
-            break;
-
-        // Si se inserta al final de la lista
-        case n:
-
-            nodo->elemento=nuevoValor;
-            nodo->siguienteNodo=NULL;
-
-            nodoAnterior->siguienteNodo=nodo;
-        
-            break;
-
-        // Si se inserta entre dos nodos
-        default:
-            nodo->elemento=nuevoValor;
-            nodo->siguienteNodo=getNodo(posicion+1);
-
-            nodoAnterior->siguienteNodo=nodo;
-    }
-    */
-
     // Aumento el contador de nodos
     n++;
 
@@ -137,13 +108,15 @@ void ListaEnlazada::insertar(int posicion, Contacto nuevoValor)
 // Elimina elementos de la lista, el comportamiento varia dependiendo de donde se quiera eliminar
 void ListaEnlazada::eliminar(int posicion)
 {
+    // FIXED: quite n<0 del assert
     // Compruebo que se accede un valor posible
-    assertdomjudge(posicion>=0 && posicion<n && n<0);
+    assertdomjudge(posicion>=0 && posicion<n);
 
     // NOTE: Ejemplo de buena practica, solo llamo a getNodo() una vez para dos variables
     // NOTE: Nodo* nodoAnterior=getNodo(posicion-1); da segfault si se elimina el primer elemento, lo pongo en el if
     Nodo* nodoABorrar=getNodo(posicion);   
 
+    // NOTE: no se puede usar switch case, los case no pueden definirse dinamicamente
     // Si se elimina al principio de la lista
     if(posicion==0)
     {
@@ -161,11 +134,11 @@ void ListaEnlazada::eliminar(int posicion)
     {
         Nodo* nodoAnterior=getNodo(posicion-1);
 
-        // Borro el nodo final
-        delete nodoABorrar;
-
         // Pongo a NULL el puntero del nodo anterior
         nodoAnterior->siguienteNodo=NULL;
+        
+        // Borro el nodo final
+        delete nodoABorrar;
     }
     // Si se elimina dentro de la lista, entre dos nodos
     else
@@ -178,39 +151,6 @@ void ListaEnlazada::eliminar(int posicion)
         // Borro el nodo a borrar
         delete nodoABorrar;
     }
-
-    /* NOTE: no se puede usar switch case, los case no pueden definirse dinamicamente
-    switch(posicion)
-    {
-        // Si la lista esta vacia
-        case 0:
-            
-            // NOTE: delete *lista; puede que sea asi
-            delete lista;
-            
-
-            lista = nodoABorrar->siguienteNodo;;
-
-          
-            break;
-
-        // Si se inserta al final de la lista
-        case n:
-            //delete getNodo(posicion);
-            delete nodoAnterior->siguienteNodo;
-
-            nodoAnterior->siguienteNodo=NULL;
-            break;
-
-        // Si se inserta entre dos nodos
-        default:
-            Nodo* nodoABorrar=nodoAnterior->siguienteNodo;
-
-            nodoAnterior->siguienteNodo=nodoABorrar->siguienteNodo;
-
-            delete nodoABorrar;
-    }
-    */
 
     // Decremento el contador de nodos
     n--;

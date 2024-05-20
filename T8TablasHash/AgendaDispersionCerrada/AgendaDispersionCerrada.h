@@ -80,8 +80,8 @@ public:
 			telefono >= 0
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = capacidad
+			O(capacidad)
 
 		Complejidad Espacial: 
 			M(n) = 1
@@ -143,8 +143,8 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = capacidad
+			O(capacidad)
 
 		Complejidad Espacial: 
 			M(n) = 1
@@ -164,8 +164,8 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = capacidad
+			O(capacidad)
 
 		Complejidad Espacial: 
 			M(n) = 1
@@ -186,8 +186,8 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = capacidad
+			O(capacidad)
 
 		Complejidad Espacial: 
 			M(n) = 1
@@ -207,8 +207,8 @@ public:
 			Ninguno
 		
 		Complejidad Temporal:
-			T(n) = 
-			O()
+			T(n) = capacidad
+			O(capacidad)
 
 		Complejidad Espacial: 
 			M(n) = 1

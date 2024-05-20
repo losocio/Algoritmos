@@ -60,13 +60,19 @@ void ListaEnlazada::insertar(int posicion, int nuevoValor)
     // Si se inserta al principio de la lista
     if(posicion==0)
     {
-        // Apunto el nuevo nodo al nodo 0
-        // NOTE: Antes tenia nodoNuevo->siguienteNodo=lista;
-        nodoNuevo->siguienteNodo=NULL;
+        /* FIXED: nodoNuevo->siguienteNodo=NULL;  es el bug.
+        Estoy asumiendo que insertar en pos==0 es insertar un nodo por primera vez, 
+        entonces apunto siguienteNodo a NULL. Para este caso tiene sentido
+
+        Pero si ya existen nodos en la lista y apunto siguienteNodo a NULL 
+        pierdo la conexion con los nodos en posiciones de 1 a n-1
+        */
+
+        // Apunto el nuevo nodo al anterior nodo 0
+        nodoNuevo->siguienteNodo=lista;
 
         // Apunto la lista al nodo nuevo
         lista = nodoNuevo;
-
     }
     // Si se inserta un elemento nuevo al final de la lista
     else if(posicion==n)

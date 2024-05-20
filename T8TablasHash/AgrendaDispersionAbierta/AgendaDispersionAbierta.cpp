@@ -26,6 +26,7 @@ int Agenda::obtenerPosicion(long telefono)
 	return telefono%capacidad;
 }
 
+// FIX: algo falla aqui
 // Comprueba si existe un contacto en la tabla hash
 bool Agenda::existeContacto(long telefono)
 {
@@ -62,6 +63,9 @@ string Agenda::getContacto(long telefono)
 // Introduce un contacto en la lista enlazada de la posicion de la tabla hash
 void Agenda::introducirContacto(long telefono, string contacto)
 {
+	// No puede haber dos entradas para la misma clave
+	assertdomjudge(!existeContacto(telefono));
+
 	// Determino la posicion usand obtenerPosicion()
 	int posicion = obtenerPosicion(telefono);
 
@@ -73,14 +77,22 @@ void Agenda::introducirContacto(long telefono, string contacto)
 
 	// NOTE: Esta lista enlazada no esta ordenada
 
-	// FIXED: Hay que insertar al principio de la lista, por esto me daba error. Deberia especificarse en el enunciado >:(
-	// En dicha posicion de la tabla hash, inserto un nuevo contacto al final de la lista enlazada
-	// Para saber donde cuantos elemento hay en la lista enlazada utilizo getN()
-	//tabla[posicion].insertar(tabla[posicion].getN(), nuevoContacto);
-	
+	/* FIXED: Hay que insertar al principio de la lista, por esto me daba error. Deberia especificarse en el enunciado >:(
+	En dicha posicion de la tabla hash, inserto un nuevo contacto al final de la lista enlazada
+	Para saber donde cuantos elemento hay en la lista enlazada utilizo getN()
+	tabla[posicion].insertar(tabla[posicion].getN(), nuevoContacto);
+	*/
 
 	// Inserto el contacto en la primera posicion de la lista enlazada
 	tabla[posicion].insertar(0, nuevoContacto);
+
+	/* NOTE: test de insercion intermedia, esta funciona
+	Contacto erik;
+	erik.telefono=99;
+	erik.nombre="erik";
+	if(tabla[posicion].getN()==0) tabla[posicion].insertar(0, erik);
+	tabla[posicion].insertar(1, nuevoContacto);
+	*/
 
 	n++;
 

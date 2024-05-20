@@ -16,4 +16,3 @@ public:
 		siguiente=sig;
     }
 };
-

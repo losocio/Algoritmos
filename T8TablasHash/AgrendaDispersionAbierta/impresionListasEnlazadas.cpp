@@ -19,8 +19,6 @@ void imprimirListaEnlazada(ListaEnlazada *lista) {
 		if (lista->getN() > 20) cout << "demasiadosElementosParaMostrar";
 		else {
 			for (int i = 0; i < lista->getN(); i++) {
-				cout<<"getValor(): "<<i;
-				// FIX: getValor(1) falla, por culpa de getNodo()
 				Contacto elemento = lista->getValor(i); // Elemento a imprimir
 				cout << "(" << elemento.telefono << "," << elemento.nombre << ")";
 				if (i < lista->getN() - 1) cout << ","; // Imprimimos "," si no estamos al final

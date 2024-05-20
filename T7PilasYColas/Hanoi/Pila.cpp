@@ -8,7 +8,7 @@ Pila::Pila(string name)
 }
 
 // Devuelve el nombre de la pila
-std::string Pila::nombrePila()
+string Pila::nombrePila()
 {
 	return name;
 }

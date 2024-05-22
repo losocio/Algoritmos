@@ -6,7 +6,9 @@ using namespace std;
 /* 
 Ordenacion por burbuja, ordena un array de enteros
     Parámetro: Array de int y su longitud
+
     Retorno: Ninguno
+    
     Precondicion: longitud >= 0
     
     Complejidad Temporal: 

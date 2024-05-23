@@ -8,7 +8,7 @@
 //Palidromo recursivo
 int esPalindromo(const char palindromo[], int i){
     //Si dos letras simetricas no son iguales ya no es palindromo
-    if(palindromo[i]!=palindromo[strlen(pal)-i-1]) return 0;
+    if(palindromo[i]!=palindromo[strlen(palindromo)-i-1]) return 0;
 
     //Si llego al final del string, retornar 1
     if(strlen(palindromo)/2==i) return 1;
@@ -18,7 +18,7 @@ int esPalindromo(const char palindromo[], int i){
     
     /* 
     
-    //Los corchetes son para guarros
+    // NOTE: Los corchetes son para guarros
 
     if(pal[i]==pal[strlen(pal)-i-1]){
         //Si llego al final del string, retornar 1
@@ -27,6 +27,7 @@ int esPalindromo(const char palindromo[], int i){
         return esPalindromo(pal, ++i);
     //Si dos letras simetricas no son iguales ya no es palindromo
     } else return 0;
+    
     */
 }
 

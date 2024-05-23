@@ -3,6 +3,7 @@
 
 #define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
 
+// Ordenacion por seleccion, ordena un array de enteros
 void ordenarSeleccion(int x[],int len)
 {
 	// La longitud debe ser mayor o igual que 0
@@ -18,7 +19,7 @@ void ordenarSeleccion(int x[],int len)
 		for(int j=i+1;j<len;j++)
 		{
 			// Si la iteracion actual es menor que en valor anterior, guardo su indice
-			if(x[j]<x[indiceMinimo]) indiceMinimo = j; //NOTE esto seria siempre constante T(n)=1
+			if(x[j]<x[indiceMinimo]) indiceMinimo = j; // NOTE: esto seria siempre constante T(n)=1
 		}
 
 		// Intercambio el menor por el valor de la iteracion actual

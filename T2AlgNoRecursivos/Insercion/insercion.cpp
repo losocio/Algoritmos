@@ -3,6 +3,7 @@
 
 #define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
 
+// Ordenacion por insercion, ordena un array de enteros
 void ordenarInsercion(int x[],int len)
 {	
 	// La longitud debe ser mayor o igual que 0

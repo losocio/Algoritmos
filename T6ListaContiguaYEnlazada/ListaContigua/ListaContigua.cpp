@@ -12,7 +12,7 @@ ListaContigua::ListaContigua(int incremento)
     // La lista empieza vacia
 	n=0;
 
-    // La lista comienza con capacidad del tamaño del incremento
+    // La lista comienza con capacidad 0
     capacidad=0;
 
     /* 
@@ -147,7 +147,7 @@ void ListaContigua::eliminar(int posicion)
     n--;
 
     // FIXED: if((capacidad-n)>=incremento), era incorrecto
-    // Si eliminando un elemento la capacidad el mayor que 2*incremento la disminuyo
+    // Si eliminando un elemento la capacidad es mayor que 2*incremento la disminuyo
     if(n<=(capacidad-2*incremento))
     {   
         // Disminuyo la capacidad por el incremento

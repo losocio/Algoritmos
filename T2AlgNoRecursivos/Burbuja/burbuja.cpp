@@ -3,6 +3,7 @@
 
 #define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
 
+// Ordenacion por burbuja, ordena un array de enteros
 void ordenarBurbuja(int x[], int len)
 {
 	// La longitud debe ser mayor o igual que 0
@@ -25,7 +26,7 @@ void ordenarBurbuja(int x[], int len)
 			}
 		}
 
-		// Mostrar las iteraciones
+		// Mostrar el estado del array en cada iteracion
       	for(int k=0;k<len;k++) cout<<x[k]<<" ";
       	cout<<endl;
     }  

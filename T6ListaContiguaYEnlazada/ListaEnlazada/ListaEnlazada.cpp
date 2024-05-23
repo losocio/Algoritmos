@@ -161,11 +161,11 @@ void ListaEnlazada::eliminar(int posicion)
     {
         Nodo* nodoAnterior=getNodo(posicion-1);
 
-        // Borro el nodo final
-        delete nodoABorrar;
-
         // Pongo a NULL el puntero del nodo anterior
         nodoAnterior->siguienteNodo=NULL;
+
+        // Borro el nodo final
+        delete nodoABorrar;
     }
     // Si se elimina dentro de la lista, entre dos nodos
     else

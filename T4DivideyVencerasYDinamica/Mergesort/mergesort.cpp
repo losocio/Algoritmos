@@ -36,7 +36,7 @@ void combinar(int x[],int inicioIzquierda,int lenIzquierda,int inicioDerecha,int
         }
     }
 
-    //combinar(); //NOTE: Combinar tambien es recurrente, pero no tiene que llamarse aqui, se llama al salir de ordenarMergeSort()
+    //combinar(); // NOTE: Combinar tambien es recurrente, pero no tiene que llamarse aqui, se llama al salir de ordenarMergeSort()
 
     return;
 }
@@ -45,7 +45,7 @@ void combinar(int x[],int inicioIzquierda,int lenIzquierda,int inicioDerecha,int
 
 
 // Divide el array a ordenar en subarrays y luego los combina, todo recursivamente
-void ordenarMergeSort(int x[],int inicio,int len) //TODO
+void ordenarMergeSort(int x[],int inicio,int len)
 {
     // La longitud debe ser mayor o igual que 0
 	assertdomjudge(len>=0);
@@ -73,7 +73,7 @@ void ordenarMergeSort(int x[],int inicio,int len) //TODO
         // NOTE: para el combinar se usan el array x que ha sido modifica por los ordenarMeger y las variables de inicioIzquierda e inicioDerecha 
         combinar(x,inicioIzquierda,lenIzquierda,inicioDerecha,lenDerecha,temp);
         
-        //combinar(); //NOTE: No se necesitan dos combinar()
+        //combinar(); // NOTE: No se necesitan dos combinar()
         
         // Copiar del array temporal al array resultado y mostrarlo
         for(int k=0;k<len;k++)

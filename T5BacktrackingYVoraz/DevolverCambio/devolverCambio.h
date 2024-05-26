@@ -7,7 +7,7 @@ using namespace std;
 Devuelve las cantidades de las distintas monedas de pesetas necesarias para de cambio
     Parámetro: 
         int valor,  valor del que dar cambio
-        int* cambio, referenci del array donde se guardan las cantidades de cambio
+        int* cambio, referencia del array donde se guardan las cantidades de cambio
 
     Retorno: 
         Ninguno

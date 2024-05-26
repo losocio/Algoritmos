@@ -51,8 +51,10 @@ int Agenda::buscarContacto(long telefono)
 	
 	int contador=0;
 	
-	// FIXED: Busco un contacto inexsistente con la tabla llena que queda en bucle infinito
-	while(true && contador<capacidad)
+	// FIXED: SI busco un contacto inexsistente con la tabla llena que queda en bucle infinito
+	// Itero por la tabla hasta recorrerla entera,
+	// uso break si encuentro el valor o determino que no existe en la tabla
+	while(contador<capacidad)
 	{
 		// Si paso por una posicion vacia que nunca a sido borrada doy por terminada la busqueda
 		if(borradas[posicion]==false && vacias[posicion]==true) break;

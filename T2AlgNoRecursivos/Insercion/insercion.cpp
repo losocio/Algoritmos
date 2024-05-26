@@ -4,14 +4,14 @@
 #define assertdomjudge(x) if(!(x)){std::cout<<"ERROR"<<std::endl;exit(0);}
 
 // Ordenacion por insercion, ordena un array de enteros
-void ordenarInsercion(int x[],int len)
+void ordenarInsercion(int x[], int len)
 {	
 	// La longitud debe ser mayor o igual que 0
 	assertdomjudge(len>=0);
 
 	int desplazado, j;
 	// Itero todo el array
-  	for(int i=1;i<len;i++)
+  	for(int i=1; i<len; i++)
     {
 		// Separo el elemento a ordenar
 		desplazado = x[i];
@@ -42,7 +42,7 @@ int main()
 	int n;
 	cin>>n;
 	int *x=new int[n];
-	for(int i=0;i<n;i++) cin>>x[i];
+	for(int i=0; i<n; i++) cin>>x[i];
 
 	ordenarInsercion(x,n);
 

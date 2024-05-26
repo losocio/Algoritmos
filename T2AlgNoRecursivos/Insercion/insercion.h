@@ -17,6 +17,6 @@ Ordenacion por insercion, ordena un array de enteros
         M(n)=3*4=12bytes
         O(1)
 */
-void ordenarInsercion(int x[],int len);
+void ordenarInsercion(int x[], int len);
 
 #endif

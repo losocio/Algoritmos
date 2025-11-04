@@ -1,2 +1,2 @@
 # Algoritmos
-Todos los problemas de la asginatura
+Todos los problemas de la asignatura
